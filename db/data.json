@@ -5,7 +5,13 @@
         "first_name": "Collette",
         "last_name": "Leachman",
         "email": "cleachman0@eventbrite.com",
-        "address": "254.78.208.202",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
         "active": false
       }, {
         "id": 2,
