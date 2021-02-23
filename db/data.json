@@ -1244,12 +1244,52 @@
       {
         "id": 1,
         "name": "DVD",
-        "description": "DVD category"
+        "description": "DVD Video Category"
       },
       {
         "id": 2,
         "name": "Bluray",
-        "description": "Bluray category"
+        "description": "Bluray Video Category"
+      },
+      {
+        "id": 3,
+        "name": "VHS",
+        "description": "VHS Video Category"
+      },
+      {
+        "id": 4,
+        "name": "Book",
+        "description": "Book Category"
+      },
+      {
+        "id": 5,
+        "name": "E-Book",
+        "description": "E-Book Category"
+      },
+      
+      {
+        "id": 6,
+        "name": "Audio CD",
+        "description": "Audio CD Category"
+      },{
+        "id": 7,
+        "name": "PC Game",
+        "description": "PC Game Category"
+      },
+      {
+        "id": 8,
+        "name": "PlayStation",
+        "description": "PlayStation Game Category"
+      },
+      {
+        "id": 9,
+        "name": "X-Box",
+        "description": "X-Box Game Category"
+      },
+      {
+        "id": 10,
+        "name": "Nintendo",
+        "description": "Nintendo Game Category"
       }
     ]
   }
