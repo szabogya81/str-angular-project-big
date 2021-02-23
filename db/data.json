@@ -1,4 +1,137 @@
 {
+    "customers": [
+      {
+        "id": 1,
+        "first_name": "Collette",
+        "last_name": "Leachman",
+        "email": "cleachman0@eventbrite.com",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": false
+      }, {
+        "id": 2,
+        "first_name": "Vonnie",
+        "last_name": "Mollen",
+        "email": "vmollen1@boston.com",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": true
+      }, {
+        "id": 3,
+        "first_name": "Sherye",
+        "last_name": "Povall",
+        "email": "spovall2@google.it",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": false
+      }, {
+        "id": 4,
+        "first_name": "Bard",
+        "last_name": "Leivesley",
+        "email": "bleivesley3@indiegogo.com",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": true
+      }, {
+        "id": 5,
+        "first_name": "Wright",
+        "last_name": "Fitzsimons",
+        "email": "wfitzsimons4@topsy.com",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": true
+      }, {
+        "id": 6,
+        "first_name": "Rachele",
+        "last_name": "Romi",
+        "email": "rromi5@tumblr.com",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": true
+      }, {
+        "id": 7,
+        "first_name": "Brittney",
+        "last_name": "Wearne",
+        "email": "bwearne6@usgs.gov",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": false
+      }, {
+        "id": 8,
+        "first_name": "Michel",
+        "last_name": "Weyland",
+        "email": "mweyland7@de.vu",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": false
+      }, {
+        "id": 9,
+        "first_name": "Kirby",
+        "last_name": "Rigate",
+        "email": "krigate8@exblog.jp",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": false
+      }, {
+        "id": 10,
+        "first_name": "Kile",
+        "last_name": "Chatin",
+        "email": "kchatin9@de.vu",
+        "address": {
+          "zip": 1023,
+          "country": "Hungary",
+          "city": "Budapest",
+          "street": "Mrgit krt. 98. 1.em. 10.",
+          "notes": "15-os kapucsengo"
+        },
+        "active": true
+      }
+    ],
     "products": [
       {
         "id": 1,
