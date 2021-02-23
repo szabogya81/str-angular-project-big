@@ -21,7 +21,10 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(key: string = 'name', filterStr: string = ''): Observable<Product[]> {
+  getAll(
+    key: string = 'name', filterStr: string = '', 
+    page: number = 0, limit: number = 50): Observable<Product[]> {
+
     let url: string = this.productsUrl;
 
     if (filterStr) {
@@ -31,8 +34,25 @@ export class ProductService {
       else if (['id', 'catId', 'price', 'featured', 'active'].includes(key)) {
         url = `${url}?${key}=${filterStr}`;
       }
+
+      url +='&';
     }
+    else {
+      url +='?';
+    }
+    url += `_page=${page}&_limit=${limit}`;
 
     return this.http.get<Product[]>(url);
+  }
+
+  update(product: Product): Observable<Product> {
+    return this.http.put<Product>(`
+      ${this.productsUrl}/${product.id}`, product, this.httpOptions);
+  }
+
+  remove(product: Product | number): Observable<Product> {
+    let id = typeof(product) === 'number' ? product : product.id;
+    
+    return this.http.delete<Product>(`${this.productsUrl}/${id}`, this.httpOptions);
   }
 }
