@@ -1,7 +1,7 @@
 export class Product {
   id: number = 0;
   name: string = '';
-  type: string = '';
+  //type: string = '';
   catId: number = 0;
   description: string = '';
   price: number = 0;
@@ -10,5 +10,4 @@ export class Product {
 
   imagePath: string = '';
   stock: number = 0;
-  salePrice?: number = undefined;
 }

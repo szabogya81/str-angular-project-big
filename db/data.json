@@ -184,8 +184,7 @@
       "price": 9499,
       "stock": 7,
       "featured": true,
-      "active": true,
-      "salePrice": 8999
+      "active": true
     },
     {
       "id": 5,
@@ -240,8 +239,7 @@
       "price": 729,
       "stock": 32,
       "featured": false,
-      "active": true,
-      "salePrice": 699
+      "active": true
     },
     {
       "id": 10,
@@ -307,8 +305,7 @@
       "price": 3399,
       "stock": 32,
       "featured": true,
-      "active": false,
-      "salePrice": 2999
+      "active": false
     },
     {
       "id": 16,
@@ -517,8 +514,7 @@
       "price": 999,
       "stock": 16,
       "featured": false,
-      "active": false,
-      "salePrice": 959
+      "active": false
     },
     {
       "id": 35,
@@ -1134,8 +1130,7 @@
       "price": 649,
       "stock": 8,
       "featured": false,
-      "active": true,
-      "salePrice": 599
+      "active": true
     },
     {
       "id": 91,
@@ -1212,8 +1207,7 @@
       "price": 4699,
       "stock": 21,
       "featured": false,
-      "active": true,
-      "salePrice": 4299
+      "active": true
     },
     {
       "id": 98,
