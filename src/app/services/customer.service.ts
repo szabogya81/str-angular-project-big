@@ -33,8 +33,7 @@ export class CustomerService {
     return this.http.post<Observable<any>>(`${this.httpURL}`, customer);
   }
 
-  remove(customer: Customer | number): Observable<Customer> {
-    let id: Number = typeof (customer) === 'number' ? customer : customer.id;
+  remove(id: number): Observable<Customer> {
     return this.http.delete<Customer>(`${this.httpURL}/${id}`);
   }
 
