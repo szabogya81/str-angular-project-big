@@ -2,8 +2,13 @@
     <div class="row">
         <h3>Customers</h3>
         <div class="input-group no-border mt-2">
+            <select [(ngModel)]="filterKey" class="form-control">
+                <option *ngFor="let key of filterKeyArray" [value]="key">
+                    {{ key }}
+                </option>
+            </select>
             <input class="form-control searchInput py-1 my-1" #search type="text" value="" class="form-control"
-                placeholder="Search..." (keyup)="0">
+                placeholder="Search..." [(ngModel)]="phrase">
             <button type="submit" class="btn btn-white btn-round btn-just-icon">
                 <i class="material-icons">search</i>
                 <div class="ripple-container"></div>
@@ -30,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let customer of customerList$ | async">
+                    <tr *ngFor="let customer of customerList$ | async | customerFilter:filterKey:phrase">
                         <td>{{ customer.first_name }}</td>
                         <td>{{ customer.last_name }}</td>
                         <td>{{ customer.email }}</td>

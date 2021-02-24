@@ -13,10 +13,35 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CustomerListComponent implements OnInit {
 
   customerList$: Observable<Customer[]>;
+  //customerList: Customer[] = [];
+
+  rawCustomerKeys: Customer = new Customer();
+
+  phrase: string = '';
+  filterKey: string = 'last_name';
+  filterKeyArray: string[];
+  filterKeyArrays: string[] = Object.keys(new Customer());
   // @Output() notifyOnDelete: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private customerService: CustomerService, private router: Router/* , private changeDetectorRefs: ChangeDetectorRef */) {
     this.customerList$ = this.customerService.getAll();
+    /* console.log(this.customerList$.subscribe(itemList => {
+      this.customerList = itemList;
+      console.log(this.customerList);
+    })); */
+
+    let customerKeys = Object.getOwnPropertyNames(this.rawCustomerKeys);
+    const zip = Object.getOwnPropertyNames(this.rawCustomerKeys.address)[0];
+    const country = Object.getOwnPropertyNames(this.rawCustomerKeys.address)[1];
+    const city = Object.getOwnPropertyNames(this.rawCustomerKeys.address)[2];
+    const street = Object.getOwnPropertyNames(this.rawCustomerKeys.address)[3];
+    const notes = Object.getOwnPropertyNames(this.rawCustomerKeys.address)[4];
+
+    customerKeys.splice(4, 1, zip, country, city, street, notes);   // removes Address, replaces with properties in the select option
+    customerKeys.splice(0, 1);        // removes id from select option
+
+    this.filterKeyArray = customerKeys;
+
   }
 
   ngOnInit(): void { }

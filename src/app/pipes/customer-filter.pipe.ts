@@ -12,12 +12,13 @@ export class CustomerFilterPipe implements PipeTransform {
 
     filterText = typeof filterText !== 'number' ? ('' + filterText).toLowerCase() : filterText;
 
-    return value.filter( item => {
-      if (typeof item[key] === 'number' && typeof filterText === 'number') {
-        return item[key] === filterText;
+    return value.filter(item => {
+      if (key == 'zip' || key == 'country' || key == 'city' || key == 'street' || key == 'notes') {
+        return ('' + item.address[key]).toLowerCase().includes((filterText as string));
       }
 
-      return ('' + item[key]).toLowerCase().includes( (filterText as string) );
+      return ('' + item[key]).toLowerCase().includes((filterText as string));
+
     });
   }
 
