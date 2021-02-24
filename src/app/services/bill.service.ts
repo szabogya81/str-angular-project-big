@@ -32,10 +32,8 @@ export class BillService {
 
     if (filterStr) {
       if (['orderID', 'status'].includes(key)) {
-        url = `${url}?${key}=${filterStr}`;
+        url = `${url}?${key}=${filterStr}&`;
       }
-
-      url +='&';
     }
     else {
       url +='?';
