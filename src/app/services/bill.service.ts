@@ -25,16 +25,13 @@ export class BillService {
   }
 
   getAll(
-    key: string = 'name', filterStr: string = '', 
+    key: string = 'orderID', filterStr: string = '', 
     page: number = 0, limit: number = 50): Observable<Bill[]> {
 
     let url: string = this.billsUrl;
 
     if (filterStr) {
-      if (['name', 'type', 'description'].includes(key)) {
-        url = `${url}?${key}_like=${filterStr}`;
-      }
-      else if (['id', 'catId', 'price', 'featured', 'active'].includes(key)) {
+      if (['orderID', 'status'].includes(key)) {
         url = `${url}?${key}=${filterStr}`;
       }
 
