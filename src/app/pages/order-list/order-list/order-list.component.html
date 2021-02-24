@@ -1,0 +1,38 @@
+<button type="button" class="btn btn-primary btn-lg btn-block">New order</button>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>CustomerID</th>
+      <th>ProductID</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orderList | async">
+      <td>{{ order.id }}</td>
+      <td>{{ order.customerID }}</td>
+      <td>{{ order.productID }}</td>
+      <td>{{ order.amount }}</td>
+      <td>{{ order.status }}</td>
+      <td>
+        <div class="btn-group">
+          <button class="btn btn-info">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="btn btn-info">
+            <i class="fa fa-refresh"></i>
+          </button>
+          <button class="btn btn-info">
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
