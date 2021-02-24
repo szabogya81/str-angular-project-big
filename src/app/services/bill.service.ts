@@ -10,12 +10,11 @@ import { Bill } from '../model/bill';
 })
 export class BillService {
 
-
-  httpOptions = {
-    headers: new HttpHeaders(
-      { 'Content-Type': 'application/json' }
-    )
-  }
+  // httpOptions = {
+  //   headers: new HttpHeaders(
+  //     { 'Content-Type': 'application/json' }
+  //   )
+  // }
 
   billsUrl = 'http://localhost:3000/bills';
 
