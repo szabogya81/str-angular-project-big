@@ -3,6 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
@@ -25,6 +26,7 @@ import { OrderListComponent } from './pages/order-list/order-list.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
