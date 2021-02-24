@@ -10,6 +10,10 @@ import { OrderFilterPipe } from './pipes/order-filter.pipe';
 import { BillFilterPipe } from './pipes/bill-filter.pipe';
 import { CustomerListComponent } from './pages/customer-list/customer-list.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
+import { NavbarComponent } from './common/navbar/navbar.component';
+import { SidebarComponent } from './common/sidebar/sidebar.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { FooterComponent } from './common/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { OrderListComponent } from './pages/order-list/order-list.component';
     BillFilterPipe,
     CustomerListComponent,
     OrderListComponent,
+    NavbarComponent,
+    SidebarComponent,
+    DashboardComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
