@@ -13,6 +13,9 @@ export class BillListComponent implements OnInit {
   
   bills: Observable<Bill[]> = this.billService.getAll();
 
+  filterText: string = '';
+  filterKey: string = 'Status';
+  filterKeys: string[] = Object.keys(new Bill());
 
   constructor(private billService: BillService) { 
   }

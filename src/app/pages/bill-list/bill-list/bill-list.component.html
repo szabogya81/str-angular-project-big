@@ -1,27 +1,39 @@
 <div class="container">
-    <div class="row">
-        <h3>Bills</h3>
-        <!-- Search/Filter -->
-        <!-- Create a new bill -->
-        <!-- Bill list (modify status: new to paid, delete: if state=new) -->
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Order ID</th>
-                <th>Amount</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let bill of bills | async">
-                <td>{{ bill.id }}</td>
-                <td>{{ bill.orderID }}</td>
-                <td>{{ bill.amount }}</td>
-                <td>{{ bill.status }}</td>
-                <td>modify / delete</td>
-              </tr>
-            </tbody>
-        </table>
+  <div class="row">
+      <h3>Bills</h3>
+      <div class="input-group no-border mt-2">
+        <select [(ngModel)]="filterKey" class="form-control">
+            <option *ngFor="let key of filterKeys" [value]="key">
+                {{ key }}
+            </option>
+        </select>
+        <input class="form-control searchInput py-1 my-1" #search type="text" value="" class="form-control"
+            placeholder="Search..." [(ngModel)]="filterText">
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons">search</i>
+            <div class="ripple-container"></div>
+        </button>
     </div>
+      <!-- Create a new bill -->
+      <!-- Bill list (modify status: new to paid, delete: if state=new) -->
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Order ID</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bill of bills | async | billFilter:filterKey:filterText">
+              <td>{{ bill.id }}</td>
+              <td>{{ bill.orderID }}</td>
+              <td>{{ bill.amount }}</td>
+              <td>{{ bill.status }}</td>
+              <td>modify / delete</td>
+            </tr>
+          </tbody>
+      </table>
+  </div>
 </div>
