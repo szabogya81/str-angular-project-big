@@ -20,7 +20,8 @@ export class CustomerListComponent implements OnInit {
   phrase: string = '';
   filterKey: string = 'last_name';
   filterKeyArray: string[];
-  filterKeyArrays: string[] = Object.keys(new Customer());
+  isSearchButtonVisible: boolean = true;
+  //filterKeyArrays: string[] = Object.keys(new Customer());
   // @Output() notifyOnDelete: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private customerService: CustomerService, private router: Router/* , private changeDetectorRefs: ChangeDetectorRef */) {
