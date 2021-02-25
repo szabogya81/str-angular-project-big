@@ -24,6 +24,9 @@ export class CustomerListComponent implements OnInit {
   //filterKeyArrays: string[] = Object.keys(new Customer());
   // @Output() notifyOnDelete: EventEmitter<number> = new EventEmitter<number>();
 
+  // sorter
+  columnKey: string = '';
+
   constructor(private customerService: CustomerService, private router: Router/* , private changeDetectorRefs: ChangeDetectorRef */) {
     this.customerList$ = this.customerService.getAll();
     /* console.log(this.customerList$.subscribe(itemList => {
@@ -50,6 +53,11 @@ export class CustomerListComponent implements OnInit {
   removeCustomer(id: number | string): void {
     /*  const index = typeof id === 'string' ? parseInt(id, 10) : id;
      this.customerService.remove(index).subscribe(() => this.router.navigate(['/customers'])); */
+  }
+
+  // sorter
+  onColumnSelect(key: string): void {
+    this.columnKey = key;
   }
 
 }

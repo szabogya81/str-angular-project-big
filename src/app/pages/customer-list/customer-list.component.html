@@ -1,55 +1,55 @@
 <div class="container">
-    <div class="row">
-        <h3>Customers</h3>
-        <div class="input-group no-border mt-2">
-            <select [(ngModel)]="filterKey" class="form-control">
-                <option *ngFor="let key of filterKeyArray" [value]="key">
-                    {{ key }}
-                </option>
-            </select>
-            <input class="form-control searchInput py-1 my-1" #search type="text" value="" class="form-control"
-                placeholder="Search..." [(ngModel)]="phrase">
-            <!-- <button [disabled]="this.isSearchButtonVisible" type="submit" class="btn btn-white btn-round btn-just-icon"> -->
-            <i class="material-icons">search</i>
-            <!--       <div class="ripple-container"></div>
+  <div class="row">
+    <h3>Customers</h3>
+    <div class="input-group no-border mt-2">
+      <select [(ngModel)]="filterKey" class="form-control">
+        <option *ngFor="let key of filterKeyArray" [value]="key">
+          {{ key }}
+        </option>
+      </select>
+      <input class="form-control searchInput py-1 my-1" #search type="text" value="" class="form-control"
+        placeholder="Search..." [(ngModel)]="phrase">
+      <!-- <button [disabled]="this.isSearchButtonVisible" type="submit" class="btn btn-white btn-round btn-just-icon"> -->
+      <i class="material-icons">search</i>
+      <!--       <div class="ripple-container"></div>
             </button> -->
-        </div>
-        <div class="col-12 my-2">
-            <!--  <button class="btn btn-success w-100 py-6 my-3">
+    </div>
+    <div class="col-12 my-2">
+      <!--  <button class="btn btn-success w-100 py-6 my-3">
                 <i class="material-icons">
                     person_add
                 </i>
             </button> -->
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>FirstName</th>
-                        <th>LastName</th>
-                        <th>Email</th>
-                        <th>Zip</th>
-                        <th>Country</th>
-                        <th>City</th>
-                        <th>Street</th>
-                        <th>Notes</th>
-                        <th>Active</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let customer of customerList$ | async | customerFilter:filterKey:phrase">
-                        <td>{{ customer.id }}</td>
-                        <td>{{ customer.first_name }}</td>
-                        <td>{{ customer.last_name }}</td>
-                        <td>{{ customer.email }}</td>
-                        <td>{{ customer.address.zip }}</td>
-                        <td>{{ customer.address.country }}</td>
-                        <td>{{ customer.address.city }}</td>
-                        <td>{{ customer.address.street }}</td>
-                        <td>{{ customer.address.notes }}</td>
-                        <td>{{ customer.active }}</td>
-                        <td>
-                            <div class="btn-group">
-                                <!--  <button class="btn btn-info px-3 mr-1">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th (click)="onColumnSelect('id')">#</th>
+            <th (click)="onColumnSelect('first_name')">FirstName</th>
+            <th (click)="onColumnSelect('last_name')">LastName</th>
+            <th (click)="onColumnSelect('email')">Email</th>
+            <th (click)="onColumnSelect('')">Zip</th>
+            <th (click)="onColumnSelect('')">Country</th>
+            <th (click)="onColumnSelect('')">City</th>
+            <th (click)="onColumnSelect('')">Street</th>
+            <th (click)="onColumnSelect('')">Notes</th>
+            <th (click)="onColumnSelect('active')">Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customerList$ | async | customerFilter:filterKey:phrase  | sorter:columnKey">
+            <td>{{ customer.id }}</td>
+            <td>{{ customer.first_name }}</td>
+            <td>{{ customer.last_name }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.address.zip }}</td>
+            <td>{{ customer.address.country }}</td>
+            <td>{{ customer.address.city }}</td>
+            <td>{{ customer.address.street }}</td>
+            <td>{{ customer.address.notes }}</td>
+            <td>{{ customer.active }}</td>
+            <td>
+              <div class="btn-group">
+                <!--  <button class="btn btn-info px-3 mr-1">
                                     <i class="material-icons">
                                         mode_edit
                                     </i>
@@ -57,15 +57,15 @@
                                 <button [disabled] (click)="removeCustomer(customer.id)"
                                     class="btn btn-danger px-3 ml-1">
                                     <!-- [routerLink]="['']" -->
-                                <!--      <i class="material-icons">
+                <!--      <i class="material-icons">
                                         delete_forever
                                     </i>
                                 </button> -->
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
