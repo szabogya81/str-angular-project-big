@@ -39,6 +39,7 @@
     </div>
   </div>
   <div class="col-12">
+    <button class="btn btn-primary w-100" [routerLink]="'0'">Create Product</button>
     <div class="table-responsive">
       <table class="table table-striped table-sm table-product">
         <thead class="thead-dark text-center">
@@ -115,10 +116,10 @@
             <td class="text-right">{{ product.active }}</td>
             <td>
               <div class="btn-group">
-                <button class="btn btn-info">
+                <button class="btn btn-info" [routerLink]="[product.id]">
                   <i class="material-icons">edit</i>
                 </button>
-                <button class="btn btn-danger pull-right" (click)="showDialog(product.id)">
+                <button class="btn btn-danger pull-right" (click)="onConfirmDelete(product.id)">
                   <i class="material-icons">delete</i>
                 </button>
               </div>

@@ -39,6 +39,7 @@ export class ProductListComponent implements OnInit {
       items => items.forEach(item => this.categories.set(item.id, item.name)));
   }
 
+  //#region Main methods
   onSearch(filter: string) {
     this.filter = filter;
     this.updateProducts();
@@ -79,6 +80,33 @@ export class ProductListComponent implements OnInit {
     this.updateProducts();
   }
 
+  onDelete(productId: number) {
+    this.prodSvc.delete(productId).subscribe(
+      () => this.updateProducts()
+    );
+  }
+
+  onConfirmDelete(productId: number) {
+    this.confirmDialogService.confirmThis(
+      "Are you sure to delete Product?",
+      () => {
+        this.onDelete(productId);
+      }, () => { })
+  }
+
+  onCreate(product: Product) {
+    this.prodSvc.create(product).subscribe(
+      () => this.updateProducts()
+    );
+  }
+
+  onUpdate(product: Product) {
+    this.prodSvc.update(product).subscribe(
+      () => this.updateProducts()
+    );
+  }
+  //#endregion Main methods
+  //#region Helper methods
   getFilterColumn(event: Event): string {
     return (event.target as HTMLButtonElement).value;
   }
@@ -118,17 +146,5 @@ export class ProductListComponent implements OnInit {
     this.updateProducts();
   }
 
-  deleteProduct(productId: number) {
-    this.prodSvc.delete(productId).subscribe(
-      () => this.updateProducts()
-    );
-  }
-
-  showDialog(productId: number) {
-    this.confirmDialogService.confirmThis(
-      "Are you sure to delete Product?",
-      () => {
-        this.deleteProduct(productId);
-      }, () => { })
-  }
+  //#endregion
 }

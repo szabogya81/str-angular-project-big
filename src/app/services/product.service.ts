@@ -8,6 +8,7 @@ import { Product } from '../model/product';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService {
 
   httpOptions = {
@@ -22,6 +23,7 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
+  //#region Main methods
   get(
     key: string = 'name', filterStr: string = '',
     page: number = 0, limit: number = 50,
@@ -34,8 +36,20 @@ export class ProductService {
     return this.http.get<Product[]>(url);
   }
 
-  getCategories() {
+  getById(productId: number): Observable<Product> {
+    let url: string = `${this.productsUrl}/${productId}`;
+    return this.http.get<Product>(url, this.httpOptions);
+  }
+
+  getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.categoriesUrl, this.httpOptions);
+  }
+
+  create(product: Product): Observable<Product> {
+    product.id = 0;
+
+    return this.http.post<Product>(`
+      ${this.productsUrl}`, product, this.httpOptions);
   }
 
   update(product: Product): Observable<Product> {
@@ -47,7 +61,8 @@ export class ProductService {
     let id = typeof (product) === 'number' ? product : product.id;
     return this.http.delete<Product>(`${this.productsUrl}/${id}`, this.httpOptions);
   }
-
+  //#endregion Main methods
+  //#region Helper methods
   getFilterUrl(key: string = 'name', filterStr: string = ''): string {
     let url: string = this.productsUrl;
 
@@ -85,4 +100,5 @@ export class ProductService {
 
     return url;
   }
+  //#endregion Helper methods
 }
