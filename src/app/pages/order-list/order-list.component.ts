@@ -13,7 +13,8 @@ export class OrderListComponent implements OnInit {
   orderList: Observable<Order[]> = this.orderService.getAll();
 
   txt: string = '';
-  phraseKey: string = 'notset';
+  phraseKey: string = '';
+  keyArray: string[] = Object.keys(new Order());
 
 
   constructor(private orderService: OrderService) { }

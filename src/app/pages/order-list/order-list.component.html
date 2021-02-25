@@ -4,18 +4,17 @@
 
 <div class="input-group mb-3 col-10 offset-1">
 
-  <!-- <div class="form-group">
-  <label for=""></label>
-  <select
-    [(ngModel)]="phraseKey" class="custom-select">
-    <option *ngFor="let order of orderList | async" [value]="order.key">
-    {{ order.key }}</option>
+  <select [(ngModel)]="phraseKey" class="custom-select">
+    <option value="">find all</option>
+    <option *ngFor="let key of keyArray" [value]="key">
+      {{ key }}
+    </option>
   </select>
-</div> -->
 
 
+  <!-- Kereső mező -->
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">Filter</span>
+    <span class="input-group-text" id="basic-addon1"><i class="material-icons">filter_list</i></span>
   </div>
   <input [(ngModel)]="txt" class="form-control" type="text" placeholder="search...">
 </div>
@@ -23,7 +22,7 @@
 
 
 <div class="container col-10 offset-1">
-  <button type="button" class="btn btn-primary btn-lg btn-block">New order</button>
+  <button type="button" class="btn btn-primary btn-lg btn-block"><i class="material-icons">post_add</i></button>
   <table class="table thead-dark table-hover table-striped">
     <thead>
       <tr>
@@ -45,10 +44,10 @@
         <td class="text-center">
           <div class="btn-group">
             <button class="btn btn-info">
-              <i class="fa fa-edit"></i>
+              <i class="material-icons">mode_edit</i>
             </button>
             <button class="btn btn-danger">
-              <i class="fa fa-trash"></i>
+              <i class="material-icons">delete_forever</i>
             </button>
           </div>
         </td>
