@@ -23,6 +23,7 @@ import { BillFilterPipe } from './pipes/bill-filter.pipe';
 import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
 import { OrderFilterPipe } from './pipes/order-filter.pipe';
 import { SorterPipe } from './pipes/sorter.pipe';
+import { ProductEditComponent } from './pages/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SorterPipe } from './pipes/sorter.pipe';
     NavbarComponent,
     OrderFilterPipe,
     OrderListComponent,
+    ProductEditComponent,
     ProductListComponent,
     SidebarComponent,
     SorterPipe

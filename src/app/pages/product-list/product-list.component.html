@@ -115,10 +115,10 @@
             <td class="text-right">{{ product.active }}</td>
             <td>
               <div class="btn-group">
-                <button class="btn btn-info">
+                <button class="btn btn-info" [routerLink]="[product.id]">
                   <i class="material-icons">edit</i>
                 </button>
-                <button class="btn btn-danger pull-right" (click)="showDialog(product.id)">
+                <button class="btn btn-danger pull-right" (click)="onConfirmDelete(product.id)">
                   <i class="material-icons">delete</i>
                 </button>
               </div>

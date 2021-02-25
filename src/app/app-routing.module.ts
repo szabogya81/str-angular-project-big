@@ -6,6 +6,7 @@ import { BillListComponent } from './pages/bill-list/bill-list/bill-list.compone
 import { CustomerListComponent } from './pages/customer-list/customer-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
+import { ProductEditComponent } from './pages/product-edit/product-edit.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 
 const routes: Routes = [
@@ -14,8 +15,8 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
-    path: 'products',
-    component: ProductListComponent
+    path: 'bills',
+    component: BillListComponent
   },
   {
     path: 'customers',
@@ -26,8 +27,12 @@ const routes: Routes = [
     component: OrderListComponent
   },
   {
-    path: 'bills',
-    component: BillListComponent
+    path: 'products',
+    component: ProductListComponent
+  },
+  {
+    path: 'products/:id',
+    component: ProductEditComponent
   },
 ];
 
