@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Bill } from 'src/app/model/bill';
+import { BillService } from 'src/app/services/bill.service';
 
 @Component({
   selector: 'app-bill-list',
@@ -7,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BillListComponent implements OnInit {
 
-  constructor() { }
+  
+  bills: Observable<Bill[]> = this.billService.getAll();
+
+
+  constructor(private billService: BillService) { 
+  }
 
   ngOnInit(): void {
   }
