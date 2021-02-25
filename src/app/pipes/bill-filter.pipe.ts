@@ -7,7 +7,7 @@ import { Status } from '../model/status.enum';
 export class BillFilterPipe implements PipeTransform {
 
   transform(value: any[] | null, key: string, filterText: string | number | Status): any[] | null {
-    if (!Array.isArray(value) || !key || !filterText || Status.Shipped) {
+    if (!Array.isArray(value) || !key || !filterText ) {
       return value;
     }
 
