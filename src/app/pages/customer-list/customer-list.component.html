@@ -36,7 +36,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let customer of customerList$ | async | customerFilter:filterKey:phrase  | sorter:columnKey">
+          <tr
+            *ngFor="let customer of customerList$ | async | customerFilter:filterKey:phrase  | sorter:direction:columnKey">
             <td>{{ customer.id }}</td>
             <td>{{ customer.first_name }}</td>
             <td>{{ customer.last_name }}</td>

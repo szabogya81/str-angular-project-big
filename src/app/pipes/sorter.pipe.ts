@@ -6,12 +6,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SorterPipe implements PipeTransform {
 
 
-  transform(value: any[] | null, key: string): any[] | null {
+  transform(value: any[] | null, direction: string, key: string): any[] | null {
 
-    if (!Array.isArray(value) || !key) {
+    if (!Array.isArray(value) || !key || !direction) {
       return value;
     }
 
+    let sortedItems = [];
+    sortedItems = direction === 'asc' ? this.sortAscending(value, key) : this.sortDescending(value, key)
+
+    return sortedItems;
+
+  }
+
+  sortAscending(value: any[], key: string): any[] {
     return value.sort( (a,b) => {
       if(typeof(a[key]) === 'number' && typeof(b[key]) === 'number') {
         return a[key] - b[key];
@@ -21,9 +29,19 @@ export class SorterPipe implements PipeTransform {
         return a[key].localeCompare(b[key]);
       }
     })
-
-
-
   }
+
+  sortDescending(value: any[], key: string): any[] {
+    return value.sort( (a,b) => {
+      if(typeof(a[key]) === 'number' && typeof(b[key]) === 'number') {
+        return b[key] - a[key];
+      } else {
+        a[key] = ('' + a[key]).toLowerCase();
+        b[key] = ('' + b[key]).toLowerCase();
+        return b[key].localeCompare(a[key]);
+      }
+    })
+  }
+
 
 }

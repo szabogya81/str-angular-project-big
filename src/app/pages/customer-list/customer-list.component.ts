@@ -26,6 +26,7 @@ export class CustomerListComponent implements OnInit {
 
   // sorter
   columnKey: string = '';
+  direction: string = '';
 
   constructor(private customerService: CustomerService, private router: Router/* , private changeDetectorRefs: ChangeDetectorRef */) {
     this.customerList$ = this.customerService.getAll();

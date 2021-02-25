@@ -24,18 +24,38 @@
 <div class="container col-10 offset-1">
   <button type="button" class="btn btn-primary btn-lg btn-block"><i class="material-icons">post_add</i></button>
   <table class="table thead-dark table-hover table-striped">
-    <thead>
+    <thead class="thead-dark text-center">
       <tr>
-        <th class="text-center">#</th>
-        <th class="text-center">CustomerID</th>
-        <th class="text-center">ProductID</th>
-        <th class="text-center">Amount</th>
-        <th class="text-center">Status</th>
+        <th class="text-center" (click)="onColumnSelect('id')">#
+          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+        </th>
+        <th class="text-center" (click)="onColumnSelect('customerID')">CustomerID
+          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+        </th>
+        <th class="text-center" (click)="onColumnSelect('productID')">ProductID
+          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+        </th>
+        <th class="text-center" (click)="onColumnSelect('amount')">Amount
+          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+        </th>
+        <th class="text-center" (click)="onColumnSelect('status')">Status
+          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+        </th>
         <th class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of orderList | async | orderFilter:txt:phraseKey">
+      <tr *ngFor="let order of orderList | async | orderFilter:txt:phraseKey | sorter:direction:columnKey">
         <td class="text-center">{{ order.id }}</td>
         <td class="text-center">{{ order.customerID }}</td>
         <td class="text-center">{{ order.productID }}</td>

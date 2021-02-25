@@ -16,10 +16,27 @@ export class OrderListComponent implements OnInit {
   phraseKey: string = '';
   keyArray: string[] = Object.keys(new Order());
 
+  // sorter
+  columnKey: string = '';
+  direction: string = 'str';
+
 
   constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
+  }
+
+  // sorter
+  onColumnSelect(key: string): void {
+    this.swichDirectionValue();
+    this.columnKey = key;
+  }
+
+  swichDirectionValue(): any {
+    if ( this.direction === 'str' || this.direction === 'dsc') {
+      return this.direction = 'asc';
+    }
+    return this.direction = 'dsc';
   }
 
 }
