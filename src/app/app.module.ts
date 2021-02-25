@@ -16,6 +16,7 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { BillListComponent } from './pages/bill-list/bill-list/bill-list.component';
+import { SorterPipe } from './pipes/sorter.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BillListComponent } from './pages/bill-list/bill-list/bill-list.compone
     DashboardComponent,
     FooterComponent,
     BillListComponent,
+    SorterPipe,
   ],
   imports: [
     BrowserModule,
