@@ -12,8 +12,8 @@ export class OrderListComponent implements OnInit {
 
   orderList: Observable<Order[]> = this.orderService.getAll();
 
-  // phrase: string = '';
-  // cols: string = '';
+  txt: string = '';
+  phraseKey: string = 'notset';
 
 
   constructor(private orderService: OrderService) { }
