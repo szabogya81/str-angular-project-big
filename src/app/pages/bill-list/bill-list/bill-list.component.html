@@ -1,1 +1,27 @@
-<p>bill-list works!</p>
+<div class="container">
+    <div class="row">
+        <h3>Bills</h3>
+        <!-- Search/Filter -->
+        <!-- Create a new bill -->
+        <!-- Bill list (modify status: new to paid, delete: if state=new) -->
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Order ID</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bill of bills | async">
+                <td>{{ bill.id }}</td>
+                <td>{{ bill.orderID }}</td>
+                <td>{{ bill.amount }}</td>
+                <td>{{ bill.status }}</td>
+                <td>modify / delete</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
