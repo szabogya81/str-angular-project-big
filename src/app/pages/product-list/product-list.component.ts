@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Product } from 'src/app/model/product';
+import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
 import { ProductService } from 'src/app/services/product.service';
+
+import { Product } from 'src/app/model/product';
 
 @Component({
   selector: 'app-product-list',
@@ -25,7 +27,9 @@ export class ProductListComponent implements OnInit {
   pageLimit: number = 50;
   isFlagFilter: boolean = false;
 
-  constructor(private prodSvc: ProductService) {
+  constructor(
+    private prodSvc: ProductService,
+    private confirmDialogService: ConfirmDialogService,) {
     this.products = prodSvc.get(
       this.filterColumn, this.filter, this.pageStart, this.pageLimit);
   }
@@ -53,11 +57,11 @@ export class ProductListComponent implements OnInit {
     this.setActiveFilter(event);
     (event.target as HTMLButtonElement).parentElement?.querySelectorAll('input')
       .forEach(input => input.checked = false);
-    
-    if(this.isFlagFilter) {
+
+    if (this.isFlagFilter) {
       this.filter = '';
     }
-    
+
     this.updateProducts();
     this.isFlagFilter = false;
   }
@@ -86,7 +90,7 @@ export class ProductListComponent implements OnInit {
   }
 
   handleFlagCheck(event: Event) {
-    let innerCheckbox = 
+    let innerCheckbox =
       ((event.target as HTMLButtonElement).firstElementChild as HTMLInputElement);
     let checked = !(innerCheckbox.checked);
 
@@ -99,7 +103,7 @@ export class ProductListComponent implements OnInit {
 
   updateProducts() {
     this.products = this.prodSvc.get(
-      this.filterColumn, this.filter, this.pageStart, 
+      this.filterColumn, this.filter, this.pageStart,
       this.pageLimit, this.sortColumn, this.sortDesc);
   }
 
@@ -110,7 +114,21 @@ export class ProductListComponent implements OnInit {
     (event.target as HTMLButtonElement).parentElement?.querySelectorAll('.btn')
       .forEach(btn => btn.classList.remove('active'));
     (event.target as HTMLButtonElement).classList.add('active');
-    
+
     this.updateProducts();
+  }
+
+  deleteProduct(productId: number) {
+    this.prodSvc.delete(productId).subscribe(
+      () => this.updateProducts()
+    );
+  }
+
+  showDialog(productId: number) {
+    this.confirmDialogService.confirmThis(
+      "Are you sure to delete Product?",
+      () => {
+        this.deleteProduct(productId);
+      }, () => { })
   }
 }

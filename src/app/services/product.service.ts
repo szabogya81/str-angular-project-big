@@ -43,7 +43,7 @@ export class ProductService {
       ${this.productsUrl}/${product.id}`, product, this.httpOptions);
   }
 
-  remove(product: Product | number): Observable<Product> {
+  delete(product: Product | number): Observable<Product> {
     let id = typeof (product) === 'number' ? product : product.id;
     return this.http.delete<Product>(`${this.productsUrl}/${id}`, this.httpOptions);
   }
