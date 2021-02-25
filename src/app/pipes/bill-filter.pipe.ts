@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Status } from '../model/status.enum';
 
 @Pipe({
   name: 'billFilter'
 })
 export class BillFilterPipe implements PipeTransform {
 
-  transform(value: any[] | null, key: string, filterText: string | number | boolean): any[] | null {
+  transform(value: any[] | null, key: string, filterText: string | number | Status): any[] | null {
     if (!Array.isArray(value) || !key || !filterText) {
       return value;
     }
