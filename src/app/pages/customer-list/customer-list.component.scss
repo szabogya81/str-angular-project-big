@@ -1,0 +1,9 @@
+table {
+  thead {
+    th:hover {
+      background-color: rgb(202, 202, 198);
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}

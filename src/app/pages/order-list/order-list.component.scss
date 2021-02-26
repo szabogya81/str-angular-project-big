@@ -1,0 +1,8 @@
+table {
+  thead {
+    th:hover {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.btn.btn-search:disabled {
+  cursor: not-allowed;
+}
+
+.btn.filter-selector, .btn.page-size {
+  min-width: 95px;
+
+  @media screen and (max-width: 1200px) {
+    min-width: 120px;
+  }
+}
+
+.table-product {
+
+  &__th {
+    &--id {
+      min-width: 60px;
+    }
+
+    &--name {
+      min-width: 300px;
+    }
+
+    &--catId {
+      min-width: 85px;
+    }
+
+    &--cat {
+      min-width: 100px;
+    }
+
+    &--type {
+      min-width: 85px;
+    }
+
+    &--desc {
+      min-width: 270px;
+    }
+
+    &--price {
+      min-width: 85px;
+    }
+
+    &--feat {
+      min-width: 110px;
+    }
+
+    &--active {
+      min-width: 90px;
+    }
+  }
+}
