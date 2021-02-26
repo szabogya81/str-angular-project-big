@@ -18,7 +18,7 @@ export class OrderListComponent implements OnInit {
 
   // sorter
   columnKey: string = '';
-  direction: string = 'str';
+  direction: string = '';
 
 
   constructor(private orderService: OrderService) { }
@@ -33,7 +33,7 @@ export class OrderListComponent implements OnInit {
   }
 
   swichDirectionValue(): any {
-    if ( this.direction === 'str' || this.direction === 'dsc') {
+    if ( this.direction === '' || this.direction === 'dsc') {
       return this.direction = 'asc';
     }
     return this.direction = 'dsc';

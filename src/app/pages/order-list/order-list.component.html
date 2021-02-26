@@ -17,9 +17,10 @@
     <span class="input-group-text" id="basic-addon1"><i class="material-icons">filter_list</i></span>
   </div>
   <input [(ngModel)]="txt" class="form-control" type="text" placeholder="search...">
+  <button type="submit" class="btn btn-white btn-round btn-just-icon">
+    <i class="material-icons">search</i>
+  </button>
 </div>
-
-
 
 <div class="container col-10 offset-1">
   <button type="button" class="btn btn-primary btn-lg btn-block"><i class="material-icons">post_add</i></button>
@@ -27,29 +28,39 @@
     <thead class="thead-dark text-center">
       <tr>
         <th class="text-center" (click)="onColumnSelect('id')">#
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+          <i *ngIf="columnKey !== 'id'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="columnKey === 'id' && direction === 'asc'"
+            class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="columnKey === 'id' && direction === 'dsc'"
+            class="material-icons align-text-bottom">keyboard_arrow_up</i>
         </th>
         <th class="text-center" (click)="onColumnSelect('customerID')">CustomerID
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+          <i *ngIf="columnKey !== 'customerID'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="columnKey === 'customerID' && direction === 'asc'"
+            class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="columnKey === 'customerID' && direction === 'dsc'"
+            class="material-icons align-text-bottom">keyboard_arrow_up</i>
         </th>
         <th class="text-center" (click)="onColumnSelect('productID')">ProductID
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+          <i *ngIf="columnKey !== 'productID'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="columnKey === 'productID' && direction === 'asc'"
+            class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="columnKey === 'productID' && direction === 'dsc'"
+            class="material-icons align-text-bottom">keyboard_arrow_up</i>
         </th>
         <th class="text-center" (click)="onColumnSelect('amount')">Amount
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+          <i *ngIf="columnKey !== 'amount'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="columnKey === 'amount' && direction === 'asc'"
+            class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="columnKey === 'amount' && direction === 'dsc'"
+            class="material-icons align-text-bottom">keyboard_arrow_up</i>
         </th>
         <th class="text-center" (click)="onColumnSelect('status')">Status
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
+          <i *ngIf="columnKey !== 'status'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+          <i *ngIf="columnKey === 'status' && direction === 'asc'"
+            class="material-icons align-text-top">keyboard_arrow_down</i>
+          <i *ngIf="columnKey === 'status' && direction === 'dsc'"
+            class="material-icons align-text-bottom">keyboard_arrow_up</i>
         </th>
         <th class="text-center">Actions</th>
       </tr>
