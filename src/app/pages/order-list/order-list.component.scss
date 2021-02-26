@@ -6,3 +6,12 @@ table {
     }
   }
 }
+
+.button {
+  // background-color: rgb(124, 82, 223);
+
+  &:hover {
+    color: #fff;
+    background-color: rgb(154, 124, 223);
+  }
+}
