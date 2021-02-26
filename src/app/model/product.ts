@@ -1,6 +1,7 @@
 import { ProductType } from "./product-type.enum";
 
 export class Product {
+  [key: string] : any;
   id: number = 0;
   name: string = '';
   catId: number = 0;

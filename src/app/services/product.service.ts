@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { ConfigService } from './config.service';
+
 import { Category } from '../model/category';
 import { Product } from '../model/product';
 
@@ -17,8 +19,8 @@ export class ProductService {
     )
   }
 
-  productsUrl = 'http://localhost:3000/products';
-  categoriesUrl = 'http://localhost:3000/categories';
+  productsUrl = ConfigService.productsUrl;
+  categoriesUrl = ConfigService.categoriesUrl;
 
   constructor(private http: HttpClient) {
   }
@@ -41,8 +43,18 @@ export class ProductService {
     return this.http.get<Product>(url, this.httpOptions);
   }
 
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoriesUrl, this.httpOptions);
+  getCategories(name: string = ''): Observable<Category[]> {
+    let url = this.categoriesUrl;
+
+    if (name) {
+      url += `?name_like=${name}`;
+    }
+    return this.http.get<Category[]>(url, this.httpOptions);
+  }
+
+  getCategoryById(categoryId: number): Observable<Category> {
+    let url: string = `${this.categoriesUrl}/${categoryId}`;
+    return this.http.get<Category>(url, this.httpOptions);
   }
 
   create(product: Product): Observable<Product> {
@@ -72,7 +84,7 @@ export class ProductService {
       }
       else if (['id', 'catId', 'featured', 'active'].includes(key)) {
         url = `${url}?${key}=${filterStr}`;
-      } else if(key === 'price') {
+      } else if (key === 'price') {
         url = `${url}?${key}_lte=${filterStr}`;
       }
       url += '&';
