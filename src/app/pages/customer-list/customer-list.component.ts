@@ -43,7 +43,7 @@ export class CustomerListComponent implements OnInit {
     const notes = Object.getOwnPropertyNames(this.rawCustomerKeys.address)[4];
 
     customerKeys.splice(4, 1, zip, country, city, street, notes);   // removes Address, replaces with properties in the select option
-    customerKeys.splice(0, 1);        // removes id from select option
+
 
     this.filterKeyArray = customerKeys;
 
