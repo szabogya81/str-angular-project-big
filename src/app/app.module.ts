@@ -14,7 +14,6 @@ import { FooterComponent } from './common/footer/footer.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 
-import { BillListComponent } from './pages/bill-list/bill-list.component';
 import { CustomerListComponent } from './pages/customer-list/customer-list.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
@@ -24,12 +23,12 @@ import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
 import { OrderFilterPipe } from './pipes/order-filter.pipe';
 import { SorterPipe } from './pipes/sorter.pipe';
 import { ProductEditComponent } from './pages/product-edit/product-edit.component';
+import { BillListComponent } from './pages/bill-list/bill-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BillFilterPipe,
-    BillListComponent,
     ConfirmDialogComponent,
     CustomerFilterPipe,
     CustomerListComponent,
@@ -41,7 +40,8 @@ import { ProductEditComponent } from './pages/product-edit/product-edit.componen
     ProductEditComponent,
     ProductListComponent,
     SidebarComponent,
-    SorterPipe
+    SorterPipe,
+    BillListComponent,
   ],
   imports: [
     AppRoutingModule,
