@@ -6,7 +6,7 @@
       <button (click)="onSelectChanged($event)" value="catId" class="btn btn-info filter-selector">CatId</button>
       <button (click)="onSelectChanged($event)" value="type" class="btn btn-info filter-selector">Type</button>
       <button (click)="onSelectChanged($event)" value="description" class="btn btn-info filter-selector">Desc</button>
-      <button (click)="onSelectChanged($event)" value="price" class="btn btn-info filter-selector">Price</button>
+      <button (click)="onSelectChanged($event)" value="price" class="btn btn-info filter-selector">Price &lt;=</button>
       <button (click)="onFlagSelect($event)" value="featured" class="btn btn-info filter-selector">Feat
         <input class="align-text-top flag-filter" disabled type="checkbox">
       </button>
@@ -63,7 +63,6 @@
               <i *ngIf="sortColumn === 'catId' && sortDesc"
                 class="material-icons align-text-bottom">keyboard_arrow_up</i>
             </th>
-            <th class="table-product__th--cat">Category</th>
             <th (click)="onColumnSelect('type')" class="table-product__th--type">Type
               <i *ngIf="sortColumn !== 'type'" class="material-icons align-text-bottom">indeterminate_check_box</i>
               <i *ngIf="sortColumn === 'type' && !sortDesc"
@@ -107,8 +106,7 @@
           <tr *ngFor="let product of products | async">
             <td>{{ product.id }}</td>
             <td>{{ product.name }}</td>
-            <td class="text-center">{{ product.catId }}</td>
-            <td class="text-center">{{ categories.get(product.catId) }}</td>
+            <td class="text-center">{{ product.catId }} ({{ categories.get(product.catId) }})</td>
             <td class="text-center">{{ product.type }}</td>
             <td>{{ product.description }}</td>
             <td class="text-right">{{ product.price }}</td>

@@ -70,8 +70,10 @@ export class ProductService {
       if (['name', 'type', 'description'].includes(key)) {
         url = `${url}?${key}_like=${filterStr}`;
       }
-      else if (['id', 'catId', 'price', 'featured', 'active'].includes(key)) {
+      else if (['id', 'catId', 'featured', 'active'].includes(key)) {
         url = `${url}?${key}=${filterStr}`;
+      } else if(key === 'price') {
+        url = `${url}?${key}_lte=${filterStr}`;
       }
       url += '&';
     } else {
