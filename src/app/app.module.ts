@@ -25,6 +25,7 @@ import { OrderFilterPipe } from './pipes/order-filter.pipe';
 import { SorterPipe } from './pipes/sorter.pipe';
 import { ProductEditComponent } from './pages/product-edit/product-edit.component';
 import { BillListComponent } from './pages/bill-list/bill-list.component';
+import { CustomerEditComponent } from './pages/customer-edit/customer-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { BillListComponent } from './pages/bill-list/bill-list.component';
     SidebarComponent,
     SorterPipe,
     BillListComponent,
+    CustomerEditComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -16,6 +16,9 @@ export class CustomerFilterPipe implements PipeTransform {
       if (key == 'zip' || key == 'country' || key == 'city' || key == 'street' || key == 'notes') {
         return ('' + item.address[key]).toLowerCase().includes((filterText as string));
       }
+      if (key == 'id') {
+        return item[key] == (filterText as string);
+      }
 
       return ('' + item[key]).toLowerCase().includes((filterText as string));
 
