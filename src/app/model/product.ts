@@ -7,9 +7,7 @@ export class Product {
   catId: number = 0;
   type: ProductType = ProductType.Action;
   description: string = '';
-  price: number = 0;
+  price?: number;
   featured: boolean = false;
   active: boolean = false;
-
-  imagePath: string = '';
 }
