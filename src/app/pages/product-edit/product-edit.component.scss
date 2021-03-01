@@ -1,6 +1,10 @@
 .error-message {
   font-style: italic;
   font-size: 0.8em;
-  color: rgb(155, 4, 4);
-  transition: all ease-in .3s;
+  color: #9b0404;
+  transition: all ease-in .4s;
+}
+
+.btn.submit:disabled {
+  cursor: not-allowed;
 }

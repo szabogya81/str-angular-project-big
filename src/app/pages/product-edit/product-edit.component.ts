@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { debounceTime, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Category } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
+import { ProductType } from 'src/app/model/product-type.enum';
 
-import { ITableCol, ConfigService } from 'src/app/services/config.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -22,24 +22,20 @@ export class ProductEditComponent implements OnInit {
     switchMap(params => this.prodSvc.getById(params.id))
   );
 
+  productType = ProductType;
   selectedCategory: Category = new Category();
-
-  fields: ITableCol[] = this.config.categoryTableColumns.filter(
-    col => col.visible
-  );
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private config: ConfigService,
     private prodSvc: ProductService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.product.subscribe( 
-      prod =>  this.prodSvc.getCategoryById(prod.catId)
+    this.product.subscribe(
+      prod => this.prodSvc.getCategoryById(prod.catId)
         .subscribe(cat => this.selectedCategory = cat));
-   }
+  }
 
   onUpdate(product: Product): void {
 
@@ -58,13 +54,14 @@ export class ProductEditComponent implements OnInit {
 
   search = (text$: Observable<string>) => text$.pipe(
     debounceTime(150),
+    distinctUntilChanged(),
     switchMap(
       txt => this.prodSvc.getCategories(txt)
     )
   )
 
   categoryResultFormatter(category: Category): string {
-    return `${category.name}`;
+    return `#${category.id} - ${category.name}`;
   }
 
   categoryIputFormatter(category: Category): string {
