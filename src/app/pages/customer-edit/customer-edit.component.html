@@ -17,7 +17,7 @@
               <input name="first_name" type="text" [(ngModel)]="customer.first_name" class="form-control "
                 pattern=".{2,}" [class.error]="eventForm.controls.first_name?.invalid &&
                 !eventForm.controls.first_name?.pristine" [class.success]="eventForm.controls.first_name?.valid &&
-                !eventForm.controls.first_name?.pristine" requied>
+                !eventForm.controls.first_name?.pristine" required>
               <span [hidden]="eventForm.controls.first_name?.valid || eventForm.controls.first_name?.pristine"
                 class="error">The FirstName is required and must be at least 2 characters long.</span>
               <span [hidden]="eventForm.controls.first_name?.invalid || eventForm.controls.first_name?.pristine"
@@ -28,7 +28,7 @@
               <input name="last_name" type="text" [(ngModel)]="customer.last_name" class="form-control success"
                 pattern=".{2,}" [class.error]="eventForm.controls.last_name?.invalid &&
                 !eventForm.controls.last_name?.pristine" [class.success]="eventForm.controls.last_name?.valid &&
-                !eventForm.controls.last_name?.pristine" requied>
+                !eventForm.controls.last_name?.pristine" required>
               <span [hidden]="eventForm.controls.last_name?.valid || eventForm.controls.last_name?.pristine"
                 class="error">The LastName is required and must be at least 2 characters long.</span>
               <span [hidden]="eventForm.controls.last_name?.invalid || eventForm.controls.last_name?.pristine"
@@ -37,7 +37,7 @@
             <div class="col-md-6 my-md-0 my-2">
               <label for="">Email</label>
               <input name="email" type="text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                [(ngModel)]="customer.email" class="form-control" requied>
+                [(ngModel)]="customer.email" class="form-control" required>
             </div>
           </div>
 
@@ -47,35 +47,35 @@
             <div class="col-md-3 my-md-0 my-2">
               <label for="">Country</label>
               <input name="country" type="text" [(ngModel)]="customer.address.country" class="form-control"
-                pattern=".{5,}" requied>
+                pattern=".{5,}" required>
             </div>
             <div class="col-md-3 my-md-0 my-2">
               <label for="">City</label>
               <input name="city" type="text" [(ngModel)]="customer.address.city" class="form-control" pattern=".{5,}"
-                requied>
+                required>
             </div>
             <div class="col-md-2 my-md-0 my-2">
               <label for="">Zip</label>
-              <input name="zip" type="text" [(ngModel)]="customer.address.zip" class="form-control" requied>
+              <input name="zip" type="text" [(ngModel)]="customer.address.zip" class="form-control" required>
             </div>
             <div class="col-md-4 my-md-0 my-2">
               <label for="">Street</label>
               <input name="street" type="text" [(ngModel)]="customer.address.street" pattern=".{5,}"
-                class="form-control" requied>
+                class="form-control" required>
             </div>
           </div>
           <div class="row my-4">
             <div class="col-md-12 my-md-0 my-2">
               <label for="">Notes</label>
               <input name="notes" type="text" [(ngModel)]="customer.address.notes" class="form-control"
-                pattern=".{5,100}" requied>
+                pattern=".{5,100}" required>
             </div>
           </div>
 
           <div class="row my-4">
             <div class="col-md-12">
               <label for="">Active</label>
-              <input name="active" type="text" [(ngModel)]="customer.active" class="form-control" requied>
+              <input name="active" type="text" [(ngModel)]="customer.active" class="form-control" required>
             </div>
           </div>
           <button class="btn btn-block btn-primary" [disabled]="eventForm.invalid" type="submit">
