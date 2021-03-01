@@ -34,7 +34,7 @@ export class ProductService {
     let url: string = this.getFilterUrl(key, filterStr);
     url = this.appendSortParams(url, sortKey, isDesc);
     url = this.appendPaging(url, page, limit);
-
+    
     return this.http.get<Product[]>(url);
   }
 
@@ -51,7 +51,7 @@ export class ProductService {
     let url = this.categoriesUrl;
 
     if (name) {
-      let filter = this.escapeSpecialCharacters(name);
+      let filter = this.handleSpecialCharacters(name);
       url += `?name_like=${filter}`;
     }
 
@@ -89,8 +89,8 @@ export class ProductService {
     let url: string = this.productsUrl;
 
     if (filterStr) {
-      let filter = this.escapeSpecialCharacters(filterStr);
-      
+      let filter = this.handleSpecialCharacters(filterStr);
+
       if (['name', 'type', 'description'].includes(key)) {
         url = `${url}?${key}_like=${filter}`;
       }
@@ -127,8 +127,9 @@ export class ProductService {
     return url;
   }
 
-  escapeSpecialCharacters(input: string): string {
-      return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  handleSpecialCharacters(input: string): string {
+    let result = input.replace(/[.$?*^{}()[|\]\\]/g, '\\$&');
+    return encodeURIComponent(result);
   }
   //#endregion Helper methods
 }
