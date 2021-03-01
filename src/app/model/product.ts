@@ -5,7 +5,7 @@ export class Product {
   id: number = 0;
   name: string = '';
   catId: number = 0;
-  type: ProductType = ProductType.Action;
+  type?: ProductType;
   description: string = '';
   price?: number;
   featured: boolean = false;
