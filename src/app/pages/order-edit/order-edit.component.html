@@ -1,1 +1,42 @@
-<p>order-edit works!</p>
+<div class="row">
+  <div class="col-xl-6 col-lg-8 col-md-10 col-sm-10 mx-auto">
+    <div class="card">
+      <div class="card-header card-header-primary d-flex justify-content-between">
+        <div>
+          <h3 class="card-title ">Edit Order</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <form class="py-3 px-5">
+          <div class="mt-3">
+            <label for="">OrderID</label>
+            <input name="orderID" type="text" class="form-control">
+          </div>
+          <div class="mt-4">
+            <label for="">CustomerID</label>
+            <input name="customerID" type="text" class="form-control">
+          </div>
+          <div class="mt-4">
+            <label for="">ProductID</label>
+            <input name="productID" type="text" class="form-control">
+          </div>
+          <div class="mt-4">
+            <label for="">Amount</label>
+            <input name="amount" type="text" class="form-control">
+          </div>
+          <div class="mt-4">
+            <label for="statusSelect">Status</label>
+            <select class="custom-select" data-style="btn btn-link" id="statusSelect">
+              <option>new</option>
+              <option>paid</option>
+              <option>shipped</option>
+            </select>
+          </div>
+          <div class="mt-5">
+              <button class="btn btn-info w-100">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

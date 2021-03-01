@@ -1,20 +1,30 @@
 <div class="container">
   <div class="row">
       <h3>Bills</h3>
+  </div>
       <!-- Search/Filter -->
-      <div class="input-group no-border mt-2">
-        <select [(ngModel)]="filterKey" class="form-control mr-1">
+      <div class="col-lg-8 d-flex flex-row ml-auto">
+        <div class="input-group mb-3">
+          <select [(ngModel)]="filterKey" class="custom-select" id="">
             <option *ngFor="let key of filterKeys" [value]="key">
-                {{ key }}
-            </option>
-        </select>
+              {{ key }}
+          </option>
+          </select>
+          <div *ngIf="filterKey === 'amount'" class="input-group-append bg-info">
+            <label class="input-group-text text-white" for="">&lt;=</label>
+          </div>
+        </div>
+        <div class="input-group">
         <input class="form-control searchInput py-1 my-1 ml-1" #search type="text" value=""
             placeholder="Search..." [(ngModel)]="filterText">
         <button type="submit" class="btn btn-white btn-round btn-just-icon">
             <i class="material-icons">search</i>
             <div class="ripple-container"></div>
         </button>
+      </div>
     </div>
+    
+
       <!-- Create a new bill -->
       <button type="button" class="btn btn-primary btn-lg btn-block"><i class="material-icons">post_add</i></button>
       <!-- Bill list (modify status: new to paid, delete: if state=new) -->
@@ -48,4 +58,3 @@
           </tbody>
       </table>
   </div>
-</div>

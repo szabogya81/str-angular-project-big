@@ -1,0 +1,9 @@
+.input-group {
+    &-append {
+        transition: all 0.5s ease;
+    }
+
+    &-text {
+        font-size: 18px;
+    }
+}
