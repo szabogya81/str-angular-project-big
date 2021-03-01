@@ -1,68 +1,125 @@
 <div class="row">
-    <div *ngIf="(customer$ | async) as customer" class="col-xl-8 col-lg-10 col-md-11 col-sm-11 mx-auto">
-        <!-- <pre>{{ customer | json  }}</pre> -->
-        <div class="card">
-            <div class="card-header card-header-primary d-flex justify-content-between">
-                <div>
-                    <h3 class="card-title ">Edit Customer</h3>
-                    <p *ngIf="customer.id === 0" class="card-category">Create new Customer</p>
-                    <p *ngIf="customer.id !== 0" class="card-category">#{{ customer.id }} Customer</p>
-                </div>
-            </div>
-            <div class="card-body">
-                <form #eventForm="ngForm">
-                    <div class="row my-3">
-                        <div class="col-md-3 my-md-0 my-2">
-                            <label for="">FirstName</label>
-                            <input name="first_name" type="text" [(ngModel)]="customer.first_name" class="form-control">
-                        </div>
-                        <div class="col-md-3 my-md-0 my-2">
-                            <label for="">LastName</label>
-                            <input name="last_name" type="text" [(ngModel)]="customer.last_name" class="form-control">
-                        </div>
-                        <div class="col-md-6 my-md-0 my-2">
-                            <label for="">Email</label>
-                            <input name="email" type="text" [(ngModel)]="customer.email" class="form-control">
-                        </div>
-                    </div>
-
-                    <h4 class="mt-4 py-1 h4__address">Address:</h4>
-
-                    <div class="row my-3">
-                        <div class="col-md-3 my-md-0 my-2">
-                            <label for="">Country</label>
-                            <input name="country" type="text" [(ngModel)]="customer.address.country"
-                                class="form-control">
-                        </div>
-                        <div class="col-md-3 my-md-0 my-2">
-                            <label for="">City</label>
-                            <input name="city" type="text" [(ngModel)]="customer.address.city" class="form-control">
-                        </div>
-                        <div class="col-md-2 my-md-0 my-2">
-                            <label for="">Zip</label>
-                            <input name="zip" type="text" [(ngModel)]="customer.address.zip" class="form-control">
-                        </div>
-                        <div class="col-md-4 my-md-0 my-2">
-                            <label for="">Street</label>
-                            <input name="street" type="text" [(ngModel)]="customer.address.street" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row my-4">
-                        <div class="col-md-12 my-md-0 my-2">
-                            <label for="">Notes</label>
-                            <input name="notes" type="text" [(ngModel)]="customer.address.notes" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="row my-4">
-                        <div class="col-md-12">
-                            <label for="">Active</label>
-                            <input name="active" type="text" [(ngModel)]="customer.active" class="form-control">
-                        </div>
-                    </div>
-                </form>
-            </div>
-
+  <div *ngIf="(customer$ | async) as customer" class="col-xl-8 col-lg-10 col-md-11 col-sm-11 mx-auto">
+    <!-- <pre>{{ customer | json  }}</pre> -->
+    <div class="card">
+      <div class="card-header card-header-primary d-flex justify-content-between">
+        <div>
+          <h3 class="card-title ">Edit Customer</h3>
+          <p *ngIf="customer.id === 0" class="card-category">Create new Customer</p>
+          <p *ngIf="customer.id !== 0" class="card-category">#{{ customer.id }} Customer</p>
         </div>
+      </div>
+      <div class="card-body">
+        <form #eventForm="ngForm" (ngSubmit)="onUpdate(eventForm, customer)">
+          <div class="row my-3">
+            <div class="col-md-3 my-md-0 my-2">
+              <label for="">FirstName</label>
+              <input name="first_name" type="text" [(ngModel)]="customer.first_name" class="form-control "
+                pattern=".{2,}" [class.error]="eventForm.controls.first_name?.invalid &&
+                !eventForm.controls.first_name?.pristine" [class.success]="eventForm.controls.first_name?.valid &&
+                !eventForm.controls.first_name?.pristine" required>
+              <span [hidden]="eventForm.controls.first_name?.valid || eventForm.controls.first_name?.pristine"
+                class="error">The FirstName is required and must be at least 2 characters long.</span>
+              <span [hidden]="eventForm.controls.first_name?.invalid || eventForm.controls.first_name?.pristine"
+                class="success">Success</span>
+            </div>
+            <div class="col-md-3 my-md-0 my-2">
+              <label for="">LastName</label>
+              <input name="last_name" type="text" [(ngModel)]="customer.last_name" class="form-control success"
+                pattern=".{2,}" [class.error]="eventForm.controls.last_name?.invalid &&
+                !eventForm.controls.last_name?.pristine" [class.success]="eventForm.controls.last_name?.valid &&
+                !eventForm.controls.last_name?.pristine" required>
+              <span [hidden]="eventForm.controls.last_name?.valid || eventForm.controls.last_name?.pristine"
+                class="error">The LastName is required and must be at least 2 characters long.</span>
+              <span [hidden]="eventForm.controls.last_name?.invalid || eventForm.controls.last_name?.pristine"
+                class="success">Success</span>
+            </div>
+            <div class="col-md-6 my-md-0 my-2">
+              <label for="">Email</label>
+              <input name="email" type="text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                [(ngModel)]="customer.email" class="form-control" [class.error]="eventForm.controls.email?.invalid
+                && !eventForm.controls.email?.pristine"
+                [class.success]="eventForm.controls.email?.valid && !eventForm.controls.email?.pristine" required>
+              <span [hidden]="eventForm.controls.email?.valid || eventForm.controls.email?.pristine" class="error">The
+                Email is required and valid. ( example@gmail.com )</span>
+              <span [hidden]="eventForm.controls.email?.invalid || eventForm.controls.email?.pristine"
+                class="success">Success</span>
+            </div>
+          </div>
+
+          <h4 class="mt-4 py-1 h4__address">Address:</h4>
+
+          <div class="row my-3">
+            <div class="col-md-3 my-md-0 my-2">
+              <label for="">Country</label>
+              <input name="country" type="text" [(ngModel)]="customer.address.country" class="form-control"
+                pattern=".{5,}" [class.error]="eventForm.controls.country?.invalid &&
+                !eventForm.controls.country?.pristine" [class.success]="eventForm.controls.country?.valid &&
+                !eventForm.controls.country?.pristine" required>
+              <span [hidden]="eventForm.controls.country?.valid || eventForm.controls.country?.pristine"
+                class="error">The Country is required and must be at least 5 characters long.</span>
+              <span [hidden]="eventForm.controls.country?.invalid || eventForm.controls.country?.pristine"
+                class="success">Success</span>
+            </div>
+            <div class="col-md-3 my-md-0 my-2">
+              <label for="">City</label>
+              <input name="city" type="text" [(ngModel)]="customer.address.city" class="form-control" pattern=".{5,}"
+                [class.error]="eventForm.controls.city?.invalid &&
+                !eventForm.controls.city?.pristine" [class.success]="eventForm.controls.city?.valid &&
+                !eventForm.controls.city?.pristine" required>
+              <span [hidden]="eventForm.controls.city?.valid || eventForm.controls.city?.pristine" class="error">The
+                City is required and must be at least 5 characters long.</span>
+              <span [hidden]="eventForm.controls.city?.invalid || eventForm.controls.city?.pristine"
+                class="success">Success</span>
+            </div>
+            <div class="col-md-2 my-md-0 my-2">
+              <label for="">Zip</label>
+              <input name="zip" type="text" [(ngModel)]="customer.address.zip" class="form-control" [class.error]="eventForm.controls.zip?.invalid &&
+                !eventForm.controls.zip?.pristine" [class.success]="eventForm.controls.zip?.valid &&
+                !eventForm.controls.zip?.pristine" required>
+              <span [hidden]="eventForm.controls.zip?.valid || eventForm.controls.zip?.pristine" class="error">The
+                City Zip required.</span>
+              <span [hidden]="eventForm.controls.zip?.invalid || eventForm.controls.zip?.pristine"
+                class="success">Success</span>
+            </div>
+            <div class="col-md-4 my-md-0 my-2">
+              <label for="">Street</label>
+              <input name="street" type="text" [(ngModel)]="customer.address.street" pattern=".{5,}"
+                class="form-control" [class.error]="eventForm.controls.street?.invalid &&
+                !eventForm.controls.street?.pristine" [class.success]="eventForm.controls.street?.valid &&
+                !eventForm.controls.street?.pristine" required>
+              <span [hidden]="eventForm.controls.street?.valid || eventForm.controls.street?.pristine" class="error">The
+                City is required and must be at least 5 characters long.</span>
+              <span [hidden]="eventForm.controls.street?.invalid || eventForm.controls.street?.pristine"
+                class="success">Street</span>
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-12 my-md-0 my-2">
+              <label for="">Notes</label>
+              <input name="notes" type="text" [(ngModel)]="customer.address.notes" class="form-control"
+                pattern=".{5,100}" [class.error]="eventForm.controls.notes?.invalid &&
+                !eventForm.controls.notes?.pristine" [class.success]="eventForm.controls.notes?.valid &&
+                !eventForm.controls.notes?.pristine" required>
+              <span [hidden]="eventForm.controls.notes?.valid || eventForm.controls.notes?.pristine" class="error">The
+                Notes is required and must be at least 5 characters long.</span>
+              <span [hidden]="eventForm.controls.notes?.invalid || eventForm.controls.notes?.pristine"
+                class="success">Street</span>
+            </div>
+          </div>
+
+          <div class="row my-4">
+            <div class="col-md-12">
+              <label for="">Active</label>
+              <input name="active" type="text" [(ngModel)]="customer.active" class="form-control" required>
+            </div>
+          </div>
+          <button class="btn btn-block btn-primary" [disabled]="eventForm.invalid" type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+
     </div>
+  </div>
 </div>

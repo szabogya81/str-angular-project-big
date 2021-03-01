@@ -24,6 +24,7 @@ export class BillService {
   }
 
   getAll(): Observable<Bill[]> {
+    //console.log("Debug: BillService.getAll()");
     return this.http.get<Bill[]>(this.billsUrl);
   }
 
