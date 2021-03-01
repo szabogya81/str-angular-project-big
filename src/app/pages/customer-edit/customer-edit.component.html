@@ -36,8 +36,8 @@
             </div>
             <div class="col-md-6 my-md-0 my-2">
               <label for="">Email</label>
-              <input name="email" type="text" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" [(ngModel)]="customer.email"
-                class="form-control" requied>
+              <input name="email" type="text" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+                [(ngModel)]="customer.email" class="form-control" requied>
             </div>
           </div>
 
