@@ -1,45 +1,75 @@
 <div class="container">
-  <div class="row">
-      <h3>Bills</h3>
-  </div>
+  <div class="card">
+    <div class="card-header card-header-primary d-flex justify-content-between">
+      <div>
+        <h3 class="card-title ">Customers</h3>
+        <p class="card-category">List of Customers</p>
+      </div>
+    </div>
+    <div class="card-body">
       <!-- Search/Filter -->
       <div class="col-lg-8 d-flex flex-row ml-auto">
         <div class="input-group mb-3">
           <select [(ngModel)]="filterKey" class="custom-select" id="">
             <option *ngFor="let key of filterKeys" [value]="key">
               {{ key }}
-          </option>
+            </option>
           </select>
           <div *ngIf="filterKey === 'amount'" class="input-group-append bg-info">
             <label class="input-group-text text-white" for="">&lt;=</label>
           </div>
         </div>
         <div class="input-group">
-        <input class="form-control searchInput py-1 my-1 ml-1" #search type="text" value=""
-            placeholder="Search..." [(ngModel)]="filterText">
-        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+          <input class="form-control searchInput py-1 my-1 ml-1" #search type="text" value="" placeholder="Search..."
+            [(ngModel)]="filterText">
+          <button type="submit" class="btn btn-white btn-round btn-just-icon">
             <i class="material-icons">search</i>
             <div class="ripple-container"></div>
-        </button>
+          </button>
+        </div>
       </div>
-    </div>
-    
-
       <!-- Create a new bill -->
-      <button type="button" class="btn btn-primary btn-lg btn-block"><i class="material-icons">post_add</i></button>
-      <!-- Bill list (modify status: new to paid, delete: if state=new) -->
-      <table class="table table-striped table-hover text-center">
-          <thead>
+      <button class="btn btn-success btn-md btn-block">Create new Bill
+        <i class="material-icons pl-2">article</i>
+      </button>
+      <!-- Bill list (modify status: new to paid, delete: no) -->
+      <div class="table-responsive">
+        <table class="table table-striped table-hover text-center">
+          <thead class="thead-dark text-default">
             <tr>
-              <th>#</th>
-              <th>Order ID</th>
-              <th>Amount</th>
-              <th>Status</th>
+              <th (click)="onColumnSelect('id')">#
+                <i *ngIf="columnKey !== 'id'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+                <i *ngIf="columnKey === 'id' && direction === 'asc'"
+                  class="material-icons align-text-top">keyboard_arrow_down</i>
+                <i *ngIf="columnKey === 'id' && direction === 'dsc'"
+                  class="material-icons align-text-bottom">keyboard_arrow_up</i>
+              </th>
+              <th (click)="onColumnSelect('orderID')">Order ID
+                <i *ngIf="columnKey !== 'orderID'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+                <i *ngIf="columnKey === 'orderID' && direction === 'asc'"
+                  class="material-icons align-text-top">keyboard_arrow_down</i>
+                <i *ngIf="columnKey === 'orderID' && direction === 'dsc'"
+                  class="material-icons align-text-bottom">keyboard_arrow_up</i>
+              </th>
+              <th (click)="onColumnSelect('amount')">Amount
+                <i *ngIf="columnKey !== 'amount'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+                <i *ngIf="columnKey === 'amount' && direction === 'asc'"
+                  class="material-icons align-text-top">keyboard_arrow_down</i>
+                <i *ngIf="columnKey === 'amount' && direction === 'dsc'"
+                  class="material-icons align-text-bottom">keyboard_arrow_up</i>
+              </th>
+              <th (click)="onColumnSelect('status')">Status
+                <i *ngIf="columnKey !== 'status'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+                <i *ngIf="columnKey === 'status' && direction === 'asc'"
+                  class="material-icons align-text-top">keyboard_arrow_down</i>
+                <i *ngIf="columnKey === 'status' && direction === 'dsc'"
+                  class="material-icons align-text-bottom">keyboard_arrow_up</i>
+              </th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let bill of bills | async | billFilter:filterKey:filterText">
+            <tr *ngFor="let bill of bills | async | billFilter:filterKey:filterText | sorter:direction:columnKey">
               <td>{{ bill.id }}</td>
               <td>{{ bill.orderID }}</td>
               <td>{{ bill.amount }}</td>
@@ -56,5 +86,8 @@
               </td>
             </tr>
           </tbody>
-      </table>
+        </table>
+      </div>
+    </div>
   </div>
+</div>
