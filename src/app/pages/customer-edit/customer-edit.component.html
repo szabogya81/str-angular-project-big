@@ -37,7 +37,13 @@
             <div class="col-md-6 my-md-0 my-2">
               <label for="">Email</label>
               <input name="email" type="text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                [(ngModel)]="customer.email" class="form-control" required>
+                [(ngModel)]="customer.email" class="form-control" [class.error]="eventForm.controls.email?.invalid
+                && !eventForm.controls.email?.pristine"
+                [class.success]="eventForm.controls.email?.valid && !eventForm.controls.email?.pristine" required>
+              <span [hidden]="eventForm.controls.email?.valid || eventForm.controls.email?.pristine" class="error">The
+                Email is required and valid. ( example@gmail.com )</span>
+              <span [hidden]="eventForm.controls.email?.invalid || eventForm.controls.email?.pristine"
+                class="success">Success</span>
             </div>
           </div>
 
@@ -47,28 +53,58 @@
             <div class="col-md-3 my-md-0 my-2">
               <label for="">Country</label>
               <input name="country" type="text" [(ngModel)]="customer.address.country" class="form-control"
-                pattern=".{5,}" required>
+                pattern=".{5,}" [class.error]="eventForm.controls.country?.invalid &&
+                !eventForm.controls.country?.pristine" [class.success]="eventForm.controls.country?.valid &&
+                !eventForm.controls.country?.pristine" required>
+              <span [hidden]="eventForm.controls.country?.valid || eventForm.controls.country?.pristine"
+                class="error">The Country is required and must be at least 5 characters long.</span>
+              <span [hidden]="eventForm.controls.country?.invalid || eventForm.controls.country?.pristine"
+                class="success">Success</span>
             </div>
             <div class="col-md-3 my-md-0 my-2">
               <label for="">City</label>
               <input name="city" type="text" [(ngModel)]="customer.address.city" class="form-control" pattern=".{5,}"
-                required>
+                [class.error]="eventForm.controls.city?.invalid &&
+                !eventForm.controls.city?.pristine" [class.success]="eventForm.controls.city?.valid &&
+                !eventForm.controls.city?.pristine" required>
+              <span [hidden]="eventForm.controls.city?.valid || eventForm.controls.city?.pristine" class="error">The
+                City is required and must be at least 5 characters long.</span>
+              <span [hidden]="eventForm.controls.city?.invalid || eventForm.controls.city?.pristine"
+                class="success">Success</span>
             </div>
             <div class="col-md-2 my-md-0 my-2">
               <label for="">Zip</label>
-              <input name="zip" type="text" [(ngModel)]="customer.address.zip" class="form-control" required>
+              <input name="zip" type="text" [(ngModel)]="customer.address.zip" class="form-control" [class.error]="eventForm.controls.zip?.invalid &&
+                !eventForm.controls.zip?.pristine" [class.success]="eventForm.controls.zip?.valid &&
+                !eventForm.controls.zip?.pristine" required>
+              <span [hidden]="eventForm.controls.zip?.valid || eventForm.controls.zip?.pristine" class="error">The
+                City Zip required.</span>
+              <span [hidden]="eventForm.controls.zip?.invalid || eventForm.controls.zip?.pristine"
+                class="success">Success</span>
             </div>
             <div class="col-md-4 my-md-0 my-2">
               <label for="">Street</label>
               <input name="street" type="text" [(ngModel)]="customer.address.street" pattern=".{5,}"
-                class="form-control" required>
+                class="form-control" [class.error]="eventForm.controls.street?.invalid &&
+                !eventForm.controls.street?.pristine" [class.success]="eventForm.controls.street?.valid &&
+                !eventForm.controls.street?.pristine" required>
+              <span [hidden]="eventForm.controls.street?.valid || eventForm.controls.street?.pristine" class="error">The
+                City is required and must be at least 5 characters long.</span>
+              <span [hidden]="eventForm.controls.street?.invalid || eventForm.controls.street?.pristine"
+                class="success">Street</span>
             </div>
           </div>
           <div class="row my-4">
             <div class="col-md-12 my-md-0 my-2">
               <label for="">Notes</label>
               <input name="notes" type="text" [(ngModel)]="customer.address.notes" class="form-control"
-                pattern=".{5,100}" required>
+                pattern=".{5,100}" [class.error]="eventForm.controls.notes?.invalid &&
+                !eventForm.controls.notes?.pristine" [class.success]="eventForm.controls.notes?.valid &&
+                !eventForm.controls.notes?.pristine" required>
+              <span [hidden]="eventForm.controls.notes?.valid || eventForm.controls.notes?.pristine" class="error">The
+                Notes is required and must be at least 5 characters long.</span>
+              <span [hidden]="eventForm.controls.notes?.invalid || eventForm.controls.notes?.pristine"
+                class="success">Street</span>
             </div>
           </div>
 
