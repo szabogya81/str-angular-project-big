@@ -23,23 +23,8 @@ export class BillService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(
-    key: string = 'orderID', filterStr: string = '', 
-    page: number = 0, limit: number = 50): Observable<Bill[]> {
-
-    let url: string = this.billsUrl;
-
-    if (filterStr) {
-      if (['orderID', 'status'].includes(key)) {
-        url = `${url}?${key}=${filterStr}&`;
-      }
-    }
-    else {
-      url +='?';
-    }
-    url += `_page=${page}&_limit=${limit}`;
-
-    return this.http.get<Bill[]>(url);
+  getAll(): Observable<Bill[]> {
+    return this.http.get<Bill[]>(this.billsUrl);
   }
 
   get(id: number): Observable<Bill> {

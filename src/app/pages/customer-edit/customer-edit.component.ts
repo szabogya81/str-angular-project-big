@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -22,7 +23,7 @@ export class CustomerEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onUpdate(customer$: Customer): void {
+  onUpdate(form: NgForm, customer$: Customer): void {
 
     if (customer$.id === 0) {
       this.customerService.create(this.customer).subscribe(
