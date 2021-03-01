@@ -37,6 +37,11 @@ export class BillListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Filter
+  onFilterKeyChange() {
+    this.filterText = ""; // Clear filter
+  }
+
   // Sorter
   onColumnSelect(key: string): void {
     // first click on the column

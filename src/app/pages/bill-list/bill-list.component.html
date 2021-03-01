@@ -10,7 +10,7 @@
       <!-- Search/Filter -->
       <div class="col-lg-8 d-flex flex-row ml-auto">
         <div class="input-group mb-3">
-          <select [(ngModel)]="filterKey" class="custom-select" id="">
+          <select (change)="onFilterKeyChange()" [(ngModel)]="filterKey" class="custom-select" id="">
             <option *ngFor="let key of filterKeys" [value]="key">
               {{ key }}
             </option>
@@ -20,8 +20,14 @@
           </div>
         </div>
         <div class="input-group">
-          <input class="form-control searchInput py-1 my-1 ml-1" #search type="text" value="" placeholder="Search..."
-            [(ngModel)]="filterText">
+          <!-- Shows/hides depend on filterKey -->
+          <input *ngIf="filterKey != 'status'" class="form-control searchInput py-1 my-1 ml-1" #search type="text" value="" placeholder="Search..."
+          [(ngModel)]="filterText">
+          <!-- Shows/hides depend on filterKey -->
+          <select *ngIf="filterKey === 'status'" [(ngModel)]="filterText" class="custom-select" id="">
+            <option>new</option>
+            <option>paid</option>
+          </select>
           <button type="submit" class="btn btn-white btn-round btn-just-icon">
             <i class="material-icons">search</i>
             <div class="ripple-container"></div>

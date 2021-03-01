@@ -21,7 +21,8 @@ export class BillFilterPipe implements PipeTransform {
         return item[key] == (filterText as string);
       }
 
-      return ('' + item[key]).toLowerCase().includes((filterText as string));
+      //return ('' + item[key]).toLowerCase().includes((filterText as string));
+      return ('' + item[key]).toLowerCase() == filterText as string;
 
     });
   }
