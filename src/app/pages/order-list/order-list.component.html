@@ -76,7 +76,7 @@
             <td class="text-center">{{ order.status }}</td>
             <td class="text-center">
               <div class="btn-group">
-                <button class="btn btn-info">
+                <button class="btn btn-info" [routerLink]="[order.id]">
                   <i class="material-icons">mode_edit</i>
                 </button>
                 <button class="btn btn-danger">
