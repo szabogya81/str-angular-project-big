@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { ConfigService } from './config.service';
 
@@ -39,22 +39,32 @@ export class ProductService {
   }
 
   getById(productId: number): Observable<Product> {
-    let url: string = `${this.productsUrl}/${productId}`;
-    return this.http.get<Product>(url, this.httpOptions);
+    if (productId > 0) {
+      let url: string = `${this.productsUrl}/${productId}`;
+      return this.http.get<Product>(url, this.httpOptions);
+    } else {
+      return of(new Product());
+    }
   }
 
   getCategories(name: string = ''): Observable<Category[]> {
     let url = this.categoriesUrl;
 
     if (name) {
-      url += `?name_like=${name}`;
+      let filter = this.escapeSpecialCharacters(name);
+      url += `?name_like=${filter}`;
     }
+
     return this.http.get<Category[]>(url, this.httpOptions);
   }
 
   getCategoryById(categoryId: number): Observable<Category> {
-    let url: string = `${this.categoriesUrl}/${categoryId}`;
-    return this.http.get<Category>(url, this.httpOptions);
+    if (categoryId > 0) {
+      let url: string = `${this.categoriesUrl}/${categoryId}`;
+      return this.http.get<Category>(url, this.httpOptions);
+    } else {
+      return of(new Category());
+    }
   }
 
   create(product: Product): Observable<Product> {
@@ -79,13 +89,15 @@ export class ProductService {
     let url: string = this.productsUrl;
 
     if (filterStr) {
+      let filter = this.escapeSpecialCharacters(filterStr);
+      
       if (['name', 'type', 'description'].includes(key)) {
-        url = `${url}?${key}_like=${filterStr}`;
+        url = `${url}?${key}_like=${filter}`;
       }
       else if (['id', 'catId', 'featured', 'active'].includes(key)) {
-        url = `${url}?${key}=${filterStr}`;
+        url = `${url}?${key}=${filter}`;
       } else if (key === 'price') {
-        url = `${url}?${key}_lte=${filterStr}`;
+        url = `${url}?${key}_lte=${filter}`;
       }
       url += '&';
     } else {
@@ -113,6 +125,10 @@ export class ProductService {
     }
 
     return url;
+  }
+
+  escapeSpecialCharacters(input: string): string {
+      return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   //#endregion Helper methods
 }
