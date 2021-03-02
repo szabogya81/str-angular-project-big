@@ -20,7 +20,8 @@ export class OrderService {
   }
 
   get(id: number): Observable<Order> {
-    if (id) {
+    id = typeof id === 'string' ? parseInt(id, 10) : id;
+    if (id !== 0) {
       return this.http.get<Order>(`${this.orderUrl}/${id}`);
     }
     return of(new Order());

@@ -5,5 +5,5 @@ export class Order {
     customerID: number = 0;
     productID: number = 0;
     amount: number = 0;
-    status: Status = Status.New;
+    status?: Status;
 }
