@@ -69,7 +69,11 @@ export class CustomerListComponent implements OnInit {
 
   // sorter
   onColumnSelect(key: string): void {
-    this.direction = this.swichDirectionValue();
+    if (this.columnKey != key) {
+      this.direction = 'asc';
+    } else {
+      this.direction = this.swichDirectionValue();
+    }
     this.columnKey = key;
   }
 
