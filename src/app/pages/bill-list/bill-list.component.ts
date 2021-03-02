@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Bill } from 'src/app/model/bill';
-import { Status } from 'src/app/model/status.enum';
+//import { Status } from 'src/app/model/status.enum';
 import { BillService } from 'src/app/services/bill.service';
 
 
@@ -67,7 +67,7 @@ export class BillListComponent implements OnInit {
   }
 
 
-  getId(): void {
-    console.log("Debug: BillListComponent.getId()");
-  }
+  // getId(): void {
+  //   console.log("Debug: BillListComponent.getId()");
+  // }
 }

@@ -19,3 +19,14 @@
 th>i.material-icons {
     cursor:pointer;
 }
+
+.hidden {
+    visibility: hidden;
+}
+
+.btn-small-text {
+    display: inline;
+    font-size: 80%;
+    position: relative;
+    top: -5%;
+}
