@@ -41,9 +41,8 @@ onUpdate(order: Order): void {
 }
 
   onDelete(id: number): void {
-    this.orderService.remove(id).subscribe(
-      () => console.log(`deleted id ${id}`)
-    );
+    this.orderService.remove(id).subscribe();
+    document.location.reload();
   }
 
   onConfirmDelete(id: number): void {
