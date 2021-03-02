@@ -34,24 +34,23 @@ export class OrderListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+onUpdate(order: Order): void {
+    this.orderService.update(order).subscribe(
+    updatedOrder => console.log(updatedOrder)
+  )
+}
 
-  updateOrders() {
-    this.orderList = this.orderService.getAll();
-  }
-
-
-  onDelete(id: number) {
+  onDelete(id: number): void {
     this.orderService.remove(id).subscribe(
-      () => this.updateOrders()
+      () => console.log(`deleted id ${id}`)
     );
   }
 
-    onConfirmDelete(id: number) {
+  onConfirmDelete(id: number): void {
       this.confirmDialogService.confirmThis(
         "Are you sure to delete this Order?",
-        () => {
-          this.onDelete(id);
-        }, () => { })
+        () => { this.onDelete(id); },
+        () => { })
       }
 
   // sorter
