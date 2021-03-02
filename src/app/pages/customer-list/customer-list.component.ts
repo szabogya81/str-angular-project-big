@@ -62,7 +62,7 @@ export class CustomerListComponent implements OnInit {
 
   onConfirmDelete(id: number): void {
     this.confirmDialogService.confirmThis(
-      `Are you sure to DELETE this Customer?`, () => {
+      `Are you sure to DELETE the #${id} Customer?`, () => {
         this.removeCustomer(id);
       }, () => { })
   }
