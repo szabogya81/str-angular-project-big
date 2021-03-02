@@ -1,4 +1,4 @@
-.h4__address {
+.h4__label {
   font-weight: 400;
 }
 
@@ -9,3 +9,8 @@
 .success {
   color: green;
 }
+
+.btn-block:disabled{
+  box-shadow: none;
+  cursor: not-allowed;
+} 
