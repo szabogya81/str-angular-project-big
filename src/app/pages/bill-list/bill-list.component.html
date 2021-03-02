@@ -7,31 +7,29 @@
       </div>
     </div>
     <div class="card-body">
-      <!-- Search/Filter -->
-      <div class="col-lg-8 d-flex flex-md-row flex-column ml-auto">
-        <div class="input-group mb-3">
-          <select (change)="onFilterKeyChange()" [(ngModel)]="filterKey" class="custom-select" id="">
+      <div class="d-flex my-3 row">
+        <span class="span__filter col-12 col-md-5 pb-3 pb-md-0 mt-2">Filter Bills by...</span>
+        <div class="col-12 col-md-3 input-group mb-3">
+          <select [(ngModel)]="filterKey" class="custom-select" (change)="onFilterKeyChange()">
             <option *ngFor="let key of filterKeys" [value]="key">
-              {{ key }}
+              {{ key.charAt(0).toUpperCase() + key.slice(1) }}
             </option>
           </select>
           <div *ngIf="filterKey === 'amount'" class="input-group-append bg-primary">
             <label class="input-group-text text-white" for="">&lt;=</label>
           </div>
         </div>
-        <div class="input-group">
-          <!-- Shows/hides depend on filterKey -->
-          <input *ngIf="filterKey != 'status'" class="form-control searchInput py-1 my-1 ml-1" #search type="text" value="" placeholder="Search..."
-          [(ngModel)]="filterText">
-          <!-- Shows/hides depend on filterKey -->
-          <select *ngIf="filterKey === 'status'" [(ngModel)]="filterText" class="custom-select" id="">
+        <div *ngIf="filterKey !== 'status'" class="input-group-prepend col-12 col-md-4">
+          <input [(ngModel)]="filterText" class="form-control" type="text" placeholder="Search...">
+          <button type="submit" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons">search</i>
+          </button>
+        </div>
+        <div *ngIf="filterKey === 'status'" class="input-group-prepend col-12 col-md-4">
+          <select [(ngModel)]="filterText" class="custom-select" id="">
             <option>new</option>
             <option>paid</option>
           </select>
-          <button type="submit" class="btn btn-white btn-round btn-just-icon">
-            <i class="material-icons">search</i>
-            <div class="ripple-container"></div>
-          </button>
         </div>
       </div>
       <!-- Create a new bill -->
