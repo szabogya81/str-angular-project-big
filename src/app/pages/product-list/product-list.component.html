@@ -10,10 +10,10 @@
       <div class="row card-body">
         <div class="col-12 col-lg-10 col-xl-9 d-flex flex-wrap">
           <div class="btn-group d-flex flex-wrap">
-            <button (click)="onSelectChanged($event)" value="id" class="btn btn-info filter-selector">ID</button>
+            <button (click)="onSelectChanged($event)" value="id" class="btn btn-info filter-selector">Id</button>
             <button (click)="onSelectChanged($event)" value="name"
               class="btn btn-info active filter-selector">Name</button>
-            <button (click)="onSelectChanged($event)" value="catId" class="btn btn-info filter-selector">CatId</button>
+            <button (click)="onSelectChanged($event)" value="catId" class="btn btn-info filter-selector">Cat Id</button>
             <button (click)="onSelectChanged($event)" value="type" class="btn btn-info filter-selector">Type</button>
             <button (click)="onSelectChanged($event)" value="description"
               class="btn btn-info filter-selector">Desc</button>
@@ -73,7 +73,7 @@
                     <i *ngIf="sortColumn === 'name' && sortDesc"
                       class="material-icons align-text-bottom">keyboard_arrow_up</i>
                   </th>
-                  <th (click)="onColumnSelect('catId')" class="table-product__th--catId">CatId
+                  <th (click)="onColumnSelect('catId')" class="table-product__th--catId">Cat Id
                     <i *ngIf="sortColumn !== 'catId'"
                       class="material-icons align-text-bottom">indeterminate_check_box</i>
                     <i *ngIf="sortColumn === 'catId' && !sortDesc"
@@ -137,10 +137,10 @@
                   <td>
                     <div class="btn-group">
                       <button class="btn btn-info" [routerLink]="[product.id]">
-                        <i class="material-icons">edit</i>
+                        <i class="material-icons">mode_edit</i>
                       </button>
                       <button class="btn btn-danger pull-right" (click)="onConfirmDelete(product.id)">
-                        <i class="material-icons">delete</i>
+                        <i class="material-icons">delete_forever</i>
                       </button>
                     </div>
                   </td>
