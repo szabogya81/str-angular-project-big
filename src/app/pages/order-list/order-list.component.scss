@@ -15,3 +15,28 @@ table {
     background-color: rgb(154, 124, 223);
   }
 }
+
+.table-order {
+
+  &__th {
+    &--id {
+      min-width: 60px;
+    }
+
+    &--customerId {
+      min-width: 140px;
+    }
+
+    &--productId {
+      min-width: 130px;
+    }
+
+    &--amount {
+      min-width: 110px;
+    }
+
+    &--status {
+      min-width: 100px;
+    }
+  }
+}

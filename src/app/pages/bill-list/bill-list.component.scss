@@ -30,3 +30,24 @@ th>i.material-icons {
     position: relative;
     top: -5%;
 }
+
+.table-bill {
+
+    &__th {
+      &--id {
+        min-width: 60px;
+      }
+
+      &--orderId {
+        min-width: 110px;
+      }
+  
+      &--amount {
+        min-width: 110px;
+      }
+  
+      &--status {
+        min-width: 100px;
+      }
+    }
+  }

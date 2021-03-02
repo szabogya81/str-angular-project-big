@@ -42,13 +42,6 @@
     }
 }
 
-.span__filter{
-    font-size: 1.25rem;
-    @media screen and (max-width: 900px) {
-        font-size: 1rem;
-    }
-}
-
  .table__thead{
      &--id{
          min-width: 70px;
