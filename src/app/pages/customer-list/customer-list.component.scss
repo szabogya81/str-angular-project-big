@@ -43,6 +43,8 @@
 }
 
  .table__thead{
+    user-select: none;
+
      &--id{
          min-width: 70px;
      }
@@ -74,3 +76,7 @@
          min-width: 90px;
      }
  }
+
+ .pointer-over-content {
+    cursor: pointer;
+}
