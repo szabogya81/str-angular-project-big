@@ -73,11 +73,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let bill of bills | async | billFilter:filterKey:filterText | sorter:direction:columnKey">
-            <td>{{ bill.id }}</td>
-            <td>{{ bill.orderID }}</td>
-            <td>{{ bill.amount }}</td>
-            <td>{{ bill.status }}</td>
-            <td class="text-center">
+            <td class="text-center">{{ bill.id }}</td>
+            <td class="text-center">{{ bill.orderID }}</td>
+            <td class="text-center">{{ bill.amount }}</td>
+            <td class="text-center">{{ bill.status }}</td>
+            <td>
               <div class="btn-group">
                 <button [class.hidden]="bill.status === 'paid'" class="btn btn-info">
                   <div class="btn-small-text">Set to </div> Paid<i class="material-icons pl-1">done_outline</i>
