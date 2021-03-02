@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Customer } from 'src/app/model/customer';
@@ -18,7 +19,12 @@ export class CustomerEditComponent implements OnInit {
   );
   customer: Customer = new Customer();
 
-  constructor(private activatedRoute: ActivatedRoute, private customerService: CustomerService, private router: Router) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private customerService: CustomerService,
+    private router: Router,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -27,11 +33,23 @@ export class CustomerEditComponent implements OnInit {
 
     if (customer$.id === 0) {
       this.customerService.create(customer$).subscribe(
-        () => this.router.navigate(['/customers'])
+        () => {
+          this.toastr.success('New Customer Added', 'Customer Create');
+          this.router.navigate(['/customers']);
+        },
+        () => {
+          this.toastr.error('Error occured while adding new Customer', 'Customer Create');
+        }
       );
     } else {
       this.customerService.update(customer$).subscribe(
-        () => this.router.navigate(['/customers'])
+        () => {
+          this.toastr.success('Customer Updated Successfully', 'Customer Update');
+          this.router.navigate(['/customers']);
+        },
+        () => {
+          this.toastr.error('Error occured while updating Customer', 'Customer Update');
+        }
       );
     }
   }
