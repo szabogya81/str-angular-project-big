@@ -8,7 +8,7 @@
     </div>
     <div class="card-body">
       <!-- Search/Filter -->
-      <div class="col-lg-8 d-flex flex-row ml-auto">
+      <div class="col-lg-8 d-flex flex-md-row flex-column ml-auto">
         <div class="input-group mb-3">
           <select (change)="onFilterKeyChange()" [(ngModel)]="filterKey" class="custom-select" id="">
             <option *ngFor="let key of filterKeys" [value]="key">
