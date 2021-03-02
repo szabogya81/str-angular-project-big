@@ -5,13 +5,9 @@
       <p class="card-category"> List of Orders</p>
     </div>
   </div>
-
   <div class="card-body">
-
-      <div class="d-flex my-3 row">
-
-      <span class="my-auto span__filter col-12 col-md-5">Filter Orders by...</span>
-
+    <div class="d-flex my-3 row">
+      <span class="my-auto span__filter col-12 col-md-5 pb-3 pb-md-0">Filter Orders by...</span>
       <div class="col-12 col-md-3">
         <select [(ngModel)]="phraseKey" class="custom-select">
           <option *ngFor="let key of keyArray" [value]="key">
@@ -19,20 +15,16 @@
           </option>
         </select>
       </div>
-
       <div class="input-group-prepend col-12 col-md-4">
-        <input [(ngModel)]="txt" class="form-control" type="text" placeholder="search...">
+        <input [(ngModel)]="txt" class="form-control" type="text" placeholder="Search...">
         <button type="submit" class="btn btn-white btn-round btn-just-icon">
           <i class="material-icons">search</i>
         </button>
-
       </div>
     </div>
-
-    <button type="button" class="btn btn-success btn-block py-6 my-3">
+    <button type="button" class="btn btn-success btn-block py-6 mt-3">
       Add new Order<i class="material-icons ml-2">post_add</i>
     </button>
-
     <div class="table-responsive">
       <table class="table">
         <thead class="thead-dark text-default text-center">
@@ -93,7 +85,6 @@
               </div>
             </td>
           </tr>
-
         </tbody>
       </table>
     </div>
