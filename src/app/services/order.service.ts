@@ -31,12 +31,12 @@ export class OrderService {
   }
 
   update(order: Order): Observable<any> {
-    return this.http.put<any>(`${this.orderUrl}/${order.id}`, order);
+    return this.http.patch<any>(`${this.orderUrl}/${order.id}`, order);
   }
 
   remove(order: any): Observable<any> {
     order = order.id ? order.id : order;
-    return this.http.delete( `${this.orderUrl}/${order}` );
+    return this.http.delete<Order>( `${this.orderUrl}/${order}` );
   }
 
 }
