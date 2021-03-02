@@ -37,21 +37,21 @@
       <table class="table">
         <thead class="thead-dark text-default text-center">
           <tr>
-            <th class="text-center" (click)="onColumnSelect('id')">#
+            <th class="text-center" (click)="onColumnSelect('id')">Id
               <i *ngIf="columnKey !== 'id'" class="material-icons align-text-bottom">indeterminate_check_box</i>
               <i *ngIf="columnKey === 'id' && direction === 'asc'"
                 class="material-icons align-text-top">keyboard_arrow_down</i>
               <i *ngIf="columnKey === 'id' && direction === 'dsc'"
                 class="material-icons align-text-bottom">keyboard_arrow_up</i>
             </th>
-            <th class="text-center" (click)="onColumnSelect('customerID')">CustomerID
+            <th class="text-center" (click)="onColumnSelect('customerID')">Customer Id
               <i *ngIf="columnKey !== 'customerID'" class="material-icons align-text-bottom">indeterminate_check_box</i>
               <i *ngIf="columnKey === 'customerID' && direction === 'asc'"
                 class="material-icons align-text-top">keyboard_arrow_down</i>
               <i *ngIf="columnKey === 'customerID' && direction === 'dsc'"
                 class="material-icons align-text-bottom">keyboard_arrow_up</i>
             </th>
-            <th class="text-center" (click)="onColumnSelect('productID')">ProductID
+            <th class="text-center" (click)="onColumnSelect('productID')">Product Id
               <i *ngIf="columnKey !== 'productID'" class="material-icons align-text-bottom">indeterminate_check_box</i>
               <i *ngIf="columnKey === 'productID' && direction === 'asc'"
                 class="material-icons align-text-top">keyboard_arrow_down</i>

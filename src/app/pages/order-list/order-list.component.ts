@@ -41,15 +41,13 @@ export class OrderListComponent implements OnInit {
     );
   }
 
-
-  onConfirmDelete(id: number) {
-    this.confirmDialogService.confirmThis(
-      "Are you sure to delete this Order?",
-      () => {
-        this.onDelete(id);
-      }, () => { })
-    }
-
+    onConfirmDelete(id: number) {
+      this.confirmDialogService.confirmThis(
+        "Are you sure to delete this Order?",
+        () => {
+          this.onDelete(id);
+        }, () => { })
+      }
 
   // sorter
   onColumnSelect(key: string): void {
