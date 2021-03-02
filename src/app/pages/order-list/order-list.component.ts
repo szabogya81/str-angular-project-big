@@ -19,6 +19,11 @@ export class OrderListComponent implements OnInit {
   phraseKey: string = 'id';
   keyArray: string[] = Object.keys(new Order());
 
+  // Filter
+  onFilterKeyChange() {
+    this.txt = ""; // Clear filter
+  }
+
   // sorter
   columnKey: string = '';
   direction: string = '';

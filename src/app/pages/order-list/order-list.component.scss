@@ -40,3 +40,21 @@ table {
     }
   }
 }
+
+.input-group {
+  &-append {
+      opacity: 100%;
+      animation-name: appear;
+      animation-duration: 2s;
+  }
+
+  &-text {
+      font-size: 18px;
+  }
+}
+
+@keyframes appear {
+  0% {opacity: 50%;}
+  50% {opacity: 75%;}
+  100% {opacity: 100%;}
+}
