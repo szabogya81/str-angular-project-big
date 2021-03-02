@@ -35,7 +35,7 @@
         </div>
       </div>
       <!-- Create a new bill -->
-      <button class="btn btn-success btn-md btn-block">Create new Bill
+      <button class="btn btn-success btn-md btn-block">Add new Bill
         <i class="material-icons pl-2">article</i>
       </button>
       <!-- Bill list (modify status: new to paid, delete: no) -->
@@ -43,14 +43,14 @@
         <table class="table table-striped table-hover text-center">
           <thead class="thead-dark text-default">
             <tr>
-              <th (click)="onColumnSelect('id')">#
+              <th (click)="onColumnSelect('id')">Id
                 <i *ngIf="columnKey !== 'id'" class="material-icons align-text-bottom">indeterminate_check_box</i>
                 <i *ngIf="columnKey === 'id' && direction === 'asc'"
                   class="material-icons align-text-top">keyboard_arrow_down</i>
                 <i *ngIf="columnKey === 'id' && direction === 'dsc'"
                   class="material-icons align-text-bottom">keyboard_arrow_up</i>
               </th>
-              <th (click)="onColumnSelect('orderID')">Order ID
+              <th (click)="onColumnSelect('orderID')">Order Id
                 <i *ngIf="columnKey !== 'orderID'" class="material-icons align-text-bottom">indeterminate_check_box</i>
                 <i *ngIf="columnKey === 'orderID' && direction === 'asc'"
                   class="material-icons align-text-top">keyboard_arrow_down</i>
