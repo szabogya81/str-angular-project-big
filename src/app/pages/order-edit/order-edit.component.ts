@@ -18,7 +18,7 @@ export class OrderEditComponent implements OnInit {
     switchMap(params => this.orderService.get(params.id))
   );
 
-  order: Order = new Order();
+  order: Order = new Order();  
 
   orderStatus = Status;
 
