@@ -2,3 +2,8 @@
     color: rgb(226, 62, 62);
     transition: all 1 ease;
 }
+
+.btn-block:disabled{
+    box-shadow: none;
+    cursor: not-allowed;
+  } 

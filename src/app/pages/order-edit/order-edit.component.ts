@@ -30,7 +30,7 @@ export class OrderEditComponent implements OnInit {
   onUpdate(form: NgForm, order$: Order): void {
 
     if (order$.id === 0) {
-      this.orderService.create(this.order).subscribe(
+      this.orderService.create(order$).subscribe(
         () => this.router.navigate(['/orders'])
       );
     } else {
