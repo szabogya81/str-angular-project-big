@@ -53,19 +53,24 @@ export class OrderListComponent implements OnInit {
 
   // sorter
   onColumnSelect(key: string): void {
-    this.swichDirectionValue();
+    if (this.columnKey != key) {
+      this.direction = 'asc';
+    } else {
+       this.direction = this.swichDirectionValue();
+    }
     this.columnKey = key;
   }
 
   swichDirectionValue(): any {
-    if ( this.direction === '' || this.direction === 'dsc') {
-      return this.direction = 'asc';
+    switch (this.direction) {
+      case 'asc':
+        return this.direction = 'dsc';
+      case 'dsc':
+        return this.direction = 'asc';
+      default:
+        return this.direction = 'asc';
     }
-    return this.direction = 'dsc';
   }
-
-
-
 
 
 }
