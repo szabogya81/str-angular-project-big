@@ -16,9 +16,27 @@ table {
   }
 }
 
-.span__filter {
-  font-size: 1.25rem;
-  @media screen and (max-width: 900px) {
-    font-size: 1rem;
+.table-order {
+
+  &__th {
+    &--id {
+      min-width: 60px;
+    }
+
+    &--customerId {
+      min-width: 140px;
+    }
+
+    &--productId {
+      min-width: 130px;
+    }
+
+    &--amount {
+      min-width: 110px;
+    }
+
+    &--status {
+      min-width: 100px;
+    }
   }
 }
