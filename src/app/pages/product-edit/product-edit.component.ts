@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 import { Category } from 'src/app/model/category';
 import { Product } from 'src/app/model/product';
@@ -29,6 +30,7 @@ export class ProductEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private prodSvc: ProductService,
     private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -37,18 +39,13 @@ export class ProductEditComponent implements OnInit {
         .subscribe(cat => this.selectedCategory = cat));
   }
 
+  //#region Main methods
   onUpdate(product: Product): void {
-
     product.catId = this.selectedCategory.id;
-
     if (product.id === 0) {
-      this.prodSvc.create(product).subscribe(
-        () => this.router.navigate(['/products'])
-      );
+      this.createProduct(product);
     } else {
-      this.prodSvc.update(product).subscribe(
-        () => this.router.navigate(['/products'])
-      );
+      this.updateProduct(product);
     }
   }
 
@@ -70,4 +67,30 @@ export class ProductEditComponent implements OnInit {
     }
     return `#${category.id} - ${category.name}`;
   }
+  //#endregion Main methods
+  //#region Helper methods
+  createProduct(product: Product): void {
+    this.prodSvc.create(product).subscribe(
+      () => {
+        this.toastr.success('New Product Added', 'Product Create');
+        this.router.navigate(['/products']);
+      },
+      () => {
+        this.toastr.error('Error occured while adding new Product', 'Product Create');
+      }
+    );
+  }
+
+  updateProduct(product: Product): void {
+    this.prodSvc.update(product).subscribe(
+      () => {
+        this.toastr.success('Product Updated Successfully', 'Product Update');
+        this.router.navigate(['/products'])
+      },
+      () => {
+        this.toastr.error('Error occured while updating Product', 'Product Update');
+      }
+    );
+  }
+  //#endregion Helper methods
 }
