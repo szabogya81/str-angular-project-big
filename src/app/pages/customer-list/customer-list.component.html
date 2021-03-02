@@ -1,183 +1,166 @@
 <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header card-header-primary d-flex justify-content-between">
-                <div>
-                    <h3 class="card-title ">Customers</h3>
-                    <p class="card-category">List of Customers</p>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="d-flex align-middle div__filter">
-                    <span class="my-auto span__filter">Filter Customers by...</span>
-                    <div class="input-group no-border div__filter--group col-xl-8 col-lg-9 col-md-10 col-sm-10 my-3">
-
-                        <select [(ngModel)]="filterKey"
-                            class="custom-select div__filter--select col-xl-3 col-lg-3 col-md-3 col-sm-3">
-                            <option *ngFor="let key of filterKeyArray" [value]="key">
-                                {{ key.charAt(0).toUpperCase() + key.slice(1) }}
-                            </option>
-                        </select>
-                        <div class="div__filter--searchInput col-xl-5 col-lg-6 col-md-7 col-sm-7">
-                            <input class="form-control searchInput div__filter--input py-1 my-1 " #search type="text"
-                                value="" class="form-control" placeholder="Search..." [(ngModel)]="phrase">
-                            <button [disabled]="this.isSearchButtonVisible" type="submit"
-                                class="btn btn-white btn-round btn-just-icon">
-                                <i class="material-icons">search</i>
-                                <div class="ripple-container"></div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-success w-100 py-6 my-3" [routerLink]="'0'">
-                    Add new Customer
-                    <i class="material-icons px-3">
-                        person_add
-                    </i>
-                </button>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <thead class="thead-dark text-default this.direction">
-                            <tr class="">
-                                <th class="text-center table__thead--id">#
-                                    <i *ngIf="columnKey !== 'id'" (click)="onColumnSelect('id')"
-                                        class="material-icons align-text-bottom">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'id' && direction === 'asc'" (click)="onColumnSelect('id')"
-                                        class="material-icons align-text-bottom">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'id' && direction === 'dsc'" (click)="onColumnSelect('id')"
-                                        class="material-icons align-text-bottom">keyboard_arrow_up</i>
-                                </th>
-                                <th class="text-center table__thead--first_name">
-                                    FirstName
-                                    <i *ngIf="columnKey !== 'first_name'" class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('first_name')">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'first_name' && direction === 'asc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('first_name')">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'first_name' && direction === 'dsc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('first_name')">keyboard_arrow_up</i>
-                                </th>
-                                <th class="text-center table__thead--last_name">
-                                    LastName
-                                    <i *ngIf="columnKey !== 'last_name'" class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('last_name')">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'last_name' && direction === 'asc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('last_name')">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'last_name' && direction === 'dsc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('last_name')">keyboard_arrow_up</i>
-                                </th>
-                                <th class="text-center table__thead--email">Email
-                                    <i *ngIf="columnKey !== 'email'" class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('email')">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'email' && direction === 'asc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('email')">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'email' && direction === 'dsc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('email')">keyboard_arrow_up</i>
-                                </th>
-                                <th class="text-center table__thead--zip">Zip
-                                    <i *ngIf="columnKey !== 'zip'" class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('zip')">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'zip' && direction === 'asc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('zip')">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'zip' && direction === 'dsc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('zip')">keyboard_arrow_up</i>
-                                </th>
-                                <th class="text-center table__thead--country">
-                                    Country
-                                    <i *ngIf="columnKey !== 'country'" class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('country')">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'country' && direction === 'asc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('country')">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'country' && direction === 'dsc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('country')">keyboard_arrow_up</i>
-                                </th>
-                                <th class="text-center table__thead--city">City
-                                    <i *ngIf="columnKey !== 'city'" class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('city')">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'city' && direction === 'asc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('city')">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'city' && direction === 'dsc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('city')">keyboard_arrow_up</i>
-                                </th>
-                                <th class="text-center table__thead--street">Street
-                                    <i *ngIf="columnKey !== 'street'" class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('street')">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'street' && direction === 'asc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('street')">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'street' && direction === 'dsc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('street')">keyboard_arrow_up</i>
-                                </th>
-                                <th class="text-center table__thead--notes">Notes
-                                    <i *ngIf="columnKey !== 'notes'" class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('notes')">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'notes' && direction === 'asc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('notes')">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'notes' && direction === 'dsc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('notes')">keyboard_arrow_up</i>
-                                </th>
-                                <th class="text-center table__thead--active">Active
-                                    <i *ngIf="columnKey !== 'active'" class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('active')">indeterminate_check_box</i>
-                                    <i *ngIf="columnKey === 'active' && direction === 'asc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('active')">keyboard_arrow_down</i>
-                                    <i *ngIf="columnKey === 'active' && direction === 'dsc'"
-                                        class="material-icons align-text-bottom"
-                                        (click)="onColumnSelect('active')">keyboard_arrow_up</i>
-                                </th>
-
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let customer of customerList$ | async | customerFilter:filterKey:phrase  | sorter:direction:columnKey"
-                                class="text-center">
-                                <td>{{ customer.id }}</td>
-                                <td>{{ customer.first_name }}</td>
-                                <td>{{ customer.last_name }}</td>
-                                <td>{{ customer.email }}</td>
-                                <td>{{ customer.address.zip }}</td>
-                                <td>{{ customer.address.country }}</td>
-                                <td>{{ customer.address.city }}</td>
-                                <td>{{ customer.address.street }}</td>
-                                <td>{{ customer.address.notes }}</td>
-                                <td>{{ customer.active }}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-info px-3 mr-1" [routerLink]="[customer.id]">
-                                            <i class="material-icons">
-                                                mode_edit
-                                            </i>
-                                        </button>
-                                        <button (click)="onConfirmDelete(customer.id)" class="btn btn-danger px-3 ml-1">
-                                            <!-- [routerLink]="['/customers']" -->
-                                            <i class="material-icons">
-                                                delete_forever
-                                            </i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header card-header-primary d-flex justify-content-between">
+        <div>
+          <h3 class="card-title ">Customers</h3>
+          <p class="card-category">List of Customers</p>
         </div>
+      </div>
+      <div class="card-body">
+        <div class="d-flex align-middle div__filter">
+          <span class="my-auto span__filter">Filter Customers by...</span>
+          <div class="input-group no-border div__filter--group col-xl-8 col-lg-9 col-md-10 col-sm-10 my-3">
+
+            <select [(ngModel)]="filterKey"
+              class="custom-select div__filter--select col-xl-3 col-lg-3 col-md-3 col-sm-3">
+              <option *ngFor="let key of filterKeyArray" [value]="key">
+                {{ key.charAt(0).toUpperCase() + key.slice(1) }}
+              </option>
+            </select>
+            <div class="div__filter--searchInput col-xl-5 col-lg-6 col-md-7 col-sm-7">
+              <input class="form-control searchInput div__filter--input py-1 my-1 " #search type="text" value=""
+                class="form-control" placeholder="Search..." [(ngModel)]="phrase">
+              <button [disabled]="this.isSearchButtonVisible" type="submit"
+                class="btn btn-white btn-round btn-just-icon">
+                <i class="material-icons">search</i>
+                <div class="ripple-container"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success w-100 py-6 my-3" [routerLink]="'0'">
+          Add new Customer
+          <i class="material-icons px-3">
+            person_add
+          </i>
+        </button>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead class="thead-dark text-default this.direction">
+              <tr class="">
+                <th class="text-center table__thead--id">Id
+                  <i *ngIf="columnKey !== 'id'" (click)="onColumnSelect('id')"
+                    class="material-icons align-text-bottom">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'id' && direction === 'asc'" (click)="onColumnSelect('id')"
+                    class="material-icons align-text-bottom">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'id' && direction === 'dsc'" (click)="onColumnSelect('id')"
+                    class="material-icons align-text-bottom">keyboard_arrow_up</i>
+                </th>
+                <th class="text-center table__thead--first_name">
+                  First Name
+                  <i *ngIf="columnKey !== 'first_name'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('first_name')">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'first_name' && direction === 'asc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('first_name')">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'first_name' && direction === 'dsc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('first_name')">keyboard_arrow_up</i>
+                </th>
+                <th class="text-center table__thead--last_name">
+                  Last Name
+                  <i *ngIf="columnKey !== 'last_name'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('last_name')">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'last_name' && direction === 'asc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('last_name')">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'last_name' && direction === 'dsc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('last_name')">keyboard_arrow_up</i>
+                </th>
+                <th class="text-center table__thead--email">Email
+                  <i *ngIf="columnKey !== 'email'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('email')">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'email' && direction === 'asc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('email')">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'email' && direction === 'dsc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('email')">keyboard_arrow_up</i>
+                </th>
+                <th class="text-center table__thead--zip">Zip
+                  <i *ngIf="columnKey !== 'zip'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('zip')">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'zip' && direction === 'asc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('zip')">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'zip' && direction === 'dsc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('zip')">keyboard_arrow_up</i>
+                </th>
+                <th class="text-center table__thead--country">
+                  Country
+                  <i *ngIf="columnKey !== 'country'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('country')">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'country' && direction === 'asc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('country')">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'country' && direction === 'dsc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('country')">keyboard_arrow_up</i>
+                </th>
+                <th class="text-center table__thead--city">City
+                  <i *ngIf="columnKey !== 'city'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('city')">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'city' && direction === 'asc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('city')">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'city' && direction === 'dsc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('city')">keyboard_arrow_up</i>
+                </th>
+                <th class="text-center table__thead--street">Street
+                  <i *ngIf="columnKey !== 'street'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('street')">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'street' && direction === 'asc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('street')">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'street' && direction === 'dsc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('street')">keyboard_arrow_up</i>
+                </th>
+                <th class="text-center table__thead--notes">Notes
+                  <i *ngIf="columnKey !== 'notes'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('notes')">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'notes' && direction === 'asc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('notes')">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'notes' && direction === 'dsc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('notes')">keyboard_arrow_up</i>
+                </th>
+                <th class="text-center table__thead--active">Active
+                  <i *ngIf="columnKey !== 'active'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('active')">indeterminate_check_box</i>
+                  <i *ngIf="columnKey === 'active' && direction === 'asc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('active')">keyboard_arrow_down</i>
+                  <i *ngIf="columnKey === 'active' && direction === 'dsc'" class="material-icons align-text-bottom"
+                    (click)="onColumnSelect('active')">keyboard_arrow_up</i>
+                </th>
+
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let customer of customerList$ | async | customerFilter:filterKey:phrase  | sorter:direction:columnKey"
+                class="text-center">
+                <td>{{ customer.id }}</td>
+                <td>{{ customer.first_name }}</td>
+                <td>{{ customer.last_name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.address.zip }}</td>
+                <td>{{ customer.address.country }}</td>
+                <td>{{ customer.address.city }}</td>
+                <td>{{ customer.address.street }}</td>
+                <td>{{ customer.address.notes }}</td>
+                <td>{{ customer.active }}</td>
+                <td>
+                  <div class="btn-group">
+                    <button class="btn btn-info px-3 mr-1" [routerLink]="[customer.id]">
+                      <i class="material-icons">
+                        mode_edit
+                      </i>
+                    </button>
+                    <button (click)="onConfirmDelete(customer.id)" class="btn btn-danger px-3 ml-1">
+                      <!-- [routerLink]="['/customers']" -->
+                      <i class="material-icons">
+                        delete_forever
+                      </i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <app-confirm-dialog></app-confirm-dialog>
