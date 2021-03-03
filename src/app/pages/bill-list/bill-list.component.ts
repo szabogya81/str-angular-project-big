@@ -4,6 +4,7 @@ import { Bill } from 'src/app/model/bill';
 import { Status } from 'src/app/model/status.enum';
 import { BillService } from 'src/app/services/bill.service';
 import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
+import { Router } from '@angular/router';
 
 
 export enum Order {
@@ -53,12 +54,12 @@ export class BillListComponent implements OnInit {
   }
 
   onConfirmVoid(bill: Bill) {
-    //alert("Stornooooo?");
     this.confirmDialogService.confirmThis(
-     "Do you really want to void this Bill?",
-    //  () => { this.voidBill(bill); },
-     () => { },
-     () => { }
+      `Do you really want to void this Bill?
+      Order ID: #${bill.orderID}`,
+      () => { this.voidBill(bill); },
+    // () => { },
+      () => { }
     )
     console.log("Debug: confirmVoid...");
   }
