@@ -37,8 +37,26 @@ export class OrderEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.order$.subscribe(
-      ordr => this.orderService.getCustomerIdById(ordr.id)
+      ordr => this.orderService.getCustomerIdById(ordr.customerID)
         .subscribe(cusID => this.choosenCustomer = cusID));
+  }
+
+  searchCustomer = (text$: Observable<string>) => text$.pipe(
+    debounceTime(300),
+    switchMap(
+      txt => this.orderService.likeCustomer('last_name', txt)
+    )
+  );
+
+  customerResultFormatter(customer: Customer): string {
+    return `${customer.first_name} ${customer.last_name}`;
+  }
+
+  customerInputFormatter(customer: Customer): string {
+    if (!customer.id) {
+      return '';
+    }
+    return `(${customer.id}) ${customer.first_name} ${customer.last_name}`;
   }
 
 
@@ -69,22 +87,5 @@ export class OrderEditComponent implements OnInit {
   }
   
 
-  searchCustomer = (text$: Observable<string>) => text$.pipe(
-    debounceTime(300),
-    switchMap(
-      txt => this.orderService.likeCustomer('last_name', txt)
-    )
-  );
-
-  customerResultFormatter(customer: Customer): string {
-    return `${customer.first_name} ${customer.last_name}`;
-  }
-
-  customerInputFormatter(customer: Customer): string {
-    if (!customer.id) {
-      return '';
-    }
-    return `(${customer.id}) ${customer.first_name} ${customer.last_name}`;
-  }
 
 }
