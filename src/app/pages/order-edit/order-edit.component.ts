@@ -81,11 +81,19 @@ export class OrderEditComponent implements OnInit {
     return `(${product.id}) ${product.name}`;
   }
 
+  productPriceInputFormatter(product: Product): string {
+    if (!product.id) {
+      return '';
+    }
+    return `${product.price}`;
+  }
+
 
   onUpdate(form: NgForm, order$: Order): void {
 
     order$.customerID = this.choosenCustomer.id;
     order$.productID = this.choosenProduct.id;
+    order$.amount = this.choosenProduct.price;
     if (order$.id === 0) {
       this.orderService.create(order$).subscribe(
         () => {
