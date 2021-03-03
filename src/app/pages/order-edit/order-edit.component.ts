@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+import { Observable, of } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
+import { Address } from 'src/app/model/address';
+import { Customer } from 'src/app/model/customer';
 import { Order } from 'src/app/model/order';
+import { Product } from 'src/app/model/product';
 import { Status } from 'src/app/model/status.enum';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -18,26 +22,70 @@ export class OrderEditComponent implements OnInit {
     switchMap(params => this.orderService.get(params.id))
   );
 
-  order: Order = new Order();  
+  order: Order = new Order();
 
   orderStatus = Status;
-
-  constructor(private activatedRoute: ActivatedRoute, private orderService: OrderService, private router: Router) { }
+  
+  choosenCustomer: Customer = new Customer();
+  
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private orderService: OrderService,
+    private router: Router,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
+    this.order$.subscribe(
+      ordr => this.orderService.getCustomerIdById(ordr.customerID)
+        .subscribe(cusID => this.choosenCustomer = cusID));
   }
+
+  searchCustomer = (text$: Observable<string>) => text$.pipe(
+    debounceTime(300),
+    switchMap(
+      txt => this.orderService.likeCustomer('last_name', txt)
+    )
+  );
+
+  customerResultFormatter(customer: Customer): string {
+    return `${customer.first_name} ${customer.last_name}`;
+  }
+
+  customerInputFormatter(customer: Customer): string {
+    if (!customer.id) {
+      return '';
+    }
+    return `(${customer.id}) ${customer.first_name} ${customer.last_name}`;
+  }
+
 
   onUpdate(form: NgForm, order$: Order): void {
 
+    order$.customerID = this.choosenCustomer.id;
     if (order$.id === 0) {
       this.orderService.create(order$).subscribe(
-        () => this.router.navigate(['/orders'])
+        () => {
+          this.toastr.success('New Order Added', 'Order Create');
+          this.router.navigate(['/orders']);
+        },
+        () => {
+          this.toastr.error('Error occured while adding new Order', 'Order Create');
+        }
       );
     } else {
       this.orderService.update(order$).subscribe(
-        () => this.router.navigate(['/orders'])
+        () => {
+          this.toastr.success('Order Updated Successfully', 'Order Update');
+          this.router.navigate(['/orders']);
+        },
+        () => {
+          this.toastr.error('Error occured while updating Order', 'Customer Order');
+        }
       );
     }
   }
+  
+
 
 }

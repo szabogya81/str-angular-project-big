@@ -16,17 +16,28 @@
             <input name="orderID" [(ngModel)]="order.id" type="text" class="form-control" disabled>
           </div> -->
           <div class="mt-4">
-            <label for="">CustomerID</label>
-            <input name="customerID" [(ngModel)]="order.customerID" type="text" class="form-control" pattern="^[1-9]{1}[0-9]{0,2}$" required>
+            <label for="customerID">CustomerID</label>
+            <input id="customerID" type="text"
+            freeInput="false"
+            name="customerID"
+            class="form-control"
+            [(ngModel)]="choosenCustomer"
+            [ngbTypeahead]="searchCustomer"
+            [resultFormatter]="customerResultFormatter"
+            [inputFormatter]="customerInputFormatter"
+            #instance="ngbTypeahead"
+            [editable]="false"
+            typeahead-editable="false"
+             required>
             <div [style.opacity]="orderForm.controls.customerID?.value  || 
                 !orderForm.controls.customerID?.touched ? '0' : '1' || orderForm.controls.customerID?.valid" [style.visibility]="orderForm.controls.customerID?.value || 
                 !orderForm.controls.customerID?.touched ? 'hidden' : 'visible' || orderForm.controls.customerID?.valid" class="error-message">
-              Customer ID is required and must contain numbers.
+              Customer ID is required, please select.
             </div>         
           </div>
           <div class="mt-4">
             <label for="">ProductID</label>
-            <input name="productID" [(ngModel)]="order.productID" type="text" class="form-control" pattern="^[1-9]{1}[0-9]{0,2}$" required>
+            <input name="productID" [(ngModel)]="order.productID" type="number" class="form-control" pattern="^[1-9]{1}[0-9]{0,2}$" required>
             <div [style.opacity]="orderForm.controls.productID?.value  || 
                 !orderForm.controls.productID?.touched ? '0' : '1'" [style.visibility]="orderForm.controls.productID?.value || 
                 !orderForm.controls.productID?.touched ? 'hidden' : 'visible'" class="error-message">
@@ -36,14 +47,14 @@
           <div class="mt-4">
             <label for="">Amount</label>
             <div class="input-group">
-            <input name="amount" [(ngModel)]="order.amount" type="text" class="form-control" pattern="^[1-9]{2,5}$" required>
+            <input name="amount" [(ngModel)]="order.amount" type="number" class="form-control" pattern="^[1-9]{2,5}$" required>
             <div class="input-group-append">
               <span class="input-group-text">Ft</span>
             </div>
           </div>
-            <div [style.opacity]="orderForm.controls.productID?.value  || 
-                !orderForm.controls.productID?.touched ? '0' : '1'" [style.visibility]="orderForm.controls.productID?.value || 
-                !orderForm.controls.productID?.touched ? 'hidden' : 'visible'" class="error-message">
+            <div [style.opacity]="orderForm.controls.amount?.value  || 
+                !orderForm.controls.amount?.touched ? '0' : '1'" [style.visibility]="orderForm.controls.amount?.value || 
+                !orderForm.controls.amount?.touched ? 'hidden' : 'visible'" class="error-message">
               Amount is required and must contain numbers.
             </div>
           </div>
