@@ -15,22 +15,24 @@
             <div class="col-md-3 my-md-0 my-2">
               <label for="">FirstName</label>
               <input name="first_name" type="text" [(ngModel)]="customer.first_name" class="form-control "
-                pattern=".{2,}" [class.error]="eventForm.controls.first_name?.invalid &&
+                pattern=".{2,30}" [class.error]="eventForm.controls.first_name?.invalid &&
                 eventForm.controls.first_name?.touched" [class.success]="eventForm.controls.first_name?.valid &&
                 eventForm.controls.first_name?.touched" required>
               <span [hidden]="eventForm.controls.first_name?.valid || !eventForm.controls.first_name?.touched"
-                class="error">The FirstName is required and must be at least 2 characters long.</span>
+                class="error">The FirstName is required and can be a minimum of 2 characters and a maximum of 30
+                characters.</span>
               <span [hidden]="eventForm.controls.first_name?.invalid || !eventForm.controls.first_name?.touched"
                 class="success">Success</span>
             </div>
             <div class="col-md-3 my-md-0 my-2">
               <label for="">LastName</label>
               <input name="last_name" type="text" [(ngModel)]="customer.last_name" class="form-control success"
-                pattern=".{2,}" [class.error]="eventForm.controls.last_name?.invalid &&
+                pattern=".{2,30}" [class.error]="eventForm.controls.last_name?.invalid &&
                 eventForm.controls.last_name?.touched" [class.success]="eventForm.controls.last_name?.valid &&
                 eventForm.controls.last_name?.touched" required>
               <span [hidden]="eventForm.controls.last_name?.valid || !eventForm.controls.last_name?.touched"
-                class="error">The LastName is required and must be at least 2 characters long.</span>
+                class="error">The LastName is required and can be a minimum of 2 characters and a maximum of 30
+                characters.</span>
               <span [hidden]="eventForm.controls.last_name?.invalid || !eventForm.controls.last_name?.touched"
                 class="success">Success</span>
             </div>
@@ -53,22 +55,23 @@
             <div class="col-md-3 my-md-0 my-2">
               <label for="">Country</label>
               <input name="country" type="text" [(ngModel)]="customer.address.country" class="form-control"
-                pattern=".{5,}" [class.error]="eventForm.controls.country?.invalid &&
+                pattern=".{5,30}" [class.error]="eventForm.controls.country?.invalid &&
                 eventForm.controls.country?.touched" [class.success]="eventForm.controls.country?.valid &&
                 eventForm.controls.country?.touched" required>
               <span [hidden]="eventForm.controls.country?.valid || !eventForm.controls.country?.touched"
-                class="error">The Country is required and must be at least 5 characters long.</span>
+                class="error">The Country is required and can be a minimum of 5 characters and a maximum of 30
+                characters.</span>
               <span [hidden]="eventForm.controls.country?.invalid || !eventForm.controls.country?.touched"
                 class="success">Success</span>
             </div>
             <div class="col-md-3 my-md-0 my-2">
               <label for="">City</label>
-              <input name="city" type="text" [(ngModel)]="customer.address.city" class="form-control" pattern=".{5,}"
+              <input name="city" type="text" [(ngModel)]="customer.address.city" class="form-control" pattern=".{5,30}"
                 [class.error]="eventForm.controls.city?.invalid &&
                 eventForm.controls.city?.touched" [class.success]="eventForm.controls.city?.valid &&
                 eventForm.controls.city?.touched" required>
               <span [hidden]="eventForm.controls.city?.valid || !eventForm.controls.city?.touched" class="error">The
-                City is required and must be at least 5 characters long.</span>
+                The city is required and can be a minimum of 5 characters and a maximum of 30 characters.</span>
               <span [hidden]="eventForm.controls.city?.invalid || !eventForm.controls.city?.touched"
                 class="success">Success</span>
             </div>
@@ -76,20 +79,20 @@
               <label for="">Zip</label>
               <input name="zip" type="text" [(ngModel)]="customer.address.zip" class="form-control" [class.error]="eventForm.controls.zip?.invalid &&
                 eventForm.controls.zip?.touched" [class.success]="eventForm.controls.zip?.valid &&
-                eventForm.controls.zip?.touched" required>
+                eventForm.controls.zip?.touched" pattern="[\d]{3,10}" required>
               <span [hidden]="eventForm.controls.zip?.valid || !eventForm.controls.zip?.touched" class="error">The
-                City Zip required.</span>
+                Zip is required.</span>
               <span [hidden]="eventForm.controls.zip?.invalid || !eventForm.controls.zip?.touched"
                 class="success">Success</span>
             </div>
             <div class="col-md-4 my-md-0 my-2">
               <label for="">Street</label>
-              <input name="street" type="text" [(ngModel)]="customer.address.street" pattern=".{5,}"
+              <input name="street" type="text" [(ngModel)]="customer.address.street" pattern=".{5,40}"
                 class="form-control" [class.error]="eventForm.controls.street?.invalid &&
                 eventForm.controls.street?.touched" [class.success]="eventForm.controls.street?.valid &&
                 eventForm.controls.street?.touched" required>
               <span [hidden]="eventForm.controls.street?.valid || !eventForm.controls.street?.touched" class="error">The
-                City is required and must be at least 5 characters long.</span>
+                Street is required and can be a minimum of 5 characters and a maximum of 40 characters.</span>
               <span [hidden]="eventForm.controls.street?.invalid || !eventForm.controls.street?.touched"
                 class="success">Street</span>
             </div>
@@ -98,11 +101,11 @@
             <div class="col-md-12 my-md-0 my-2">
               <label for="">Notes</label>
               <input name="notes" type="text" [(ngModel)]="customer.address.notes" class="form-control"
-                pattern=".{5,100}" [class.error]="eventForm.controls.notes?.invalid &&
+                pattern="[^\s*(.)$]{1,200}" [class.error]="eventForm.controls.notes?.invalid &&
                 eventForm.controls.notes?.touched" [class.success]="eventForm.controls.notes?.valid &&
                 eventForm.controls.notes?.touched" required>
               <span [hidden]="eventForm.controls.notes?.valid || !eventForm.controls.notes?.touched" class="error">The
-                Notes is required and must be at least 5 characters long.</span>
+                city is required and can be a minimum of 1 characters and a maximum of 200 characters.</span>
               <span [hidden]="eventForm.controls.notes?.invalid || !eventForm.controls.notes?.touched"
                 class="success">Street</span>
             </div>
@@ -123,8 +126,8 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-block btn-primary" [disabled]="eventForm.invalid" type="submit">
-            Submit
+          <button class="btn btn-success btn-block btn-lg submit" [disabled]="eventForm.invalid" type="submit">
+            Submit<i class="material-icons pl-3">save</i>
           </button>
         </form>
       </div>
