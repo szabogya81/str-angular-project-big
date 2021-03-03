@@ -40,6 +40,14 @@ export class OrderService {
     }
   }
 
+  getProductIdById(productID: number): Observable<Product> {
+    if (productID > 0) {
+      return this.http.get<Product>(`${this.productsUrl}/${productID}`);
+    } else {
+      return of(new Product());
+    }
+  }
+
   create(order: Order): Observable<any> {
     return this.http.post<Observable<any>>(`${this.orderUrl}`, order);
   }

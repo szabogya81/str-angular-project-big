@@ -27,6 +27,7 @@ export class OrderEditComponent implements OnInit {
   orderStatus = Status;
   
   choosenCustomer: Customer = new Customer();
+  choosenProduct: Product = new Product();
   
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,6 +40,9 @@ export class OrderEditComponent implements OnInit {
     this.order$.subscribe(
       ordr => this.orderService.getCustomerIdById(ordr.customerID)
         .subscribe(cusID => this.choosenCustomer = cusID));
+    this.order$.subscribe(
+      prod => this.orderService.getProductIdById(prod.productID)
+        .subscribe(prodID => this.choosenProduct = prodID));
   }
 
   searchCustomer = (text$: Observable<string>) => text$.pipe(
@@ -59,10 +63,29 @@ export class OrderEditComponent implements OnInit {
     return `(${customer.id}) ${customer.first_name} ${customer.last_name}`;
   }
 
+  searchProduct = (text$: Observable<string>) => text$.pipe(
+    debounceTime(300),
+    switchMap(
+      txt => this.orderService.likeProduct('name', txt)
+    )
+  );
+
+  productResultFormatter(product: Product): string {
+    return `${product.name}`;
+  }
+
+  productInputFormatter(product: Product): string {
+    if (!product.id) {
+      return '';
+    }
+    return `(${product.id}) ${product.name}`;
+  }
+
 
   onUpdate(form: NgForm, order$: Order): void {
 
     order$.customerID = this.choosenCustomer.id;
+    order$.productID = this.choosenProduct.id;
     if (order$.id === 0) {
       this.orderService.create(order$).subscribe(
         () => {
