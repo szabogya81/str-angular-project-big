@@ -61,7 +61,6 @@ export class BillListComponent implements OnInit {
     // () => { },
       () => { }
     )
-    console.log("Debug: confirmVoid...");
   }
 
 
