@@ -30,11 +30,9 @@ export class ProductService {
     key: string = 'name', filterStr: string = '',
     page: number = 0, limit: number = 50,
     sortKey: string = '', isDesc: boolean = false): Observable<Product[]> {
-
     let url: string = this.getFilterUrl(key, filterStr);
     url = this.appendSortParams(url, sortKey, isDesc);
     url = this.appendPaging(url, page, limit);
-    
     return this.http.get<Product[]>(url);
   }
 
@@ -49,12 +47,10 @@ export class ProductService {
 
   getCategories(name: string = ''): Observable<Category[]> {
     let url = this.categoriesUrl;
-
     if (name) {
       let filter = this.handleSpecialCharacters(name);
       url += `?name_like=${filter}`;
     }
-
     return this.http.get<Category[]>(url, this.httpOptions);
   }
 
@@ -69,7 +65,6 @@ export class ProductService {
 
   create(product: Product): Observable<Product> {
     product.id = 0;
-
     return this.http.post<Product>(`
       ${this.productsUrl}`, product, this.httpOptions);
   }
@@ -87,10 +82,8 @@ export class ProductService {
   //#region Helper methods
   getFilterUrl(key: string = 'name', filterStr: string = ''): string {
     let url: string = this.productsUrl;
-
     if (filterStr) {
       let filter = this.handleSpecialCharacters(filterStr);
-
       if (['name', 'type', 'description'].includes(key)) {
         url = `${url}?${key}_like=${filter}`;
       }
@@ -115,7 +108,6 @@ export class ProductService {
       }
       url += '&';
     }
-
     return url;
   }
 
@@ -123,12 +115,11 @@ export class ProductService {
     if (limit !== -1 && page >= 0) {
       url += `_page=${page}&_limit=${limit}`;
     }
-
     return url;
   }
 
   handleSpecialCharacters(input: string): string {
-    let result = input.replace(/[.$?*^{}()[|\]\\]/g, '\\$&');
+    let result = input.replace(/[.$?+*^{}()[|\]\\]/g, '\\$&');
     return encodeURIComponent(result);
   }
   //#endregion Helper methods
