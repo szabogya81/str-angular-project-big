@@ -17,7 +17,9 @@ export class OrderListComponent implements OnInit {
 
   txt: string = '';
   phraseKey: string = 'id';
-  keyArray: string[] = Object.keys(new Order());
+  keyArray: string[] = [
+    'id', 'customerID', 'productID', 'amount', 'status'
+  ];
 
   // Filter
   onFilterKeyChange() {
