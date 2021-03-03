@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-6 my-md-0 my-2">
               <label for="">Email</label>
-              <input name="email" type="text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              <input name="email" type="text" pattern='^[a-z0-9.%+-]{2,32}@[a-z0-9-]{2,16}\.[a-z]{2,8}$'
                 [(ngModel)]="customer.email" class="form-control" [class.error]="eventForm.controls.email?.invalid
                 && eventForm.controls.email?.touched"
                 [class.success]="eventForm.controls.email?.valid && eventForm.controls.email?.touched" required>
@@ -77,7 +77,7 @@
             </div>
             <div class="col-md-2 my-md-0 my-2">
               <label for="">Zip</label>
-              <input name="zip" type="text" [(ngModel)]="customer.address.zip" class="form-control" [class.error]="eventForm.controls.zip?.invalid &&
+              <input name="zip" type="number" [(ngModel)]="customer.address.zip" class="form-control" [class.error]="eventForm.controls.zip?.invalid &&
                 eventForm.controls.zip?.touched" [class.success]="eventForm.controls.zip?.valid &&
                 eventForm.controls.zip?.touched" pattern="[\d]{3,10}" required>
               <span [hidden]="eventForm.controls.zip?.valid || !eventForm.controls.zip?.touched" class="error">The
@@ -94,20 +94,20 @@
               <span [hidden]="eventForm.controls.street?.valid || !eventForm.controls.street?.touched" class="error">The
                 Street is required and can be a minimum of 5 characters and a maximum of 40 characters.</span>
               <span [hidden]="eventForm.controls.street?.invalid || !eventForm.controls.street?.touched"
-                class="success">Street</span>
+                class="success">Success</span>
             </div>
           </div>
           <div class="row my-4">
             <div class="col-md-12 my-md-0 my-2">
               <label for="">Notes</label>
               <input name="notes" type="text" [(ngModel)]="customer.address.notes" class="form-control"
-                pattern="[^\s*(.)$]{1,200}" [class.error]="eventForm.controls.notes?.invalid &&
+                pattern="^[^\s].{0,200}" [class.error]="eventForm.controls.notes?.invalid &&
                 eventForm.controls.notes?.touched" [class.success]="eventForm.controls.notes?.valid &&
                 eventForm.controls.notes?.touched" required>
               <span [hidden]="eventForm.controls.notes?.valid || !eventForm.controls.notes?.touched" class="error">The
-                city is required and can be a minimum of 1 characters and a maximum of 200 characters.</span>
+                notes are required and can be a minimum of 1 characters and a maximum of 200 characters.</span>
               <span [hidden]="eventForm.controls.notes?.invalid || !eventForm.controls.notes?.touched"
-                class="success">Street</span>
+                class="success">Success</span>
             </div>
           </div>
 

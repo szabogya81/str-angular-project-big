@@ -47,6 +47,13 @@ export class BillListComponent implements OnInit {
     );
   }
 
+  setToPaid(bill: Bill): void {
+    bill.status = Status.Paid;
+    this.billService.update(bill).subscribe(
+      updatedBill => console.log(updatedBill)
+    );
+  }
+
 
   // Filter
   onFilterKeyChange() {
@@ -58,7 +65,15 @@ export class BillListComponent implements OnInit {
       `Do you really want to void this Bill?
       Order ID: #${bill.orderID}`,
       () => { this.voidBill(bill); },
-    // () => { },
+      () => { }
+    )
+  }
+
+  onConfirmPaid(bill: Bill) {
+    this.confirmDialogService.confirmThis(
+      `Do you really want this Bill set to Paid?
+      Order ID: #${bill.orderID}`,
+      () => { this.setToPaid(bill); },
       () => { }
     )
   }
