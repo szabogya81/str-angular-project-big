@@ -77,4 +77,69 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-chart">
+        <div class="card-header card-header-warning">
+          <app-chart *ngIf="productsCount && activeProductsCount" [chartTitle]="'Products'" [data]="[{ name: 'Active', value: activeProductsCount },
+             { name: 'Inactive', value: productsCount - activeProductsCount }]">
+          </app-chart>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Products</h4>
+          <p class="card-category">
+            Active-inactive Products
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">access_time</i>Real time data
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-chart">
+        <div class="card-header card-header-danger">
+          <app-chart *ngIf="newOrdersCount && paidOrdersCount && shippedOrdersCount" [chartTitle]="'Orders'"
+            [pieColor]="'#33aa22'" [data]="[{ name: 'New', value: newOrdersCount },
+             { name: 'Paid', value: paidOrdersCount },
+             { name: 'Shipped', value: shippedOrdersCount }]">
+          </app-chart>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Orders</h4>
+          <p class="card-category">
+            Orders by status
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">access_time</i>Real time data
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card card-chart">
+        <div class="card-header card-header-info">
+          <app-chart *ngIf="billsValue && unpaidBillsValue" [chartTitle]="'Bills'" 
+          [pieColor]="'#ffff11'" [data]="[{ name: 'Paid', value: billsValue - unpaidBillsValue },
+             { name: 'Unpaid', value: unpaidBillsValue }]">
+          </app-chart>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Bills</h4>
+          <p class="card-category">
+            Total value: {{ billsValue }} Ft
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <i class="material-icons">access_time</i>Real time data
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
