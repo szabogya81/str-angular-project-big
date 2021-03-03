@@ -79,7 +79,7 @@
             <td class="text-center">{{ bill.status }}</td>
             <td>
               <div class="btn-group">
-                <button [class.hidden]="bill.status === 'paid' || bill.amount === 0" class="btn btn-info">
+                <button [class.hidden]="bill.status === 'paid' || bill.amount === 0" class="btn btn-info" (click)="onConfirmPaid(bill)">
                   <div class="btn-small-text">Set to </div> Paid<i class="material-icons pl-1">done_outline</i>
                 </button>
                 <button [class.hidden]="bill.amount === 0" class="btn btn-danger" (click)="onConfirmVoid(bill)">Storno
