@@ -20,6 +20,13 @@ export class DashboardService {
   }
   constructor(private http: HttpClient) { }
 
+  getCount(type: string, filterPart: string = ''): Observable<number> {
+    let url = this.getUrlByType(type);
+    let paging = '_page=1&_limit=1';
+    let filteredCount = this.getCountQuery(`${url}${filterPart}&${paging}`);
+    return filteredCount;
+  }
+
   getCounts(type: string, filterPart: string = ''): Observable<[number, number]> {
     let url = this.getUrlByType(type);
     let filter = filterPart ? `?${filterPart}` : '?active=true&';

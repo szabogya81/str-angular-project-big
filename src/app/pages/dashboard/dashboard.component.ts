@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 
 import { DashboardService } from 'src/app/services/dashboard.service';
 
@@ -20,6 +20,9 @@ export class DashboardComponent implements OnInit {
   ordersCount: number = 0;
   unpaidOrdersCount: number = 0;
   unpaidOrdersPercent: string | null = '';
+  newOrdersCount: number = 0;
+  paidOrdersCount: number = 0;
+  shippedOrdersCount: number = 0;
 
   billsValue: number = 0;
   unpaidBillsValue: number = 0;
@@ -63,6 +66,15 @@ export class DashboardComponent implements OnInit {
         this.ordersCount = counts[0];
         this.unpaidOrdersCount = counts[1];
         this.unpaidOrdersPercent = this.getPercentage(counts[1], counts[0]);
+      }
+    )
+    this.dashSvc.getCount('order', '?status=new').subscribe(
+      count => { this.newOrdersCount = count; }
+    )
+    this.dashSvc.getCount('order', '?status=paid').subscribe(
+      count => { 
+        this.paidOrdersCount = count;
+        this.shippedOrdersCount = this.ordersCount - (this.newOrdersCount + this.paidOrdersCount);
       }
     )
   }
