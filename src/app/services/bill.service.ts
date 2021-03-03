@@ -40,8 +40,8 @@ export class BillService {
     return this.http.put<any>(`${this.billsUrl}/${bill.id}`, bill);
   }
 
-  remove(bill: any): Observable<any> {
-    bill = bill.id ? bill.id : bill;
-    return this.http.delete( `${this.billsUrl}/${bill}` );
-  }
+  // remove(bill: any): Observable<any> {
+  //   bill = bill.id ? bill.id : bill;
+  //   return this.http.delete( `${this.billsUrl}/${bill}` );
+  // }
 }
