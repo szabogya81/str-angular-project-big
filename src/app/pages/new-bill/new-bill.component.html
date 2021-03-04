@@ -1,0 +1,85 @@
+<p>new-bill works!</p>
+<div class="row">
+    <div
+      class="col-xl-6 col-lg-8 col-md-10 col-sm-10 mx-auto">
+      <div class="card">
+        <div class="card-header card-header-primary d-flex justify-content-between">
+          <!-- <div>
+            <h3 *ngIf="order.id === 0">Create new Order</h3>
+            <h3 *ngIf="order.id !== 0">#{{ order.id }} Order</h3>
+          </div> -->
+        </div>
+        <div class="card-body">
+          <h1>Next unique ID is:</h1>
+          <img src="http://bevik.uw.hu/show-paper.jpg">
+          <h2 style="position: relative; top: -100px; left: 130px;">#{{ nextID }}</h2>
+          <!-- <form #orderForm="ngForm" (ngSubmit)="onUpdate(orderForm, order)" class="py-3 px-5">
+            <div class="mt-3">
+              <label for="">OrderID</label>
+              <input name="orderID" [(ngModel)]="order.id" type="text" class="form-control" disabled>
+            </div>
+            <div class="mt-4">
+              <label for="customerID">CustomerID</label>
+              <input id="customerID" type="text"
+              freeInput="false"
+              name="customerID"
+              class="form-control"
+              [(ngModel)]="choosenCustomer"
+              [ngbTypeahead]="searchCustomer"
+              [resultFormatter]="customerResultFormatter"
+              [inputFormatter]="customerInputFormatter"
+              #instance="ngbTypeahead"
+              [editable]="false"
+              typeahead-editable="false"
+               required>
+              <div [style.opacity]="orderForm.controls.customerID?.value  || 
+                  !orderForm.controls.customerID?.touched ? '0' : '1' || orderForm.controls.customerID?.valid" [style.visibility]="orderForm.controls.customerID?.value || 
+                  !orderForm.controls.customerID?.touched ? 'hidden' : 'visible' || orderForm.controls.customerID?.valid" class="error-message">
+                Customer ID is required, please select.
+              </div>         
+            </div>
+            <div class="mt-4">
+              <label for="">ProductID</label>
+              <input name="productID" [(ngModel)]="order.productID" type="number" class="form-control" pattern="^[1-9]{1}[0-9]{0,2}$" required>
+              <div [style.opacity]="orderForm.controls.productID?.value  || 
+                  !orderForm.controls.productID?.touched ? '0' : '1'" [style.visibility]="orderForm.controls.productID?.value || 
+                  !orderForm.controls.productID?.touched ? 'hidden' : 'visible'" class="error-message">
+                  Product ID is required and must contain numbers.
+              </div>
+            </div>
+            <div class="mt-4">
+              <label for="">Amount</label>
+              <div class="input-group">
+              <input name="amount" [(ngModel)]="order.amount" type="number" class="form-control" pattern="^[1-9]{2,5}$" required>
+              <div class="input-group-append">
+                <span class="input-group-text">Ft</span>
+              </div>
+            </div>
+              <div [style.opacity]="orderForm.controls.amount?.value  || 
+                  !orderForm.controls.amount?.touched ? '0' : '1'" [style.visibility]="orderForm.controls.amount?.value || 
+                  !orderForm.controls.amount?.touched ? 'hidden' : 'visible'" class="error-message">
+                Amount is required and must contain numbers.
+              </div>
+            </div>
+            <div class="mt-4">
+              <label for="orderStatus">Status</label>
+              <select class="form-control" data-style="btn btn-link" id="orderStatus" name="orderStatus"
+                [(ngModel)]="order.status" required>
+                <option [ngValue]="undefined">Select status...</option>
+                <option *ngFor="let status of orderStatus | keyvalue" [ngValue]="status.value">{{status.value}}</option>
+              </select>
+              <div [style.opacity]="orderForm.controls.orderStatus?.value  || 
+                  !orderForm.controls.orderStatus?.touched ? '0' : '1'" [style.visibility]="orderForm.controls.orderStatus?.value || 
+                  !orderForm.controls.orderStatus?.touched ? 'hidden' : 'visible'" class="error-message">
+                Please select Status from the list.
+              </div>
+            </div>
+            <div class="mt-5">
+              <button class="btn btn-block btn-info" [disabled]="orderForm.invalid" type="submit">Save</button>
+            </div>
+          </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  

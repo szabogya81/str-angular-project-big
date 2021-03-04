@@ -3,18 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Bill } from '../model/bill';
+import { IdProvider } from '../model/id-generator/id-provider';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class BillService {
+export class BillService implements IdProvider {
 
-  // httpOptions = {
-  //   headers: new HttpHeaders(
-  //     { 'Content-Type': 'application/json' }
-  //   )
-  // }
 
   billsUrl = 'http://localhost:3000/bills';
 
@@ -24,7 +20,6 @@ export class BillService {
   }
 
   getAll(): Observable<Bill[]> {
-    //console.log("Debug: BillService.getAll()");
     return this.http.get<Bill[]>(this.billsUrl);
   }
 

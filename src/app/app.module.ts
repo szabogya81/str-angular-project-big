@@ -33,6 +33,7 @@ import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
 import { OrderFilterPipe } from './pipes/order-filter.pipe';
 import { SorterPipe } from './pipes/sorter.pipe';
 import { ChartComponent } from './common/chart/chart.component';
+import { NewBillComponent } from './pages/new-bill/new-bill.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ChartComponent } from './common/chart/chart.component';
     SorterPipe,
     CustomerEditComponent,
     ChartComponent,
+    NewBillComponent,
   ],
   imports: [
     AppRoutingModule,
