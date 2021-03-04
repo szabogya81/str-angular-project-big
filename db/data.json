@@ -10010,14 +10010,14 @@
     {
       "id": 9,
       "orderID": 9,
-      "amount": 0,
+      "amount": 30749,
       "status": "paid"
     },
     {
       "id": 10,
       "orderID": 10,
-      "amount": 0,
-      "status": "paid"
+      "amount": 30109,
+      "status": "new"
     },
     {
       "id": 11,
@@ -10107,7 +10107,7 @@
       "id": 25,
       "orderID": 25,
       "amount": 12569,
-      "status": "paid"
+      "status": "new"
     },
     {
       "id": 26,

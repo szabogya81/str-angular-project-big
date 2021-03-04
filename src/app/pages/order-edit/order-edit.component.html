@@ -29,13 +29,15 @@
             [editable]="false"
             typeahead-editable="false"
              required>
-            <div [style.opacity]="orderForm.controls.customerID?.value  || 
-                !orderForm.controls.customerID?.touched ? '0' : '1' || orderForm.controls.customerID?.valid" [style.visibility]="orderForm.controls.customerID?.value || 
-                !orderForm.controls.customerID?.touched ? 'hidden' : 'visible' || orderForm.controls.customerID?.valid" class="error-message">
+            <div [style.opacity]="(orderForm.controls.customerID?.value && orderForm.controls.customerID?.value['id'] === 0 && orderForm.controls.customerID.touched) ||
+            (orderForm.controls.customerID?.dirty && orderForm.controls.customerID?.invalid) ? '1' : '0'" 
+          [style.visibility]="(orderForm.controls.customerID?.value && orderForm.controls.customerID?.value['id'] === 0 && orderForm.controls.customerID.touched) ||
+            (orderForm.controls.customerID?.dirty && orderForm.controls.customerID?.invalid) ? 'visible' : 'hidden'"
+          class="error-message">
               Customer ID is required, please select.
             </div>         
           </div>
-          <div class="mt-4">
+          <!-- <div class="mt-4">
             <label for="">ProductID</label>
             <input name="productID" [(ngModel)]="order.productID" type="number" class="form-control" pattern="^[1-9]{1}[0-9]{0,2}$" required>
             <div [style.opacity]="orderForm.controls.productID?.value  || 
@@ -43,8 +45,30 @@
                 !orderForm.controls.productID?.touched ? 'hidden' : 'visible'" class="error-message">
                 Product ID is required and must contain numbers.
             </div>
-          </div>
+          </div> -->
           <div class="mt-4">
+            <label for="productID">ProductID</label>
+            <input id="productID" type="text"
+            freeInput="false"
+            name="productID"
+            class="form-control"
+            [(ngModel)]="choosenProduct"
+            [ngbTypeahead]="searchProduct"
+            [resultFormatter]="productResultFormatter"
+            [inputFormatter]="productInputFormatter"
+            #instance="ngbTypeahead"
+            [editable]="false"
+            typeahead-editable="false"
+             required>
+            <div [style.opacity]="(orderForm.controls.productID?.value && orderForm.controls.productID?.value['id'] === 0 && orderForm.controls.productID.touched) ||
+            (orderForm.controls.productID?.dirty && orderForm.controls.productID?.invalid) ? '1' : '0'" 
+          [style.visibility]="(orderForm.controls.productID?.value && orderForm.controls.productID?.value['id'] === 0 && orderForm.controls.productID.touched) ||
+            (orderForm.controls.productID?.dirty && orderForm.controls.productID?.invalid) ? 'visible' : 'hidden'"
+          class="error-message">
+              Product ID is required, please select.
+            </div>         
+          </div>
+          <!-- <div class="mt-4">
             <label for="">Amount</label>
             <div class="input-group">
             <input name="amount" [(ngModel)]="order.amount" type="number" class="form-control" pattern="^[1-9]{2,5}$" required>
@@ -57,6 +81,28 @@
                 !orderForm.controls.amount?.touched ? 'hidden' : 'visible'" class="error-message">
               Amount is required and must contain numbers.
             </div>
+          </div> -->
+          <div class="mt-4">
+            <label for="amount">Amount</label>
+            <input id="amount" type="number"
+            freeInput="false"
+            name="amount"
+            class="form-control"
+            [(ngModel)]="choosenProduct"
+            [ngbTypeahead]="searchProduct"
+            [resultFormatter]="productResultFormatter"
+            [inputFormatter]="productPriceInputFormatter"
+            #instance="ngbTypeahead"
+            [editable]="false"
+            typeahead-editable="false"
+             required>
+            <div [style.opacity]="(orderForm.controls.amount?.value && orderForm.controls.amount?.value['id'] === 0 && orderForm.controls.amount.touched) ||
+            (orderForm.controls.amount?.dirty && orderForm.controls.amount?.invalid) ? '1' : '0'" 
+          [style.visibility]="(orderForm.controls.amount?.value && orderForm.controls.amount?.value['id'] === 0 && orderForm.controls.amount.touched) ||
+            (orderForm.controls.amount?.dirty && orderForm.controls.amount?.invalid) ? 'visible' : 'hidden'"
+          class="error-message">
+          Amount is required and must contain numbers.
+            </div>         
           </div>
           <div class="mt-4">
             <label for="orderStatus">Status</label>
@@ -72,7 +118,7 @@
             </div>
           </div>
           <div class="mt-5">
-            <button class="btn btn-block btn-info" [disabled]="orderForm.invalid" type="submit">Save</button>
+            <button type="submit" class="btn btn-block btn-success" [disabled]="orderForm.invalid" type="submit">Save<i class="material-icons pl-3">save</i></button>
           </div>
         </form>
       </div>
