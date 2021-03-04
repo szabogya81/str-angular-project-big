@@ -19,7 +19,7 @@
                 eventForm.controls.first_name?.touched" [class.success]="eventForm.controls.first_name?.valid &&
                 eventForm.controls.first_name?.touched" required>
               <span [hidden]="eventForm.controls.first_name?.valid || !eventForm.controls.first_name?.touched"
-                class="error">The FirstName is required and can be a minimum of 2 characters and a maximum of 30
+                class="error">The FirstName is required and must be a minimum of 2 and a maximum of 30
                 characters.</span>
               <span [hidden]="eventForm.controls.first_name?.invalid || !eventForm.controls.first_name?.touched"
                 class="success">Success</span>
@@ -31,19 +31,19 @@
                 eventForm.controls.last_name?.touched" [class.success]="eventForm.controls.last_name?.valid &&
                 eventForm.controls.last_name?.touched" required>
               <span [hidden]="eventForm.controls.last_name?.valid || !eventForm.controls.last_name?.touched"
-                class="error">The LastName is required and can be a minimum of 2 characters and a maximum of 30
+                class="error">The LastName is required and must be a minimum of 2 and a maximum of 30
                 characters.</span>
               <span [hidden]="eventForm.controls.last_name?.invalid || !eventForm.controls.last_name?.touched"
                 class="success">Success</span>
             </div>
             <div class="col-md-6 my-md-0 my-2">
               <label for="">Email</label>
-              <input name="email" type="text" pattern='^[a-z0-9.%+-]{2,32}@[a-z0-9-]{2,16}\.[a-z]{2,8}$'
+              <input name="email" type="text" pattern='^[a-z0-9.%+-]{2,64}@[a-z0-9-.]{2,32}\.[a-z]{2,8}$'
                 [(ngModel)]="customer.email" class="form-control" [class.error]="eventForm.controls.email?.invalid
                 && eventForm.controls.email?.touched"
                 [class.success]="eventForm.controls.email?.valid && eventForm.controls.email?.touched" required>
               <span [hidden]="eventForm.controls.email?.valid || !eventForm.controls.email?.touched" class="error">The
-                Email is required and valid. ( example@gmail.com )</span>
+                Email is required and must be valid like: ( example@gmail.com )</span>
               <span [hidden]="eventForm.controls.email?.invalid || !eventForm.controls.email?.touched"
                 class="success">Success</span>
             </div>
@@ -59,7 +59,7 @@
                 eventForm.controls.country?.touched" [class.success]="eventForm.controls.country?.valid &&
                 eventForm.controls.country?.touched" required>
               <span [hidden]="eventForm.controls.country?.valid || !eventForm.controls.country?.touched"
-                class="error">The Country is required and can be a minimum of 5 characters and a maximum of 30
+                class="error">The Country is required and must be a minimum of 5 and a maximum of 30
                 characters.</span>
               <span [hidden]="eventForm.controls.country?.invalid || !eventForm.controls.country?.touched"
                 class="success">Success</span>
@@ -71,7 +71,7 @@
                 eventForm.controls.city?.touched" [class.success]="eventForm.controls.city?.valid &&
                 eventForm.controls.city?.touched" required>
               <span [hidden]="eventForm.controls.city?.valid || !eventForm.controls.city?.touched" class="error">The
-                The city is required and can be a minimum of 5 characters and a maximum of 30 characters.</span>
+                The city is required and must be a minimum of 5 and a maximum of 30 characters.</span>
               <span [hidden]="eventForm.controls.city?.invalid || !eventForm.controls.city?.touched"
                 class="success">Success</span>
             </div>
@@ -81,7 +81,7 @@
                 eventForm.controls.zip?.touched" [class.success]="eventForm.controls.zip?.valid &&
                 eventForm.controls.zip?.touched" pattern="[\d]{3,10}" required>
               <span [hidden]="eventForm.controls.zip?.valid || !eventForm.controls.zip?.touched" class="error">The
-                Zip is required.</span>
+                Zip is required and must be a minimum of 3 and a maximum of 10 characters.</span>
               <span [hidden]="eventForm.controls.zip?.invalid || !eventForm.controls.zip?.touched"
                 class="success">Success</span>
             </div>
@@ -92,7 +92,7 @@
                 eventForm.controls.street?.touched" [class.success]="eventForm.controls.street?.valid &&
                 eventForm.controls.street?.touched" required>
               <span [hidden]="eventForm.controls.street?.valid || !eventForm.controls.street?.touched" class="error">The
-                Street is required and can be a minimum of 5 characters and a maximum of 40 characters.</span>
+                Street is required and must be a minimum of 5 and a maximum of 40 characters.</span>
               <span [hidden]="eventForm.controls.street?.invalid || !eventForm.controls.street?.touched"
                 class="success">Success</span>
             </div>
@@ -105,7 +105,8 @@
                 eventForm.controls.notes?.touched" [class.success]="eventForm.controls.notes?.valid &&
                 eventForm.controls.notes?.touched" required>
               <span [hidden]="eventForm.controls.notes?.valid || !eventForm.controls.notes?.touched" class="error">The
-                notes are required and can be a minimum of 1 characters and a maximum of 200 characters.</span>
+                notes are required and must be a minimum of 1 and a maximum of 200 characters. It cannot start with
+                whitespace!</span>
               <span [hidden]="eventForm.controls.notes?.invalid || !eventForm.controls.notes?.touched"
                 class="success">Success</span>
             </div>
