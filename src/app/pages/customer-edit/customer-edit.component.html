@@ -2,7 +2,7 @@
   <div *ngIf="(customer$ | async) as customer" class="col-xl-8 col-lg-10 col-md-11 col-sm-11 mx-auto">
     <!-- <pre>{{ customer | json  }}</pre> -->
     <div class="card">
-      <div class="card-header card-header-primary d-flex justify-content-between">
+      <div class="card-header card-header-success d-flex justify-content-between">
         <div>
           <h3 class="card-title ">Edit Customer</h3>
           <p *ngIf="customer.id === 0" class="card-category">Create new Customer</p>
@@ -127,7 +127,7 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-success btn-block btn-lg submit" [disabled]="eventForm.invalid" type="submit">
+          <button class="btn btn-warning btn-block btn-lg submit" [disabled]="eventForm.invalid" type="submit">
             Submit<i class="material-icons pl-3">save</i>
           </button>
         </form>
