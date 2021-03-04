@@ -11,7 +11,7 @@ import { IdGeneratorService } from 'src/app/services/id-generator.service';
 export class NewBillComponent implements OnInit {
 
   nextID: number;
-
+  
 
   constructor(
     private billService: BillService,
@@ -25,5 +25,9 @@ export class NewBillComponent implements OnInit {
 
   getId(): number {
     return this.idGenerator.getNextUniqueID(this.billService);
+  }
+
+  setId() {
+    this.nextID = this.idGenerator.getNextUniqueID(this.billService);
   }
 }
