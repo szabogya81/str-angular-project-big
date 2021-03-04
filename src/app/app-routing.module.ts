@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
 import { BillListComponent } from './pages/bill-list/bill-list.component';
+import { NewBillComponent } from './pages/new-bill/new-bill.component';
 import { CustomerEditComponent } from './pages/customer-edit/customer-edit.component';
 import { CustomerListComponent } from './pages/customer-list/customer-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'bills',
     component: BillListComponent
+  },
+  {
+    path: 'newbill',
+    component: NewBillComponent
   },
   {
     path: 'customers',
