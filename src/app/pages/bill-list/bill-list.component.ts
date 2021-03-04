@@ -33,7 +33,7 @@ export class BillListComponent implements OnInit {
   direction: string = '';
 
 
-  constructor(private billService: BillService, private confirmDialogService: ConfirmDialogService) {
+  constructor(private billService: BillService, private router: Router, private confirmDialogService: ConfirmDialogService) {
   }
 
   ngOnInit(): void {
@@ -102,9 +102,4 @@ export class BillListComponent implements OnInit {
         return this.direction = 'asc';
     }
   }
-
-
-  // getId(): void {
-  //   console.log("Debug: BillListComponent.getId()");
-  // }
 }
