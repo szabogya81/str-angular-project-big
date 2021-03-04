@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-//import { Router } from '@angular/router';
+import { BillService } from 'src/app/services/bill.service';
+import { IdGeneratorService } from 'src/app/services/id-generator.service';
 //import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,12 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewBillComponent implements OnInit {
 
-  constructor() { }
+  nextID: number;
+
+
+  constructor(
+    private billService: BillService,
+    private idGenerator: IdGeneratorService
+  ) {
+    this.nextID = this.getId();
+  }
 
   ngOnInit(): void {
   }
 
-  // getId(): void {
-  //   console.log("Debug: BillListComponent.getId()");
-  // }
+  getId(): number {
+    return this.idGenerator.getNextUniqueID(this.billService);
+  }
 }
