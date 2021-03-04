@@ -9986,7 +9986,7 @@
     {
       "id": 5,
       "orderID": 5,
-      "amount": 399,
+      "amount": 0,
       "status": "paid"
     },
     {
@@ -10022,8 +10022,8 @@
     {
       "id": 11,
       "orderID": 11,
-      "amount": 3819,
-      "status": "new"
+      "amount": 0,
+      "status": "paid"
     },
     {
       "id": 12,
