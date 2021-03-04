@@ -60,7 +60,7 @@ export class OrderEditComponent implements OnInit {
     if (!customer.id) {
       return '';
     }
-    return `#${customer.id} - ${customer.first_name} ${customer.last_name}`;
+    return `# ${customer.id} - ${customer.first_name} ${customer.last_name}`;
   }
 
   searchProduct = (text$: Observable<string>) => text$.pipe(

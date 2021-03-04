@@ -63,12 +63,14 @@ export class OrderService {
 
   likeProduct(key: string, value: string, limit: number = 10): Observable<Product[]> {
     key = `${key}_like`;
+    value = value.replace(/[\d#-]+/g, '').trim();
     const query = `${this.productsUrl}?${key}=${value}&_limit=${limit}`;
     return this.http.get<Product[]>(query);
   }
 
   likeCustomer(key: string, value: string, limit: number = 10): Observable<Customer[]> {
     key = `${key}_like`;
+    value = value.replace(/[\d#-]+/g, '').trim();
     const query = `${this.customersUrl}?${key}=${value}&_limit=${limit}`;
     return this.http.get<Customer[]>(query);
   }

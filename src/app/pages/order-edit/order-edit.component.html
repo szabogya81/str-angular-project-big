@@ -6,15 +6,10 @@
         <div>
           <h3 *ngIf="order.id === 0">Create new Order</h3>
           <h3 *ngIf="order.id !== 0">#{{ order.id }} Order</h3>
-          <!-- <h3 class="card-title ">Edit Order</h3> -->
         </div>
       </div>
       <div class="card-body">
         <form #orderForm="ngForm" (ngSubmit)="onUpdate(orderForm, order)" class="py-3 px-5">
-          <!-- <div class="mt-3">
-            <label for="">OrderID</label>
-            <input name="orderID" [(ngModel)]="order.id" type="text" class="form-control" disabled>
-          </div> -->
           <div class="mt-4">
             <label for="customerID">CustomerID</label>
             <input id="customerID" type="text"
@@ -37,15 +32,6 @@
               Customer ID is required, please select.
             </div>         
           </div>
-          <!-- <div class="mt-4">
-            <label for="">ProductID</label>
-            <input name="productID" [(ngModel)]="order.productID" type="number" class="form-control" pattern="^[1-9]{1}[0-9]{0,2}$" required>
-            <div [style.opacity]="orderForm.controls.productID?.value  || 
-                !orderForm.controls.productID?.touched ? '0' : '1'" [style.visibility]="orderForm.controls.productID?.value || 
-                !orderForm.controls.productID?.touched ? 'hidden' : 'visible'" class="error-message">
-                Product ID is required and must contain numbers.
-            </div>
-          </div> -->
           <div class="mt-4">
             <label for="productID">ProductID</label>
             <input id="productID" type="text"
@@ -68,20 +54,6 @@
               Product ID is required, please select.
             </div>         
           </div>
-          <!-- <div class="mt-4">
-            <label for="">Amount</label>
-            <div class="input-group">
-            <input name="amount" [(ngModel)]="order.amount" type="number" class="form-control" pattern="^[1-9]{2,5}$" required>
-            <div class="input-group-append">
-              <span class="input-group-text">Ft</span>
-            </div>
-          </div>
-            <div [style.opacity]="orderForm.controls.amount?.value  || 
-                !orderForm.controls.amount?.touched ? '0' : '1'" [style.visibility]="orderForm.controls.amount?.value || 
-                !orderForm.controls.amount?.touched ? 'hidden' : 'visible'" class="error-message">
-              Amount is required and must contain numbers.
-            </div>
-          </div> -->
           <div class="mt-4">
             <label for="amount">Amount (Ft)</label>
             <input id="amount" type="number"
@@ -93,16 +65,15 @@
             [resultFormatter]="productResultFormatter"
             [inputFormatter]="productPriceInputFormatter"
             #instance="ngbTypeahead"
-            [editable]="false"
-            typeahead-editable="false"
+            disabled
              required>
-            <div [style.opacity]="(orderForm.controls.amount?.value && orderForm.controls.amount?.value['id'] === 0 && orderForm.controls.amount.touched) ||
+            <!-- <div [style.opacity]="(orderForm.controls.amount?.value && orderForm.controls.amount?.value['id'] === 0 && orderForm.controls.amount.touched) ||
             (orderForm.controls.amount?.dirty && orderForm.controls.amount?.invalid) ? '1' : '0'" 
           [style.visibility]="(orderForm.controls.amount?.value && orderForm.controls.amount?.value['id'] === 0 && orderForm.controls.amount.touched) ||
             (orderForm.controls.amount?.dirty && orderForm.controls.amount?.invalid) ? 'visible' : 'hidden'"
           class="error-message">
           Amount is required and must contain numbers.
-            </div>         
+            </div>          -->
           </div>
           <div class="mt-4">
             <label for="orderStatus">Status</label>
