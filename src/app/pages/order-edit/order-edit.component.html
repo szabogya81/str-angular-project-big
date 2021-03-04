@@ -2,7 +2,7 @@
   <div *ngIf="(order$ | async) as order"
     class="col-xl-6 col-lg-8 col-md-10 col-sm-10 mx-auto">
     <div class="card">
-      <div class="card-header card-header-primary d-flex justify-content-between">
+      <div class="card-header card-header-danger d-flex justify-content-between">
         <div>
           <h3 *ngIf="order.id === 0">Create new Order</h3>
           <h3 *ngIf="order.id !== 0">#{{ order.id }} Order</h3>
@@ -83,7 +83,7 @@
             </div>
           </div> -->
           <div class="mt-4">
-            <label for="amount">Amount</label>
+            <label for="amount">Amount (Ft)</label>
             <input id="amount" type="number"
             freeInput="false"
             name="amount"
@@ -118,7 +118,7 @@
             </div>
           </div>
           <div class="mt-5">
-            <button type="submit" class="btn btn-block btn-success" [disabled]="orderForm.invalid" type="submit">Save<i class="material-icons pl-3">save</i></button>
+            <button type="submit" class="btn btn-block btn-warning" [disabled]="orderForm.invalid" type="submit">Save<i class="material-icons pl-3">save</i></button>
           </div>
         </form>
       </div>

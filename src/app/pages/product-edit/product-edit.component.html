@@ -99,7 +99,7 @@
           </div>
           <button [disabled]="productForm.invalid || 
               (product.id === 0 && productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0)"
-            type="submit" class="btn btn-success btn-block btn-lg submit">
+            type="submit" class="btn btn-warning btn-block btn-lg submit">
             Save Product<i class="material-icons pl-3">save</i>
           </button>
         </form>
