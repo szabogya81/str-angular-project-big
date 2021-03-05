@@ -61,7 +61,7 @@
                   <th (click)="onColumnSelect('id')" class="table-product__th--id">Id
                     <i *ngIf="sortColumn !== 'id'" class="material-icons align-text-bottom">indeterminate_check_box</i>
                     <i *ngIf="sortColumn === 'id' && !sortDesc"
-                      class="material-icons align-text-top">keyboard_arrow_down</i>
+                      class="material-icons align-text-bottom">keyboard_arrow_down</i>
                     <i *ngIf="sortColumn === 'id' && sortDesc"
                       class="material-icons align-text-bottom">keyboard_arrow_up</i>
                   </th>
@@ -69,7 +69,7 @@
                     <i *ngIf="sortColumn !== 'name'"
                       class="material-icons align-text-bottom">indeterminate_check_box</i>
                     <i *ngIf="sortColumn === 'name' && !sortDesc"
-                      class="material-icons align-text-top">keyboard_arrow_down</i>
+                      class="material-icons align-text-bottom">keyboard_arrow_down</i>
                     <i *ngIf="sortColumn === 'name' && sortDesc"
                       class="material-icons align-text-bottom">keyboard_arrow_up</i>
                   </th>
@@ -77,7 +77,7 @@
                     <i *ngIf="sortColumn !== 'catId'"
                       class="material-icons align-text-bottom">indeterminate_check_box</i>
                     <i *ngIf="sortColumn === 'catId' && !sortDesc"
-                      class="material-icons align-text-top">keyboard_arrow_down</i>
+                      class="material-icons align-text-bottom">keyboard_arrow_down</i>
                     <i *ngIf="sortColumn === 'catId' && sortDesc"
                       class="material-icons align-text-bottom">keyboard_arrow_up</i>
                   </th>
@@ -85,7 +85,7 @@
                     <i *ngIf="sortColumn !== 'type'"
                       class="material-icons align-text-bottom">indeterminate_check_box</i>
                     <i *ngIf="sortColumn === 'type' && !sortDesc"
-                      class="material-icons align-text-top">keyboard_arrow_down</i>
+                      class="material-icons align-text-bottom">keyboard_arrow_down</i>
                     <i *ngIf="sortColumn === 'type' && sortDesc"
                       class="material-icons align-text-bottom">keyboard_arrow_up</i>
                   </th>
@@ -93,7 +93,7 @@
                     <i *ngIf="sortColumn !== 'description'"
                       class="material-icons align-text-bottom">indeterminate_check_box</i>
                     <i *ngIf="sortColumn === 'description' && !sortDesc"
-                      class="material-icons align-text-top">keyboard_arrow_down</i>
+                      class="material-icons align-text-bottom">keyboard_arrow_down</i>
                     <i *ngIf="sortColumn === 'description' && sortDesc"
                       class="material-icons align-text-bottom">keyboard_arrow_up</i>
                   </th>
@@ -101,7 +101,7 @@
                     <i *ngIf="sortColumn !== 'price'"
                       class="material-icons align-text-bottom">indeterminate_check_box</i>
                     <i *ngIf="sortColumn === 'price' && !sortDesc"
-                      class="material-icons align-text-top">keyboard_arrow_down</i>
+                      class="material-icons align-text-bottom">keyboard_arrow_down</i>
                     <i *ngIf="sortColumn === 'price' && sortDesc"
                       class="material-icons align-text-bottom">keyboard_arrow_up</i>
                   </th>
@@ -109,7 +109,7 @@
                     <i *ngIf="sortColumn !== 'featured'"
                       class="material-icons align-text-bottom">indeterminate_check_box</i>
                     <i *ngIf="sortColumn === 'featured' && !sortDesc"
-                      class="material-icons align-text-top">keyboard_arrow_down</i>
+                      class="material-icons align-text-bottom">keyboard_arrow_down</i>
                     <i *ngIf="sortColumn === 'featured' && sortDesc"
                       class="material-icons align-text-bottom">keyboard_arrow_up</i>
                   </th>
@@ -117,11 +117,11 @@
                     <i *ngIf="sortColumn !== 'active'"
                       class="material-icons align-text-bottom">indeterminate_check_box</i>
                     <i *ngIf="sortColumn === 'active' && !sortDesc"
-                      class="material-icons align-text-top">keyboard_arrow_down</i>
+                      class="material-icons align-text-bottom">keyboard_arrow_down</i>
                     <i *ngIf="sortColumn === 'active' && sortDesc"
                       class="material-icons align-text-bottom">keyboard_arrow_up</i>
                   </th>
-                  <th></th>
+                  <th class="table-product__th--action"></th>
                 </tr>
               </thead>
               <tbody>
