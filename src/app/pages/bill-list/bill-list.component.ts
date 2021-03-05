@@ -5,6 +5,7 @@ import { Status } from 'src/app/model/status.enum';
 import { BillService } from 'src/app/services/bill.service';
 import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 export enum Order {
@@ -33,7 +34,11 @@ export class BillListComponent implements OnInit {
   direction: string = '';
 
 
-  constructor(private billService: BillService, private router: Router, private confirmDialogService: ConfirmDialogService) {
+  constructor(
+    private billService: BillService,
+    private router: Router,
+    private confirmDialogService: ConfirmDialogService,
+    private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -43,14 +48,18 @@ export class BillListComponent implements OnInit {
     bill.amount = 0;
     bill.status = Status.Paid;
     this.billService.update(bill).subscribe(
-      updatedBill => console.log(updatedBill)
+      updatedBill => console.log(updatedBill),
+      () => this.toastr.error('Error occured while modifying Bill', 'Bill modify'),
+      () => this.toastr.success('Bill successfully Voided', 'Bill Modify')
     );
   }
 
   setToPaid(bill: Bill): void {
     bill.status = Status.Paid;
     this.billService.update(bill).subscribe(
-      updatedBill => console.log(updatedBill)
+      (updatedBill) => console.log(updatedBill),
+      () => this.toastr.error('Error occured while modifying Bill', 'Bill modify'),
+      () => this.toastr.success('Bill successfully set to Paid', 'Bill Modify')
     );
   }
 

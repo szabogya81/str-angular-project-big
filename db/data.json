@@ -11174,7 +11174,7 @@
     {
       "id": 203,
       "orderID": 203,
-      "amount": 25209,
+      "amount": 0,
       "status": "paid"
     },
     {
@@ -12807,7 +12807,7 @@
       "id": 475,
       "orderID": 475,
       "amount": 13739,
-      "status": "new"
+      "status": "paid"
     },
     {
       "id": 476,
@@ -12831,13 +12831,13 @@
       "id": 479,
       "orderID": 479,
       "amount": 6299,
-      "status": "new"
+      "status": "paid"
     },
     {
       "id": 480,
       "orderID": 480,
-      "amount": 5719,
-      "status": "new"
+      "amount": 0,
+      "status": "paid"
     },
     {
       "id": 481,
