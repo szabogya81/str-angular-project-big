@@ -6,3 +6,10 @@
       font-size: 1rem;
   }
 }
+
+.error-message {
+  font-style: italic;
+  font-size: 0.8em;
+  color: #9b0404;
+  transition: all ease-in .4s;
+}
