@@ -18,19 +18,20 @@ export class CustomerEditComponent implements OnInit {
     switchMap(params => this.customerService.get(params.id))
   );
   customer: Customer = new Customer();
+  submition: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private customerService: CustomerService,
     private router: Router,
     private toastr: ToastrService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
   }
 
   onUpdate(form: NgForm, customer$: Customer): void {
-
+    this.submition = true;
     if (customer$.id === 0) {
       this.customerService.create(customer$).subscribe(
         () => {

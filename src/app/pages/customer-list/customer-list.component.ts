@@ -24,6 +24,7 @@ export class CustomerListComponent implements OnInit {
   isSearchButtonVisible: boolean = true;
   //filterKeyArrays: string[] = Object.keys(new Customer());
   // @Output() notifyOnDelete: EventEmitter<number> = new EventEmitter<number>();
+  actionEvent: boolean = false;
 
   // sorter
   columnKey: string = '';
@@ -63,6 +64,7 @@ export class CustomerListComponent implements OnInit {
   onConfirmDelete(id: number): void {
     this.confirmDialogService.confirmThis(
       `Are you sure to DELETE the #${id} Customer?`, () => {
+        this.actionEvent = true;
         this.removeCustomer(id);
       }, () => { })
   }

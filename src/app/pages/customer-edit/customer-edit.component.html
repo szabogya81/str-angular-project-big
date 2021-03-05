@@ -1,6 +1,12 @@
 <div class="row">
+  <!-- <pre>{{ customer | json  }}</pre> -->
+  <!-- Basic Loading screen -->
+  <div *ngIf="!(customer$ | async)" class="d-flex mx-auto">
+    <h1>Loading in progress...<i class="refresh-start loading-refresh material-icons px-2">refresh</i>
+    </h1>
+  </div>
+  <!--  -->
   <div *ngIf="(customer$ | async) as customer" class="col-xl-8 col-lg-10 col-md-11 col-sm-11 mx-auto">
-    <!-- <pre>{{ customer | json  }}</pre> -->
     <div class="card">
       <div class="card-header card-header-success d-flex justify-content-between">
         <div>
@@ -118,7 +124,6 @@
               <div class="col-6" *ngIf="customer.active === true">
                 <input name="active" type="checkbox" [(ngModel)]="customer.active" class="mx-2">
                 <label class="status" for=""><strong>Active</strong> Customer</label>
-
               </div>
               <div class="col-6" *ngIf="customer.active === false">
                 <input *ngIf="customer.active === false" name="inactive" type="checkbox" [(ngModel)]="customer.active"
@@ -127,12 +132,19 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-warning btn-block btn-lg submit" [disabled]="eventForm.invalid" type="submit">
-            Save Customer<i class="material-icons pl-3">save</i>
+
+          <!-- Submition with animation -->
+          <button *ngIf="!submition" class="btn btn-warning btn-block btn-lg submit"
+            [disabled]="eventForm.invalid || submition" type="submit">
+            Submit<i class="material-icons pl-3">save</i>
           </button>
+          <button *ngIf="submition" class="btn btn-info btn-block btn-lg" [disabled]="submition">
+            Processing...<i class="refresh-start material-icons px-2">refresh</i>
+          </button>
+          <!--  -->
+
         </form>
       </div>
-
     </div>
   </div>
 </div>

@@ -29,9 +29,17 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-warning w-100" [routerLink]="'0'">Add new Customer
+                <!-- After event animation -->
+                <button *ngIf="!actionEvent" class="btn btn-warning w-100" [routerLink]="'0'"
+                    [disabled]="actionEvent">Add
+                    new Customer
                     <i class="material-icons align-text-center pl-3">person_add</i>
                 </button>
+                <button *ngIf="actionEvent" class="btn btn-warning w-100" [routerLink]="'0'"
+                    [disabled]="actionEvent">Processing...
+                    <i class="material-icons refresh-start align-text-center">refresh</i>
+                </button>
+                <!--  -->
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
                         <thead class="thead-dark text-default this.direction table__thead">
@@ -155,12 +163,16 @@
                                 <td>{{ customer.active }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-info" [routerLink]="[customer.id]">
+                                        <button class="btn btn-info" [routerLink]="[customer.id]"
+                                            [disabled]="actionEvent">
                                             <i class="material-icons">mode_edit</i>
                                         </button>
-                                        <button class="btn btn-danger pull-right"
-                                            (click)="onConfirmDelete(customer.id)">
+                                        <button *ngIf="!actionEvent" class="btn btn-danger pull-right"
+                                            [disabled]="actionEvent" (click)="onConfirmDelete(customer.id)">
                                             <i class="material-icons">delete_forever</i>
+                                        </button>
+                                        <button *ngIf="actionEvent" class="btn btn-danger pull-right"
+                                            [disabled]="actionEvent"><i class="refresh-start material-icons">refresh</i>
                                         </button>
                                     </div>
                                 </td>
