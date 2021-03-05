@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit {
   sortDesc: boolean = false;
 
   pageStart: number = 0;
-  pageLimit: number = 50;
+  pageLimit: number = 20;
   isFlagFilter: boolean = false;
 
   constructor(
