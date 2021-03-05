@@ -1,35 +1,42 @@
 <div class="row">
   <div class="col-xl-6 col-lg-8 col-md-10 col-sm-10 mx-auto">
     <div class="card">
-      <div class="card-header card-header-primary d-flex justify-content-between">
-        <h3 class="card-title ">New Bill</h3>
-        <p class="card-category">Create new Bill</p>
+      <div class="card-header card-header-info d-flex justify-content-between">
+        <div>
+          <h3 class="card-title ">New Bill</h3>
+          <p class="card-category">Create new Bill</p>
+        </div>
       </div>
       <div class="card-body">
-        <h3>Create a new Bill for the selected Order</h3>
-        <form>
-          <!-- <form #newBillForm="ngForm" (ngSubmit)="onCreate(newBillForm, bill)" class="py-3 px-5"> -->
+        <h3>Create new Bill for the selected Order</h3>
+        <!-- <form #newBillForm="ngForm" (ngSubmit)="onSubmit(newBillForm, order)" class="py-3 px-5"> -->
+        <form #newBillForm="ngForm" (ngSubmit)="onSubmit()" class="py-3 px-5">
           <div class="row my-3">
             <div class="col-md-4 text-align">
               <label for="orderIdSelect">Select Order:</label>
-              <select class="form-control custom-select" id="orderIdSelect" size=8>
-                <option *ngFor="let order of orderList | async">
-                  {{ order.id }}
+              <select #mySelect (change)="mySelect.value" [(ngModel)]="newOrder" name="newOrder" class="form-control custom-select select-option" id="orderIdSelect" size=6>
+                <option *ngFor="let order of orderList | async" class="custom-option" [ngValue]="order">
+                  # {{ order.id }}
                 </option>
               </select>
             </div>
             <div class="col-md-6 mx-3">
               <label for="">Order Id</label>
-              <input name="orderId" type="text" class="form-control" disabled>
-              <label for="">Amount</label>
-              <input name="amount" type="text" class="form-control" disabled>
-
+                <input [(ngModel)]="newBill.orderID" name="orderID" type="text" class="form-control" disabled
+                value="{{ newOrder.id }}" required>
+              <label for="">Amount (HUF)</label>
+                <input [(ngModel)]="newBill.amount" name="amount" type="text" class="form-control" disabled
+                value="{{ newOrder.amount }}" required>
             </div>
           </div>
           <div class="row">
-            <button class="btn btn-success btn-block btn-lg submit" type="submit">
-              Submit<i class="material-icons pl-3">save</i>
+            <button class="btn btn-success btn-block btn-lg submit" type="submit"
+              [disabled]="!newOrder.id || !newOrder.amount">
+              <!-- [disabled]="!newBillForm.form.valid"> -->
+              Save<i class="material-icons pl-3">save</i>
             </button>
+            <!-- <pre>{{newOrder | json}}</pre>
+            <pre>{{newBill | json}}</pre> -->
           </div>
         </form>
       </div>

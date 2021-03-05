@@ -3,9 +3,11 @@ import { BillService } from 'src/app/services/bill.service';
 import { IdGeneratorService } from 'src/app/services/id-generator.service';
 import { OrderService } from 'src/app/services/order.service'
 import { Order } from 'src/app/model/order'
+import { Bill } from 'src/app/model/bill'
 import { Status } from 'src/app/model/status.enum';
 import { Observable } from 'rxjs';
-//import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-bill',
@@ -14,33 +16,50 @@ import { Observable } from 'rxjs';
 })
 export class NewBillComponent implements OnInit {
 
-  nextID: number;
-  
+
   orderList: Observable<Order[]> = this.orderService.getAll();
+  newOrder: Order = new Order();
+  newBill: Bill = new Bill();
+  //isSubmitEnabled: boolean = true;
+
 
   constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
     private billService: BillService,
     private orderService: OrderService,
     private idGenerator: IdGeneratorService
   ) {
-    this.nextID = this.getId();
+    this.newBill.id = this.getId();
   }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    this.newBill.id = this.getId();
+    this.newBill.orderID = this.newOrder.id;
+    this.newBill.amount = this.newOrder.amount as number;
+    this.newBill.status = Status.New;
+    this.createBill(this.newBill);
+  };
+
   getId(): number {
     return this.idGenerator.getNextUniqueID(this.billService);
   }
 
-  setId() {
-    this.nextID = this.idGenerator.getNextUniqueID(this.billService);
-  //  this.getOrderIds();
+  createBill(bill: Bill): boolean {
+    this.billService.create(bill).subscribe(
+      () => {
+        this.toastr.success('New Bill created', 'Bill Create');
+        this.router.navigate(['/bills']);
+      },
+      () => {
+        this.toastr.error('Error occured while creating new Bill', 'Bill Create');
+        return false;
+      }
+    );
+    return true;
   }
-
-  // getOrderIds() {
-  //   this.orderService.getAll().subscribe(
-  //     records => { this.orderIdList = records.filter(rec => rec.status==Status.New) }); //.map(rec => rec.id)
-  //     console.log(this.orderIdList);
-  // };
 }
