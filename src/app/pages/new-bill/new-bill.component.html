@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xl-6 col-lg-8 col-md-10 col-sm-10 mx-auto">
+    <div class="card">
+      <div class="card-header card-header-info d-flex justify-content-between">
+        <div>
+          <h3 class="card-title ">New Bill</h3>
+          <p class="card-category">Create new Bill</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3>Create new Bill for the selected Order</h3>
+        <!-- <form #newBillForm="ngForm" (ngSubmit)="onSubmit(newBillForm, order)" class="py-3 px-5"> -->
+        <form #newBillForm="ngForm" (ngSubmit)="onSubmit()" class="py-3 px-5">
+          <div class="row my-3">
+            <div class="col-md-4 text-align">
+              <label for="orderIdSelect">Select Order:</label>
+              <select #mySelect (change)="mySelect.value" [(ngModel)]="newOrder" name="newOrder" 
+                class="form-control custom-select my-2" id="orderIdSelect" size=6>
+                <option *ngFor="let order of orderList | async" class="custom-option" [ngValue]="order">
+                  # {{ order.id }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6 mx-3">
+              <div>
+              <label for="">Order Id</label>
+                <input [(ngModel)]="newBill.orderID" name="orderID" type="text" class="form-control" disabled
+                value="{{ newOrder.id }}" required>
+              </div>
+              <div class="mt-4">
+              <label for="">Amount (HUF)</label>
+                <input [(ngModel)]="newBill.amount" name="amount" type="text" class="form-control" disabled
+                value="{{ newOrder.amount }}" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn btn-warning btn-block btn-lg submit" type="submit"
+              [disabled]="!newOrder.id || !newOrder.amount">
+              <!-- [disabled]="!newBillForm.form.valid"> -->
+              Save<i class="material-icons pl-3">save</i>
+            </button>
+            <!-- <pre>{{newOrder | json}}</pre>
+            <pre>{{newBill | json}}</pre> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

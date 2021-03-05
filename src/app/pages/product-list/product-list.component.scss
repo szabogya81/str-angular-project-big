@@ -5,7 +5,7 @@
 .btn.filter-selector, .btn.page-size {
   min-width: 95px;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1430px) {
     min-width: 120px;
   }
 }
@@ -15,38 +15,50 @@
   &__th {
     &--id {
       min-width: 60px;
+      width: 60px;
     }
 
     &--name {
-      min-width: 300px;
+      min-width: 200px;
+      width: 200px;
     }
 
     &--catId {
-      min-width: 85px;
-    }
-
-    &--cat {
-      min-width: 100px;
+      min-width: 105px;
+      width: 105px;
     }
 
     &--type {
-      min-width: 85px;
+      min-width: 95px;
+      width: 95px;
     }
 
     &--desc {
-      min-width: 270px;
+      min-width: 350px;
+      width: 350px;
     }
 
     &--price {
       min-width: 85px;
+      width: 85px;
     }
 
     &--feat {
-      min-width: 110px;
+      min-width: 120px;
+      width: 120px;
     }
 
     &--active {
-      min-width: 90px;
+      min-width: 100px;
+      width: 100px;
     }
+  }
+
+  th {
+    user-select: none;
+  }
+
+  th:hover {
+    cursor: pointer;
   }
 }

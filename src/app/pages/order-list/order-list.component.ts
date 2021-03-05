@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from 'src/app/model/order';
 import { OrderService } from 'src/app/services/order.service';
+import { ConfirmDialogService } from 'src/app/services/confirm-dialog.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-order-list',
@@ -13,30 +16,65 @@ export class OrderListComponent implements OnInit {
   orderList: Observable<Order[]> = this.orderService.getAll();
 
   txt: string = '';
-  phraseKey: string = '';
-  keyArray: string[] = Object.keys(new Order());
+  phraseKey: string = 'id';
+  keyArray: string[] = [
+    'id', 'customerID', 'productID', 'amount', 'status'
+  ];
+
+  // Filter
+  onFilterKeyChange() {
+    this.txt = ""; // Clear filter
+  }
 
   // sorter
   columnKey: string = '';
-  direction: string = 'str';
+  direction: string = '';
 
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private router: Router, private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit(): void {
   }
 
+onUpdate(order: Order): void {
+    this.orderService.update(order).subscribe(
+    updatedOrder => console.log(updatedOrder)
+  )
+}
+
+  onDelete(id: number): void {
+    this.orderService.remove(id).subscribe();
+    document.location.reload();
+  }
+
+  onConfirmDelete(id: number): void {
+      this.confirmDialogService.confirmThis(
+        "Are you sure to delete this Order?",
+        () => { this.onDelete(id); },
+        () => { })
+      }
+
   // sorter
   onColumnSelect(key: string): void {
-    this.swichDirectionValue();
+    if (this.columnKey != key) {
+      this.direction = 'asc';
+    } else {
+       this.direction = this.swichDirectionValue();
+    }
     this.columnKey = key;
   }
 
   swichDirectionValue(): any {
-    if ( this.direction === 'str' || this.direction === 'dsc') {
-      return this.direction = 'asc';
+    switch (this.direction) {
+      case 'asc':
+        return this.direction = 'dsc';
+      case 'dsc':
+        return this.direction = 'asc';
+      default:
+        return this.direction = 'asc';
     }
-    return this.direction = 'dsc';
   }
 
+
 }
+

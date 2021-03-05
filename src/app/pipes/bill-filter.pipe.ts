@@ -14,11 +14,15 @@ export class BillFilterPipe implements PipeTransform {
     filterText = typeof filterText !== 'number' ? ('' + filterText).toLowerCase() : filterText;
 
     return value.filter( item => {
-      if (typeof item[key] === 'number' && typeof filterText === 'number') {
-        return item[key] === filterText;
+      if (key == 'amount') {
+        return item[key] <= (filterText as string);
+      }
+      if (key == 'id' || key == 'orderID') {
+        return item[key] == (filterText as string);
       }
 
-      return ('' + item[key]).toLowerCase().includes((filterText as string));
+      //return ('' + item[key]).toLowerCase().includes((filterText as string));
+      return ('' + item[key]).toLowerCase() == filterText as string;
 
     });
   }

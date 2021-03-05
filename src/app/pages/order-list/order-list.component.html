@@ -1,78 +1,103 @@
-<div class="container col-10 offset-1">
-  <h3 class="mb-3">Orders</h3>
-</div>
-
-<div class="input-group mb-3 col-10 offset-1">
-
-  <select [(ngModel)]="phraseKey" class="custom-select">
-    <option value="">find all</option>
-    <option *ngFor="let key of keyArray" [value]="key">
-      {{ key }}
-    </option>
-  </select>
-
-
-  <!-- Kereső mező -->
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1"><i class="material-icons">filter_list</i></span>
+<div class="card">
+  <div class="card-header card-header-danger d-flex justify-content-between">
+    <div>
+      <h3 class="card-title ">Orders</h3>
+      <p class="card-category">List of Orders</p>
+    </div>
   </div>
-  <input [(ngModel)]="txt" class="form-control" type="text" placeholder="search...">
+  <div class="card-body">
+    <div class="d-flex my-3 row">
+      <span class="span__filter col-12 col-md-5 pb-3 pb-md-0 mt-0 mb-3 pt-2">Filter Orders by...</span>
+      <div class="col-12 col-md-3 input-group mt-auto mb-3">
+        <select [(ngModel)]="phraseKey" class="custom-select" (change)="onFilterKeyChange()">
+          <option *ngFor="let key of keyArray" [value]="key">
+            {{ key.charAt(0).toUpperCase() + key.slice(1) }}
+          </option>
+        </select>
+        <div *ngIf="phraseKey === 'amount'" class="input-group-append bg-primary">
+          <label class="input-group-text text-white" for="">&lt;=</label>
+        </div>
+      </div>
+      <div *ngIf="phraseKey !== 'status'" class="input-group-prepend col-12 col-md-4">
+        <input [(ngModel)]="txt" class="form-control" type="text" placeholder="Search...">
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+          <i class="material-icons">search</i>
+        </button>
+      </div>
+      <div *ngIf="phraseKey === 'status'" class="input-group-prepend col-12 col-md-4">
+        <select [(ngModel)]="txt" class="custom-select" id="">
+          <option>new</option>
+          <option>shipped</option>
+          <option>paid</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-warning w-100" [routerLink]="'0'">Add new Order
+      <i class="material-icons align-text-center pl-3">post_add</i>
+    </button>
+    <div class="table-responsive">
+      <table class="table table-striped table-sm table-order">
+        <thead class="thead-dark text-center">
+          <tr>
+            <th class="text-center" (click)="onColumnSelect('id')" class="table-order__th--id">Id
+              <i *ngIf="columnKey !== 'id'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+              <i *ngIf="columnKey === 'id' && direction === 'asc'"
+                class="material-icons align-text-top">keyboard_arrow_down</i>
+              <i *ngIf="columnKey === 'id' && direction === 'dsc'"
+                class="material-icons align-text-bottom">keyboard_arrow_up</i>
+            </th>
+            <th class="text-center" (click)="onColumnSelect('customerID')" class="table-order__th--customerId">Customer Id
+              <i *ngIf="columnKey !== 'customerID'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+              <i *ngIf="columnKey === 'customerID' && direction === 'asc'"
+                class="material-icons align-text-top">keyboard_arrow_down</i>
+              <i *ngIf="columnKey === 'customerID' && direction === 'dsc'"
+                class="material-icons align-text-bottom">keyboard_arrow_up</i>
+            </th>
+            <th class="text-center" (click)="onColumnSelect('productID')" class="table-order__th--productId">Product Id
+              <i *ngIf="columnKey !== 'productID'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+              <i *ngIf="columnKey === 'productID' && direction === 'asc'"
+                class="material-icons align-text-top">keyboard_arrow_down</i>
+              <i *ngIf="columnKey === 'productID' && direction === 'dsc'"
+                class="material-icons align-text-bottom">keyboard_arrow_up</i>
+            </th>
+            <th class="text-center" (click)="onColumnSelect('amount')" class="table-order__th--amount">Amount
+              <i *ngIf="columnKey !== 'amount'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+              <i *ngIf="columnKey === 'amount' && direction === 'asc'"
+                class="material-icons align-text-top">keyboard_arrow_down</i>
+              <i *ngIf="columnKey === 'amount' && direction === 'dsc'"
+                class="material-icons align-text-bottom">keyboard_arrow_up</i>
+            </th>
+            <th class="text-center" (click)="onColumnSelect('status')" class="table-order__th--status">Status
+              <i *ngIf="columnKey !== 'status'" class="material-icons align-text-bottom">indeterminate_check_box</i>
+              <i *ngIf="columnKey === 'status' && direction === 'asc'"
+                class="material-icons align-text-top">keyboard_arrow_down</i>
+              <i *ngIf="columnKey === 'status' && direction === 'dsc'"
+                class="material-icons align-text-bottom">keyboard_arrow_up</i>
+            </th>
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orderList | async | orderFilter:phraseKey:txt | sorter:direction:columnKey">
+            <td class="text-center">{{ order.id }}</td>
+            <td class="text-center">{{ order.customerID }}</td>
+            <td class="text-center">{{ order.productID }}</td>
+            <td class="text-center">{{ order.amount }}</td>
+            <td class="text-center">{{ order.status }}</td>
+            <td class="text-center">
+              <div class="btn-group">
+                <button class="btn btn-info" [routerLink]="[order.id]">
+                  <i class="material-icons">mode_edit</i>
+                </button>
+                <button class="btn btn-danger" (click)="onConfirmDelete(order.id)">
+                  <i class="material-icons">delete_forever</i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-
-
-<div class="container col-10 offset-1">
-  <button type="button" class="btn btn-primary btn-lg btn-block"><i class="material-icons">post_add</i></button>
-  <table class="table thead-dark table-hover table-striped">
-    <thead class="thead-dark text-center">
-      <tr>
-        <th class="text-center" (click)="onColumnSelect('id')">#
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
-        </th>
-        <th class="text-center" (click)="onColumnSelect('customerID')">CustomerID
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
-        </th>
-        <th class="text-center" (click)="onColumnSelect('productID')">ProductID
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
-        </th>
-        <th class="text-center" (click)="onColumnSelect('amount')">Amount
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
-        </th>
-        <th class="text-center" (click)="onColumnSelect('status')">Status
-          <i *ngIf="direction === 'str'" class="material-icons align-text-bottom">indeterminate_check_box</i>
-          <i *ngIf="direction === 'asc'" class="material-icons align-text-top">keyboard_arrow_down</i>
-          <i *ngIf="direction === 'dsc'" class="material-icons align-text-bottom">keyboard_arrow_up</i>
-        </th>
-        <th class="text-center">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of orderList | async | orderFilter:txt:phraseKey | sorter:direction:columnKey">
-        <td class="text-center">{{ order.id }}</td>
-        <td class="text-center">{{ order.customerID }}</td>
-        <td class="text-center">{{ order.productID }}</td>
-        <td class="text-center">{{ order.amount }}</td>
-        <td class="text-center">{{ order.status }}</td>
-        <td class="text-center">
-          <div class="btn-group">
-            <button class="btn btn-info">
-              <i class="material-icons">mode_edit</i>
-            </button>
-            <button class="btn btn-danger">
-              <i class="material-icons">delete_forever</i>
-            </button>
-          </div>
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-</div>
+<app-confirm-dialog></app-confirm-dialog>

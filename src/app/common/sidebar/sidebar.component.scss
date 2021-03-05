@@ -1,0 +1,18 @@
+.sidebar li {
+    &:first-child.active>a {
+        background-color: #fb8c00;
+        box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(76 175 80 / 40%);
+    }
+    &:nth-child(2).active>a {
+        background-color: #47a44b;
+        box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(76 175 80 / 40%);
+    }
+    &:nth-child(4).active>a {
+        background-color: #e53935;
+        box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(244 67 54 / 40%);
+    }
+    &:nth-child(5).active>a {
+        background-color: #00bcd4;
+        box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(0 188 212 / 40%);
+    }
+}

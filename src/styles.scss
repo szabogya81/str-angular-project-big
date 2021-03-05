@@ -1,1 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons");
+
+.span__filter{
+  font-size: 1.25rem;
+  @media screen and (max-width: 900px) {
+      font-size: 1rem;
+  }
+}
+
+.error-message {
+  font-style: italic;
+  font-size: 0.8em;
+  color: #9b0404;
+  transition: all ease-in .4s;
+}

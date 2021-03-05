@@ -32,10 +32,16 @@
             ],
             "styles": [
               "src/assets/css/material-dashboard.min.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
-
             ],
             "scripts": [
+              "src/assets/js/core/jquery.min.js",
+              "src/assets/js/core/popper.min.js",
+              "src/assets/js/core/bootstrap-material-design.min.js",
+              "src/assets/js/plugins/perfect-scrollbar.jquery.min.js",
+              "src/assets/js/plugins/bootstrap-selectpicker.js",
+              "src/assets/js/material-dashboard.min.js"
             ]
           },
           "configurations": {

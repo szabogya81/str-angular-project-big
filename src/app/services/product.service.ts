@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+
+import { ConfigService } from './config.service';
 
 import { Category } from '../model/category';
 import { Product } from '../model/product';
@@ -17,8 +19,8 @@ export class ProductService {
     )
   }
 
-  productsUrl = 'http://localhost:3000/products';
-  categoriesUrl = 'http://localhost:3000/categories';
+  productsUrl = ConfigService.productsUrl;
+  categoriesUrl = ConfigService.categoriesUrl;
 
   constructor(private http: HttpClient) {
   }
@@ -28,26 +30,41 @@ export class ProductService {
     key: string = 'name', filterStr: string = '',
     page: number = 0, limit: number = 50,
     sortKey: string = '', isDesc: boolean = false): Observable<Product[]> {
-
     let url: string = this.getFilterUrl(key, filterStr);
     url = this.appendSortParams(url, sortKey, isDesc);
     url = this.appendPaging(url, page, limit);
-
     return this.http.get<Product[]>(url);
   }
 
   getById(productId: number): Observable<Product> {
-    let url: string = `${this.productsUrl}/${productId}`;
-    return this.http.get<Product>(url, this.httpOptions);
+    if (productId > 0) {
+      let url: string = `${this.productsUrl}/${productId}`;
+      return this.http.get<Product>(url, this.httpOptions);
+    } else {
+      return of(new Product());
+    }
   }
 
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.categoriesUrl, this.httpOptions);
+  getCategories(name: string = ''): Observable<Category[]> {
+    let url = this.categoriesUrl;
+    if (name) {
+      let filter = this.handleSpecialCharacters(name);
+      url += `?name_like=${filter}`;
+    }
+    return this.http.get<Category[]>(url, this.httpOptions);
+  }
+
+  getCategoryById(categoryId: number): Observable<Category> {
+    if (categoryId > 0) {
+      let url: string = `${this.categoriesUrl}/${categoryId}`;
+      return this.http.get<Category>(url, this.httpOptions);
+    } else {
+      return of(new Category());
+    }
   }
 
   create(product: Product): Observable<Product> {
     product.id = 0;
-
     return this.http.post<Product>(`
       ${this.productsUrl}`, product, this.httpOptions);
   }
@@ -65,13 +82,15 @@ export class ProductService {
   //#region Helper methods
   getFilterUrl(key: string = 'name', filterStr: string = ''): string {
     let url: string = this.productsUrl;
-
     if (filterStr) {
+      let filter = this.handleSpecialCharacters(filterStr);
       if (['name', 'type', 'description'].includes(key)) {
-        url = `${url}?${key}_like=${filterStr}`;
+        url = `${url}?${key}_like=${filter}`;
       }
-      else if (['id', 'catId', 'price', 'featured', 'active'].includes(key)) {
-        url = `${url}?${key}=${filterStr}`;
+      else if (['id', 'catId', 'featured', 'active'].includes(key)) {
+        url = `${url}?${key}=${filter}`;
+      } else if (key === 'price') {
+        url = `${url}?${key}_lte=${filter}`;
       }
       url += '&';
     } else {
@@ -89,7 +108,6 @@ export class ProductService {
       }
       url += '&';
     }
-
     return url;
   }
 
@@ -97,8 +115,12 @@ export class ProductService {
     if (limit !== -1 && page >= 0) {
       url += `_page=${page}&_limit=${limit}`;
     }
-
     return url;
+  }
+
+  handleSpecialCharacters(input: string): string {
+    let result = input.replace(/[.$?+*^{}()[|\]\\]/g, '\\$&');
+    return encodeURIComponent(result);
   }
   //#endregion Helper methods
 }

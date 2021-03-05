@@ -1,1 +1,109 @@
-<p>Not yet... 😺</p>
+<div class="row">
+  <div *ngIf="(product | async) as product" class="col-12 col-md-8 offset-md-2 col-xl-6 offset-xl-3">
+    <div class="card">
+      <div class="card-header card-header-primary d-flex justify-content-between">
+        <div>
+          <h3 *ngIf="product.id === 0" class="card-title">Create new Product</h3>
+          <h3 *ngIf="product.id !== 0" class="card-title">Update Product</h3>
+          <p *ngIf="product.id !== 0" class="card-category">#{{ product.id }}</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <form #productForm="ngForm" (ngSubmit)="onUpdate(product)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input  type="text" class="form-control" pattern=".{5,50}" required
+              id="name" name="name" [(ngModel)]="product.name">
+            <div 
+              [style.opacity]="!productForm.controls.name?.touched || productForm.controls.name?.valid ? '0' : '1'"
+              [style.visibility]="!productForm.controls.name?.touched || productForm.controls.name?.valid ? 'hidden' : 'visible'"
+              class="error-message">
+              The name must be at least 5 and at most 50 characters long
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="catId">Category</label>
+            <input  type="text" freeInput="false" class="form-control" 
+              id="catId" name="catId" [(ngModel)]="selectedCategory"
+              [ngbTypeahead]="search" [resultFormatter]="categoryResultFormatter" [inputFormatter]="categoryIputFormatter"
+              #instance="ngbTypeahead" [editable]='false' typeahead-editable='false' required />
+            <div 
+              [style.opacity]="(productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0 && productForm.controls.catId.touched) ||
+                (productForm.controls.catId?.dirty && productForm.controls.catId?.invalid) ? '1' : '0'" 
+              [style.visibility]="(productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0 && productForm.controls.catId.touched) ||
+                (productForm.controls.catId?.dirty && productForm.controls.catId?.invalid) ? 'visible' : 'hidden'"
+              class="error-message">
+              Please select Category from the list.
+            </div>
+          </div>
+          <!-- Select Picker only works in Material Dashboard PRO version -->
+          <div class="form-group">
+            <label for="productType">Type</label>
+            <select class="form-control" data-style="btn btn-link" 
+                id="productType" name="productType" [(ngModel)]="product.type" required>
+              <option [ngValue]="undefined">Select type...</option>
+              <option *ngFor="let type of productType | keyvalue" 
+                [ngValue]="type.value">{{type.value}}</option>
+            </select>
+            <div
+              [style.opacity]="productForm.controls.productType?.value  || 
+                !productForm.controls.productType?.touched ? '0' : '1'"
+              [style.visibility]="productForm.controls.productType?.value || 
+                !productForm.controls.productType?.touched ? 'hidden' : 'visible'"
+              class="error-message">
+              Please select Type from the list.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="price">Price (Ft)</label>
+            <input type="number" class="form-control" pattern="[\d]{1,6}" required 
+              id="price" name="price" [(ngModel)]="product.price">
+            <div 
+              [style.opacity]="!productForm.controls.price?.touched || productForm.controls.price?.valid ? '0' : '1'"
+              [style.visibility]="!productForm.controls.price?.touched || productForm.controls.price?.valid ? 'hidden' : 'visible'"
+              class="error-message">
+              The price can only be a number between 0 and 999999
+            </div>
+          </div>
+          <div class="form-check  form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" 
+                id="featured" name="featured" [(ngModel)]="product.featured">
+              Featured
+              <span class="form-check-sign">
+                <span class="check"></span>
+              </span>
+            </label>
+          </div>
+          <div class="form-check  form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" 
+                id="active" name="active" [(ngModel)]="product.active">
+              Active
+              <span class="form-check-sign">
+                <span class="check"></span>
+              </span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" rows="3" pattern=".{10,170}" required 
+              id="description" name="description" [(ngModel)]="product.description">
+            </textarea>
+            <div
+              [style.opacity]="!productForm.controls.description?.touched || productForm.controls.description?.valid ? '0' : '1'"
+              [style.visibility]="!productForm.controls.description?.touched || productForm.controls.description?.valid ? 'hidden' : 'visible'"
+              class="error-message">
+              The description must be at least 10 and at most 170 characters long
+            </div>
+          </div>
+          <button [disabled]="productForm.invalid || 
+              (product.id === 0 && productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0)"
+            type="submit" class="btn btn-warning btn-block btn-lg submit">
+            Save Product<i class="material-icons pl-3">save</i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
