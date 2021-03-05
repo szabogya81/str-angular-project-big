@@ -4,9 +4,9 @@
     <div class="card">
       <div class="card-header card-header-success d-flex justify-content-between">
         <div>
-          <h3 class="card-title ">Edit Customer</h3>
-          <p *ngIf="customer.id === 0" class="card-category">Create new Customer</p>
-          <p *ngIf="customer.id !== 0" class="card-category">#{{ customer.id }} Customer</p>
+          <h3 *ngIf="customer.id === 0" class="card-title">Create new Customer</h3>
+          <h3 *ngIf="customer.id !== 0" class="card-title">Update Customer</h3>
+          <p *ngIf="customer.id !== 0" class="card-category">#{{ customer.id }}</p>
         </div>
       </div>
       <div class="card-body">
@@ -128,7 +128,7 @@
             </div>
           </div>
           <button class="btn btn-warning btn-block btn-lg submit" [disabled]="eventForm.invalid" type="submit">
-            Submit<i class="material-icons pl-3">save</i>
+            Save Customer<i class="material-icons pl-3">save</i>
           </button>
         </form>
       </div>

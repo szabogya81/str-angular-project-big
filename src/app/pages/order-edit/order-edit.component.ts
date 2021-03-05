@@ -111,7 +111,7 @@ export class OrderEditComponent implements OnInit {
           this.router.navigate(['/orders']);
         },
         () => {
-          this.toastr.error('Error occured while updating Order', 'Customer Order');
+          this.toastr.error('Error occured while updating Order', 'Order Update');
         }
       );
     }

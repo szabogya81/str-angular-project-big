@@ -4,14 +4,15 @@
     <div class="card">
       <div class="card-header card-header-danger d-flex justify-content-between">
         <div>
-          <h3 *ngIf="order.id === 0">Create new Order</h3>
-          <h3 *ngIf="order.id !== 0">#{{ order.id }} Order</h3>
+          <h3 *ngIf="order.id === 0" class="card-title">Create new Order</h3>
+          <h3 *ngIf="order.id !== 0" class="card-title">Update Order</h3>
+          <p *ngIf="order.id !== 0" class="card-category">#{{ order.id }}</p>
         </div>
       </div>
       <div class="card-body">
         <form #orderForm="ngForm" (ngSubmit)="onUpdate(orderForm, order)" class="py-3 px-5">
           <div class="mt-4">
-            <label for="customerID">CustomerID</label>
+            <label for="customerID">Customer</label>
             <input id="customerID" type="text"
             freeInput="false"
             name="customerID"
@@ -29,11 +30,11 @@
           [style.visibility]="(orderForm.controls.customerID?.value && orderForm.controls.customerID?.value['id'] === 0 && orderForm.controls.customerID.touched) ||
             (orderForm.controls.customerID?.dirty && orderForm.controls.customerID?.invalid) ? 'visible' : 'hidden'"
           class="error-message">
-              Customer ID is required, please select.
+            Please select Customer from the list.
             </div>         
           </div>
           <div class="mt-4">
-            <label for="productID">ProductID</label>
+            <label for="productID">Product</label>
             <input id="productID" type="text"
             freeInput="false"
             name="productID"
@@ -51,7 +52,7 @@
           [style.visibility]="(orderForm.controls.productID?.value && orderForm.controls.productID?.value['id'] === 0 && orderForm.controls.productID.touched) ||
             (orderForm.controls.productID?.dirty && orderForm.controls.productID?.invalid) ? 'visible' : 'hidden'"
           class="error-message">
-              Product ID is required, please select.
+            Please select Product from the list.
             </div>         
           </div>
           <div class="mt-4">
@@ -89,7 +90,7 @@
             </div>
           </div>
           <div class="mt-5">
-            <button type="submit" class="btn btn-block btn-warning" [disabled]="orderForm.invalid" type="submit">Save<i class="material-icons pl-3">save</i></button>
+            <button type="submit" class="btn btn-block btn-warning" [disabled]="orderForm.invalid" type="submit">Save Order<i class="material-icons pl-3">save</i></button>
           </div>
         </form>
       </div>
