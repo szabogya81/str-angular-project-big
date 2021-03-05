@@ -14,23 +14,28 @@
           <div class="row my-3">
             <div class="col-md-4 text-align">
               <label for="orderIdSelect">Select Order:</label>
-              <select #mySelect (change)="mySelect.value" [(ngModel)]="newOrder" name="newOrder" class="form-control custom-select select-option" id="orderIdSelect" size=6>
+              <select #mySelect (change)="mySelect.value" [(ngModel)]="newOrder" name="newOrder" 
+                class="form-control custom-select my-2" id="orderIdSelect" size=6>
                 <option *ngFor="let order of orderList | async" class="custom-option" [ngValue]="order">
                   # {{ order.id }}
                 </option>
               </select>
             </div>
             <div class="col-md-6 mx-3">
+              <div>
               <label for="">Order Id</label>
                 <input [(ngModel)]="newBill.orderID" name="orderID" type="text" class="form-control" disabled
                 value="{{ newOrder.id }}" required>
+              </div>
+              <div class="mt-4">
               <label for="">Amount (HUF)</label>
                 <input [(ngModel)]="newBill.amount" name="amount" type="text" class="form-control" disabled
                 value="{{ newOrder.amount }}" required>
+              </div>
             </div>
           </div>
           <div class="row">
-            <button class="btn btn-success btn-block btn-lg submit" type="submit"
+            <button class="btn btn-warning btn-block btn-lg submit" type="submit"
               [disabled]="!newOrder.id || !newOrder.amount">
               <!-- [disabled]="!newBillForm.form.valid"> -->
               Save<i class="material-icons pl-3">save</i>

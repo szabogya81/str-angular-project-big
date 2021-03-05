@@ -9986,7 +9986,7 @@
     {
       "id": 5,
       "orderID": 5,
-      "amount": 399,
+      "amount": 0,
       "status": "paid"
     },
     {
@@ -10022,8 +10022,8 @@
     {
       "id": 11,
       "orderID": 11,
-      "amount": 3819,
-      "status": "new"
+      "amount": 0,
+      "status": "paid"
     },
     {
       "id": 12,
@@ -12092,8 +12092,8 @@
     {
       "id": 356,
       "orderID": 356,
-      "amount": 21809,
-      "status": "new"
+      "amount": 0,
+      "status": "paid"
     },
     {
       "id": 357,
@@ -12958,6 +12958,30 @@
       "orderID": 500,
       "amount": 1909,
       "status": "paid"
+    },
+    {
+      "id": 501,
+      "orderID": 450,
+      "amount": 2719,
+      "status": "new"
+    },
+    {
+      "id": 502,
+      "orderID": 485,
+      "amount": 17459,
+      "status": "new"
+    },
+    {
+      "id": 503,
+      "orderID": 198,
+      "amount": 5089,
+      "status": "new"
+    },
+    {
+      "id": 504,
+      "orderID": 356,
+      "amount": 21809,
+      "status": "new"
     }
   ]
 }
