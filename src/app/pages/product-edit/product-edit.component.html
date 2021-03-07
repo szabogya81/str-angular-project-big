@@ -1,4 +1,11 @@
 <div class="row">
+  <!-- Basic Loading screen -->
+  <div *ngIf="!(product | async)" class="d-flex mx-auto">
+    <h1 class="loading-refresh">Loading in progress...<i
+        class="refresh-start loading-refresh material-icons">refresh</i>
+    </h1>
+  </div>
+  <!--  -->
   <div *ngIf="(product | async) as product" class="col-12 col-md-8 offset-md-2 col-xl-6 offset-xl-3">
     <div class="card">
       <div class="card-header card-header-primary d-flex justify-content-between">
@@ -12,10 +19,9 @@
         <form #productForm="ngForm" (ngSubmit)="onUpdate(product)">
           <div class="form-group">
             <label for="name">Name</label>
-            <input  type="text" class="form-control" pattern=".{5,50}" required
-              id="name" name="name" [(ngModel)]="product.name">
-            <div 
-              [style.opacity]="!productForm.controls.name?.touched || productForm.controls.name?.valid ? '0' : '1'"
+            <input type="text" class="form-control" pattern=".{5,50}" required id="name" name="name"
+              [(ngModel)]="product.name">
+            <div [style.opacity]="!productForm.controls.name?.touched || productForm.controls.name?.valid ? '0' : '1'"
               [style.visibility]="!productForm.controls.name?.touched || productForm.controls.name?.valid ? 'hidden' : 'visible'"
               class="error-message">
               The name must be at least 5 and at most 50 characters long
@@ -23,13 +29,12 @@
           </div>
           <div class="form-group">
             <label for="catId">Category</label>
-            <input  type="text" freeInput="false" class="form-control" 
-              id="catId" name="catId" [(ngModel)]="selectedCategory"
-              [ngbTypeahead]="search" [resultFormatter]="categoryResultFormatter" [inputFormatter]="categoryIputFormatter"
-              #instance="ngbTypeahead" [editable]='false' typeahead-editable='false' required />
-            <div 
-              [style.opacity]="(productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0 && productForm.controls.catId.touched) ||
-                (productForm.controls.catId?.dirty && productForm.controls.catId?.invalid) ? '1' : '0'" 
+            <input type="text" freeInput="false" class="form-control" id="catId" name="catId"
+              [(ngModel)]="selectedCategory" [ngbTypeahead]="search" [resultFormatter]="categoryResultFormatter"
+              [inputFormatter]="categoryIputFormatter" #instance="ngbTypeahead" [editable]='false'
+              typeahead-editable='false' required />
+            <div [style.opacity]="(productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0 && productForm.controls.catId.touched) ||
+                (productForm.controls.catId?.dirty && productForm.controls.catId?.invalid) ? '1' : '0'"
               [style.visibility]="(productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0 && productForm.controls.catId.touched) ||
                 (productForm.controls.catId?.dirty && productForm.controls.catId?.invalid) ? 'visible' : 'hidden'"
               class="error-message">
@@ -39,27 +44,22 @@
           <!-- Select Picker only works in Material Dashboard PRO version -->
           <div class="form-group">
             <label for="productType">Type</label>
-            <select class="form-control" data-style="btn btn-link" 
-                id="productType" name="productType" [(ngModel)]="product.type" required>
+            <select class="form-control" data-style="btn btn-link" id="productType" name="productType"
+              [(ngModel)]="product.type" required>
               <option [ngValue]="undefined">Select type...</option>
-              <option *ngFor="let type of productType | keyvalue" 
-                [ngValue]="type.value">{{type.value}}</option>
+              <option *ngFor="let type of productType | keyvalue" [ngValue]="type.value">{{type.value}}</option>
             </select>
-            <div
-              [style.opacity]="productForm.controls.productType?.value  || 
-                !productForm.controls.productType?.touched ? '0' : '1'"
-              [style.visibility]="productForm.controls.productType?.value || 
-                !productForm.controls.productType?.touched ? 'hidden' : 'visible'"
-              class="error-message">
+            <div [style.opacity]="productForm.controls.productType?.value  || 
+                !productForm.controls.productType?.touched ? '0' : '1'" [style.visibility]="productForm.controls.productType?.value || 
+                !productForm.controls.productType?.touched ? 'hidden' : 'visible'" class="error-message">
               Please select Type from the list.
             </div>
           </div>
           <div class="form-group">
             <label for="price">Price (Ft)</label>
-            <input type="number" class="form-control" pattern="[\d]{1,6}" required 
-              id="price" name="price" [(ngModel)]="product.price">
-            <div 
-              [style.opacity]="!productForm.controls.price?.touched || productForm.controls.price?.valid ? '0' : '1'"
+            <input type="number" class="form-control" pattern="[\d]{1,6}" required id="price" name="price"
+              [(ngModel)]="product.price">
+            <div [style.opacity]="!productForm.controls.price?.touched || productForm.controls.price?.valid ? '0' : '1'"
               [style.visibility]="!productForm.controls.price?.touched || productForm.controls.price?.valid ? 'hidden' : 'visible'"
               class="error-message">
               The price can only be a number between 0 and 999999
@@ -67,8 +67,8 @@
           </div>
           <div class="form-check  form-check-inline">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" 
-                id="featured" name="featured" [(ngModel)]="product.featured">
+              <input class="form-check-input" type="checkbox" id="featured" name="featured"
+                [(ngModel)]="product.featured">
               Featured
               <span class="form-check-sign">
                 <span class="check"></span>
@@ -77,8 +77,7 @@
           </div>
           <div class="form-check  form-check-inline">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" 
-                id="active" name="active" [(ngModel)]="product.active">
+              <input class="form-check-input" type="checkbox" id="active" name="active" [(ngModel)]="product.active">
               Active
               <span class="form-check-sign">
                 <span class="check"></span>
@@ -87,8 +86,8 @@
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" rows="3" pattern=".{10,170}" required 
-              id="description" name="description" [(ngModel)]="product.description">
+            <textarea class="form-control" rows="3" pattern=".{10,170}" required id="description" name="description"
+              [(ngModel)]="product.description">
             </textarea>
             <div
               [style.opacity]="!productForm.controls.description?.touched || productForm.controls.description?.valid ? '0' : '1'"
@@ -97,10 +96,17 @@
               The description must be at least 10 and at most 170 characters long
             </div>
           </div>
-          <button [disabled]="productForm.invalid || 
-              (product.id === 0 && productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0)"
+          <button *ngIf="!submition"
+            [disabled]="productForm.invalid || 
+              (product.id === 0 && productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0) || submition"
             type="submit" class="btn btn-warning btn-block btn-lg submit">
             Save Product<i class="material-icons pl-3">save</i>
+          </button>
+          <button *ngIf="submition"
+            [disabled]="productForm.invalid || 
+              (product.id === 0 && productForm.controls.catId?.value && productForm.controls.catId?.value['id'] === 0) || submition"
+            type="submit" class="btn btn-info btn-block btn-lg submit">
+            Processing...<i class="refresh-start material-icons px-1">refresh</i>
           </button>
         </form>
       </div>

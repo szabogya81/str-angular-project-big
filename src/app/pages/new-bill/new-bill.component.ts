@@ -21,6 +21,7 @@ export class NewBillComponent implements OnInit {
   newOrder: Order = new Order();
   newBill: Bill = new Bill();
   //isSubmitEnabled: boolean = true;
+  submition: boolean = false;
 
 
   constructor(
@@ -38,6 +39,7 @@ export class NewBillComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submition = true;
     this.newBill.id = this.getId();
     this.newBill.orderID = this.newOrder.id;
     this.newBill.amount = this.newOrder.amount as number;

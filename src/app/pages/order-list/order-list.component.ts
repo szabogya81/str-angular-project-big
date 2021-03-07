@@ -21,6 +21,9 @@ export class OrderListComponent implements OnInit {
     'id', 'customerID', 'productID', 'amount', 'status'
   ];
 
+  actionEvent: boolean = false;
+  clickedElementID?: number = 0;
+
   // Filter
   onFilterKeyChange() {
     this.txt = ""; // Clear filter
@@ -36,30 +39,31 @@ export class OrderListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-onUpdate(order: Order): void {
+  onUpdate(order: Order): void {
     this.orderService.update(order).subscribe(
-    updatedOrder => console.log(updatedOrder)
-  )
-}
+      updatedOrder => console.log(updatedOrder)
+    )
+  }
 
   onDelete(id: number): void {
+    this.clickedElementID = id;
     this.orderService.remove(id).subscribe();
     document.location.reload();
   }
 
   onConfirmDelete(id: number): void {
-      this.confirmDialogService.confirmThis(
-        "Are you sure to delete this Order?",
-        () => { this.onDelete(id); },
-        () => { })
-      }
+    this.confirmDialogService.confirmThis(
+      "Are you sure to delete this Order?",
+      () => { this.actionEvent = true; this.onDelete(id); },
+      () => { })
+  }
 
   // sorter
   onColumnSelect(key: string): void {
     if (this.columnKey != key) {
       this.direction = 'asc';
     } else {
-       this.direction = this.swichDirectionValue();
+      this.direction = this.swichDirectionValue();
     }
     this.columnKey = key;
   }

@@ -29,17 +29,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- After event animation -->
-                <button *ngIf="!actionEvent" class="btn btn-warning w-100" [routerLink]="'0'"
-                    [disabled]="actionEvent">Add
+                <button class="btn btn-warning w-100" [routerLink]="'0'" [disabled]="actionEvent">Add
                     new Customer
                     <i class="material-icons align-text-center pl-3">person_add</i>
                 </button>
-                <button *ngIf="actionEvent" class="btn btn-warning w-100" [routerLink]="'0'"
-                    [disabled]="actionEvent">Processing...
-                    <i class="material-icons refresh-start align-text-center">refresh</i>
-                </button>
-                <!--  -->
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
                         <thead class="thead-dark text-default this.direction table__thead">
@@ -172,7 +165,8 @@
                                             <i class="material-icons">delete_forever</i>
                                         </button>
                                         <button *ngIf="actionEvent" class="btn btn-danger pull-right"
-                                            [disabled]="actionEvent"><i class="refresh-start material-icons">refresh</i>
+                                            [disabled]="actionEvent"><i class="material-icons"
+                                                [ngClass]="{'trash-fade': customer.id === clickedElementID }">delete_forever</i>
                                         </button>
                                     </div>
                                 </td>

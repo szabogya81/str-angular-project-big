@@ -2,7 +2,8 @@
   <!-- <pre>{{ customer | json  }}</pre> -->
   <!-- Basic Loading screen -->
   <div *ngIf="!(customer$ | async)" class="d-flex mx-auto">
-    <h1>Loading in progress...<i class="refresh-start loading-refresh material-icons px-2">refresh</i>
+    <h1 class="loading-refresh">Loading in progress...<i
+        class=" refresh-start loading-refresh material-icons px-2">refresh</i>
     </h1>
   </div>
   <!--  -->

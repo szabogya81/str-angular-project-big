@@ -27,6 +27,9 @@ export class ProductListComponent implements OnInit {
   pageLimit: number = 20;
   isFlagFilter: boolean = false;
 
+  actionEvent: boolean = false;
+  clickedElementID?: number = 0;
+
   constructor(
     private prodSvc: ProductService,
     private confirmDialogService: ConfirmDialogService,) {
@@ -81,6 +84,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onDelete(productId: number) {
+    this.clickedElementID = productId;
     this.prodSvc.delete(productId).subscribe(
       () => this.updateProducts()
     );
@@ -90,6 +94,7 @@ export class ProductListComponent implements OnInit {
     this.confirmDialogService.confirmThis(
       "Are you sure to delete Product?",
       () => {
+        this.actionEvent = true;
         this.onDelete(productId);
       }, () => { })
   }
@@ -133,6 +138,7 @@ export class ProductListComponent implements OnInit {
     this.products = this.prodSvc.get(
       this.filterColumn, this.filter, this.pageStart,
       this.pageLimit, this.sortColumn, this.sortDesc);
+    this.actionEvent = false;
   }
 
   setPageSize(event: Event): void {

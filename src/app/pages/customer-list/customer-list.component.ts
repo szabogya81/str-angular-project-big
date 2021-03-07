@@ -25,6 +25,7 @@ export class CustomerListComponent implements OnInit {
   //filterKeyArrays: string[] = Object.keys(new Customer());
   // @Output() notifyOnDelete: EventEmitter<number> = new EventEmitter<number>();
   actionEvent: boolean = false;
+  clickedElementID?: number = 0;
 
   // sorter
   columnKey: string = '';
@@ -57,6 +58,7 @@ export class CustomerListComponent implements OnInit {
 
   removeCustomer(id: number | string): void {
     const index = typeof id === 'string' ? parseInt(id, 10) : id;
+    this.clickedElementID = index;
     this.customerService.remove(index).subscribe(() => this.router.navigate(['/customers']));
     document.location.reload();                        // törlés után frissíti az oldalt nem szép, de működik
   }

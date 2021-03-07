@@ -1,6 +1,12 @@
 <div class="row">
-  <div *ngIf="(order$ | async) as order"
-    class="col-xl-6 col-lg-8 col-md-10 col-sm-10 mx-auto">
+  <!-- Basic Loading screen -->
+  <div *ngIf="!(order$ | async) as order" class="d-flex mx-auto">
+    <h1 class="loading-refresh">Loading in progress...<i
+        class=" refresh-start loading-refresh material-icons px-2">refresh</i>
+    </h1>
+  </div>
+  <!--  -->
+  <div *ngIf="(order$ | async) as order" class="col-xl-6 col-lg-8 col-md-10 col-sm-10 mx-auto">
     <div class="card">
       <div class="card-header card-header-danger d-flex justify-content-between">
         <div>
@@ -13,61 +19,37 @@
         <form #orderForm="ngForm" (ngSubmit)="onUpdate(orderForm, order)" class="py-3 px-5">
           <div class="mt-4">
             <label for="customerID">Customer</label>
-            <input id="customerID" type="text"
-            freeInput="false"
-            name="customerID"
-            class="form-control"
-            [(ngModel)]="choosenCustomer"
-            [ngbTypeahead]="searchCustomer"
-            [resultFormatter]="customerResultFormatter"
-            [inputFormatter]="customerInputFormatter"
-            #instance="ngbTypeahead"
-            [editable]="false"
-            typeahead-editable="false"
-             required>
+            <input id="customerID" type="text" freeInput="false" name="customerID" class="form-control"
+              [(ngModel)]="choosenCustomer" [ngbTypeahead]="searchCustomer" [resultFormatter]="customerResultFormatter"
+              [inputFormatter]="customerInputFormatter" #instance="ngbTypeahead" [editable]="false"
+              typeahead-editable="false" required>
             <div [style.opacity]="(orderForm.controls.customerID?.value && orderForm.controls.customerID?.value['id'] === 0 && orderForm.controls.customerID.touched) ||
-            (orderForm.controls.customerID?.dirty && orderForm.controls.customerID?.invalid) ? '1' : '0'" 
-          [style.visibility]="(orderForm.controls.customerID?.value && orderForm.controls.customerID?.value['id'] === 0 && orderForm.controls.customerID.touched) ||
+            (orderForm.controls.customerID?.dirty && orderForm.controls.customerID?.invalid) ? '1' : '0'"
+              [style.visibility]="(orderForm.controls.customerID?.value && orderForm.controls.customerID?.value['id'] === 0 && orderForm.controls.customerID.touched) ||
             (orderForm.controls.customerID?.dirty && orderForm.controls.customerID?.invalid) ? 'visible' : 'hidden'"
-          class="error-message">
-            Please select Customer from the list.
-            </div>         
+              class="error-message">
+              Please select Customer from the list.
+            </div>
           </div>
           <div class="mt-4">
             <label for="productID">Product</label>
-            <input id="productID" type="text"
-            freeInput="false"
-            name="productID"
-            class="form-control"
-            [(ngModel)]="choosenProduct"
-            [ngbTypeahead]="searchProduct"
-            [resultFormatter]="productResultFormatter"
-            [inputFormatter]="productInputFormatter"
-            #instance="ngbTypeahead"
-            [editable]="false"
-            typeahead-editable="false"
-             required>
+            <input id="productID" type="text" freeInput="false" name="productID" class="form-control"
+              [(ngModel)]="choosenProduct" [ngbTypeahead]="searchProduct" [resultFormatter]="productResultFormatter"
+              [inputFormatter]="productInputFormatter" #instance="ngbTypeahead" [editable]="false"
+              typeahead-editable="false" required>
             <div [style.opacity]="(orderForm.controls.productID?.value && orderForm.controls.productID?.value['id'] === 0 && orderForm.controls.productID.touched) ||
-            (orderForm.controls.productID?.dirty && orderForm.controls.productID?.invalid) ? '1' : '0'" 
-          [style.visibility]="(orderForm.controls.productID?.value && orderForm.controls.productID?.value['id'] === 0 && orderForm.controls.productID.touched) ||
+            (orderForm.controls.productID?.dirty && orderForm.controls.productID?.invalid) ? '1' : '0'"
+              [style.visibility]="(orderForm.controls.productID?.value && orderForm.controls.productID?.value['id'] === 0 && orderForm.controls.productID.touched) ||
             (orderForm.controls.productID?.dirty && orderForm.controls.productID?.invalid) ? 'visible' : 'hidden'"
-          class="error-message">
-            Please select Product from the list.
-            </div>         
+              class="error-message">
+              Please select Product from the list.
+            </div>
           </div>
           <div class="mt-4">
             <label for="amount">Amount (Ft)</label>
-            <input id="amount" type="number"
-            freeInput="false"
-            name="amount"
-            class="form-control"
-            [(ngModel)]="choosenProduct"
-            [ngbTypeahead]="searchProduct"
-            [resultFormatter]="productResultFormatter"
-            [inputFormatter]="productPriceInputFormatter"
-            #instance="ngbTypeahead"
-            disabled
-             required>
+            <input id="amount" type="number" freeInput="false" name="amount" class="form-control"
+              [(ngModel)]="choosenProduct" [ngbTypeahead]="searchProduct" [resultFormatter]="productResultFormatter"
+              [inputFormatter]="productPriceInputFormatter" #instance="ngbTypeahead" disabled required>
             <!-- <div [style.opacity]="(orderForm.controls.amount?.value && orderForm.controls.amount?.value['id'] === 0 && orderForm.controls.amount.touched) ||
             (orderForm.controls.amount?.dirty && orderForm.controls.amount?.invalid) ? '1' : '0'" 
           [style.visibility]="(orderForm.controls.amount?.value && orderForm.controls.amount?.value['id'] === 0 && orderForm.controls.amount.touched) ||
@@ -90,7 +72,15 @@
             </div>
           </div>
           <div class="mt-5">
-            <button type="submit" class="btn btn-block btn-warning" [disabled]="orderForm.invalid" type="submit">Save Order<i class="material-icons pl-3">save</i></button>
+            <!-- Submition with animation -->
+            <button *ngIf="!submition" type="submit" class="btn btn-block btn-warning"
+              [disabled]="orderForm.invalid || submition" type="submit">Save
+              Order<i class="material-icons pl-3">save</i>
+            </button>
+            <button *ngIf="submition" type="submit" class="btn btn-block btn-info" [disabled]="submition"
+              type="submit">Processing...<i class="refresh-start material-icons px-2">refresh</i>
+            </button>
+            <!--  -->
           </div>
         </form>
       </div>

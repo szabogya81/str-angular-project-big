@@ -25,16 +25,18 @@ export class OrderEditComponent implements OnInit {
   order: Order = new Order();
 
   orderStatus = Status;
-  
+
   choosenCustomer: Customer = new Customer();
   choosenProduct: Product = new Product();
-  
+
+  submition: boolean = false;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private orderService: OrderService,
     private router: Router,
     private toastr: ToastrService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.order$.subscribe(
@@ -90,7 +92,7 @@ export class OrderEditComponent implements OnInit {
 
 
   onUpdate(form: NgForm, order$: Order): void {
-
+    this.submition = true;
     order$.customerID = this.choosenCustomer.id;
     order$.productID = this.choosenProduct.id;
     order$.amount = this.choosenProduct.price;
@@ -116,7 +118,7 @@ export class OrderEditComponent implements OnInit {
       );
     }
   }
-  
+
 
 
 }

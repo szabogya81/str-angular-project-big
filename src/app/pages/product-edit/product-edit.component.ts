@@ -25,6 +25,7 @@ export class ProductEditComponent implements OnInit {
 
   productType = ProductType;
   selectedCategory: Category = new Category();
+  submition: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -41,6 +42,7 @@ export class ProductEditComponent implements OnInit {
 
   //#region Main methods
   onUpdate(product: Product): void {
+    this.submition = true;
     product.catId = this.selectedCategory.id;
     if (product.id === 0) {
       this.createProduct(product);

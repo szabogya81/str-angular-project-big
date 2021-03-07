@@ -14,8 +14,11 @@
           <div class="row my-3">
             <div class="col-md-4 text-align">
               <label for="orderIdSelect">Select Order:</label>
-              <select #mySelect (change)="mySelect.value" [(ngModel)]="newOrder" name="newOrder" 
-                class="form-control custom-select my-2" id="orderIdSelect" size=6>
+              <div *ngIf="!(orderList | async) as order" class="text-center">
+                <i class="refresh-start loading-refresh material-icons px-2 mx-auto">hourglass_empty</i>
+              </div>
+              <select #mySelect (change)="mySelect.value" [(ngModel)]="newOrder" name="newOrder"
+                class="form-control custom-select my-2" id="orderIdSelect" size=6 *ngIf="(orderList | async) as order">
                 <option *ngFor="let order of orderList | async" class="custom-option" [ngValue]="order">
                   # {{ order.id }}
                 </option>
@@ -23,22 +26,25 @@
             </div>
             <div class="col-md-6 mx-3">
               <div>
-              <label for="">Order Id</label>
+                <label for="">Order Id</label>
                 <input [(ngModel)]="newBill.orderID" name="orderID" type="text" class="form-control" disabled
-                value="{{ newOrder.id }}" required>
+                  value="{{ newOrder.id }}" required>
               </div>
               <div class="mt-4">
-              <label for="">Amount (HUF)</label>
+                <label for="">Amount (HUF)</label>
                 <input [(ngModel)]="newBill.amount" name="amount" type="text" class="form-control" disabled
-                value="{{ newOrder.amount }}" required>
+                  value="{{ newOrder.amount }}" required>
               </div>
             </div>
           </div>
           <div class="row">
-            <button class="btn btn-warning btn-block btn-lg submit" type="submit"
-              [disabled]="!newOrder.id || !newOrder.amount">
+            <button *ngIf="!submition" class="btn btn-warning btn-block btn-lg submit" type="submit"
+              [disabled]="!newOrder.id || !newOrder.amount || submition">
               <!-- [disabled]="!newBillForm.form.valid"> -->
               Save<i class="material-icons pl-3">save</i>
+            </button>
+            <button *ngIf="submition" class="btn btn-info btn-block btn-lg submit" type="submit"
+              [disabled]="submition">Processing...<i class="refresh-start material-icons px-2">refresh</i>
             </button>
             <!-- <pre>{{newOrder | json}}</pre>
             <pre>{{newBill | json}}</pre> -->
