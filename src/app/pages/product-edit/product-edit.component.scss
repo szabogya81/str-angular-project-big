@@ -1,20 +1,3 @@
 .btn.submit:disabled {
   cursor: not-allowed;
 }
-
-@keyframes rotate {
-  from {transform: rotate(0deg)}
-  to {transform: rotate(360deg)}
-}
-.refresh-start {
-  animation-name: rotate;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-play-state: running;
-  
-}
-.loading-refresh{
-  color: #00bcd4;
-  font-size: 40px;
-}

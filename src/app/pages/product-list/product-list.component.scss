@@ -62,17 +62,3 @@
     cursor: pointer;
   }
 }
-
-@keyframes flickerAnimation {
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-
-.trash-fade {
-  animation-name: flickerAnimation;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-play-state: running;
-}

@@ -71,17 +71,3 @@ table {
 .is-focused .form-control {
   background-image: linear-gradient(0deg, #e53935 2px, rgba(156, 39, 176, 0) 0), linear-gradient(0deg, #d2d2d2 1px, hsla(0, 0%, 82%, 0) 0);
 }
-
-@keyframes flickerAnimation {
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
-}
-
-.trash-fade {
-  animation-name: flickerAnimation;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-play-state: running;
-}
